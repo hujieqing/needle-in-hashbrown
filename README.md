@@ -1,7 +1,9 @@
-# Position-aware Graph Neural Networks
-This repository is the official PyTorch implementation of "Position-aware Graph Neural Networks".
-
+# NEEDLE + HASH for position aware graph embedding learning
+## References
+1. "Position-aware Graph Neural Networks".
 [Jiaxuan You](https://cs.stanford.edu/~jiaxuan/), [Rex Ying](https://cs.stanford.edu/people/rexy/), [Jure Leskovec](https://cs.stanford.edu/people/jure/index.html), [Position-aware Graph Neural Networks](http://proceedings.mlr.press/v97/you19b/you19b.pdf), ICML 2019 (long oral).
+2. GraphSage
+3. Node2vec
 
 ## Installation
 
