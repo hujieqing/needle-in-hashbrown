@@ -10,24 +10,19 @@
 - Install PyTorch (tested on 1.0.0), please refer to the offical website for further details
 ```bash
 conda install pytorch torchvision cudatoolkit=9.0 -c pytorch
-```
-- Install PyTorch Geometric (tested on 1.1.2), please refer to the offical website for further details
-```bash
-pip install --verbose --no-cache-dir torch-scatter
-pip install --verbose --no-cache-dir torch-sparse
-pip install --verbose --no-cache-dir torch-cluster
-pip install --verbose --no-cache-dir torch-spline-conv (optional)
+
+pip install torch==1.2.0+cu92 torchvision==0.4.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html
+pip install torch-scatter
+pip install torch-sparse
+pip install torch-cluster
+pip install torch-spline-conv
 pip install torch-geometric
+# torch-geometric depends on networkx, so it might automatically install networkx==2.4, you can try pip install torch-geometric==1.1.2 or uninstall networkx 2.4 and install networkx 2.3)
+pip install networkx==2.3 tensorboardX matplotlib scikit-learn
 ```
-- Install networkx (tested on 2.3), make sure you are not using networkx 1.x version!
-```bash
-pip install networkx
-```
-- Install tensorboardx
-```bash
-pip install tensorboardX
-```
-- If you wish to use PPI dataset, unzip `data/ppi.zip`
+## References
+[pytorch geometirc tutorial](https://github.com/rusty1s/pytorch_geometric)
+You can see what models are already implemented there - hopefully easy to port those into the experiments
 
 
 ## Run
