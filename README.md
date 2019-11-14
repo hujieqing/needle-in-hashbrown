@@ -10,6 +10,9 @@
 - Install PyTorch (tested on 1.0.0), please refer to the offical website for further details
 ```bash
 conda install pytorch torchvision cudatoolkit=9.0 -c pytorch
+# Note that if you plan to use nVidia GPU, please check your native version, the following command works for my own
+# linux box
+conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
 
 pip install torch==1.2.0+cu92 torchvision==0.4.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html
 pip install torch-scatter
