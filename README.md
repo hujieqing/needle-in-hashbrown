@@ -6,29 +6,48 @@
 3. [node2vec](https://cs.stanford.edu/~jure/pubs/node2vec-kdd16.pdf)
 
 ## Installation
+1. Install on company workstation with conda
+1.1 install anaconda with this [tutorial](https://docs.anaconda.com/anaconda/install/)
+1.2 create new environment with python 3.7 `conda create -n pytorch37 python=3.7`
+1.3 install pytorch in conda environment w/o GPU `conda install pytorch torchvision cpuonly -c pytorch`
+1.4 install torch-genmetrics and relevant dependencies from 3.
 
-- Install PyTorch (tested on 1.0.0), please refer to the offical website for further details
-```bash
-conda install pytorch torchvision cudatoolkit=9.0 -c pytorch
-# Note that if you plan to use nVidia GPU, please check your native version, the following command works for my own
-# linux box
-conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
+2. Install on a machine with cuda support
+2.1 follow same instruction from 1.1 - 1.2 
+2.2 `conda install pytorch torchvision cudatoolkit=10.1 -c pytorch` choose your cuda version accordingly.
+2.3 update environment variables for g++ compilers 
+```Bash
+$ echo $PATH
+>>> /usr/local/cuda/bin:...
 
-pip install torch==1.2.0+cu92 torchvision==0.4.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html
+$ echo $CPATH
+>>> /usr/local/cuda/include:...
+$ echo $LD_LIBRARY_PATH
+>>> /usr/local/cuda/lib64
+$ echo $DYLD_LIBRARY_PATH
+>>> /usr/local/cuda/lib
+```
+2.4 install libraries using commands from 3. You might need to use the following two options
+`--verbose --no-cache-dir`
+
+3. Install pytorch-gemetrics
+```Bash
 pip install torch-scatter
 pip install torch-sparse
 pip install torch-cluster
 pip install torch-spline-conv
 pip install torch-geometric
-# torch-geometric depends on networkx, so it might automatically install networkx==2.4, you can try pip install torch-geometric==1.1.2 or uninstall networkx 2.4 and install networkx 2.3)
+# torch-geometric depends on networkx, so it might automatically install networkx==2.4, you can try pip install torch-geometric==1.1.2 or uninstall networkx 2.4 and install networkx 2.3)k
 pip install networkx==2.3 tensorboardX matplotlib scikit-learn
 ```
+
 ## References
 [pytorch geometirc tutorial](https://github.com/rusty1s/pytorch_geometric)
 You can see what models are already implemented there - hopefully easy to port those into the experiments
 
 
 ## Run
+_The following commands might not work_
 - 3-layer GCN, grid
 ```bash
 python main.py --model GCN --num_layers 3 --dataset grid
