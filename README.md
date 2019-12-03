@@ -41,6 +41,11 @@ pip install torch-geometric
 pip install networkx==2.3 tensorboardX matplotlib scikit-learn
 ```
 
+4. Install mmh3 for supporting the hash function
+```Bash
+pip install mmh3
+```
+
 ## References
 [pytorch geometirc tutorial](https://github.com/rusty1s/pytorch_geometric)
 You can see what models are already implemented there - hopefully easy to port those into the experiments

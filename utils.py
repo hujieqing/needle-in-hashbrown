@@ -3,7 +3,7 @@ import networkx as nx
 import numpy as np
 import multiprocessing as mp
 import random
-
+import mmh3
 
 
 # # approximate
@@ -220,3 +220,17 @@ def preselect_anchor(data, layer_num=1, anchor_num=32, anchor_size_num=4, device
 
     anchorset_id = get_random_anchorset(data.num_nodes,c=1)
     data.dists_max, data.dists_argmax = get_dist_max(anchorset_id, data.dists, device)
+
+
+def int_to_hash_vector(input, n):
+    """
+    This function converts an input integer to a vector of dimension n. Each element in the vector is normalized from -1 to 1.
+    """
+    max32 = pow(2, 31)-1
+    result = []
+    last = input
+    for i in range(n):
+        a = mmh3.hash(str(last))
+        result.append(a / max32)
+        last = a
+    return result
