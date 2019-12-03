@@ -285,7 +285,17 @@ class PGNN(torch.nn.Module):
 
 
 
+class N2V(torch.nn.Module):
+    def __init__(self, num_nodes, embedding_dim, walk_length, context_size,
+                 walks_per_node, p=1, q=1, num_negative_samples=None):
+        super(N2V, self).__init__()
+        self.node2vec = tg.nn.Node2Vec(num_nodes, embedding_dim, walk_length,
+                                       context_size, walks_per_node, p, q,
+                                       num_negative_samples)
 
+    def forward(self, data):
+        x = data.x
+        return self.node2vec(x)
 
 
 

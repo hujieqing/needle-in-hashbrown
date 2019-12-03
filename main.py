@@ -19,7 +19,6 @@ writer_train = SummaryWriter(comment=args.task+'_'+args.model+'_'+args.comment+'
 writer_val = SummaryWriter(comment=args.task+'_'+args.model+'_'+args.comment+'_val')
 writer_test = SummaryWriter(comment=args.task+'_'+args.model+'_'+args.comment+'_test')
 
-
 # set up gpu
 if args.gpu:
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
@@ -70,18 +69,31 @@ for task in ['link', 'link_pair']:
             args.batch_size = min(args.batch_size, len(data_list))
             print('Anchor num {}, Batch size {}'.format(args.anchor_num, args.batch_size))
 
+            # model
+            input_dim = num_features
+            output_dim = args.output_dim
+            model = None
+            if args.model == "N2V":
+                num_nodes = 0
+                for i, data in enumerate(data_list):
+                    start = num_nodes
+                    num_nodes += data.num_nodes
+                    data.x = torch.arange(start, num_nodes)
+
+                model = locals()[args.model](num_nodes=num_nodes, embedding_dim=args.hidden_dim,
+                                             walk_length=10, context_size=5, walks_per_node=10)
+            else:
+                model = locals()[args.model](input_dim=input_dim, feature_dim=args.feature_dim,
+                            hidden_dim=args.hidden_dim, output_dim=output_dim,
+                            feature_pre=args.feature_pre, layer_num=args.layer_num, dropout=args.dropout).to(device)
+
             # data
             for i,data in enumerate(data_list):
+                print("{0}: feature size: {1}".format(i, data.x.shape))
                 preselect_anchor(data, layer_num=args.layer_num, anchor_num=args.anchor_num, device='cpu')
                 data = data.to(device)
                 data_list[i] = data
 
-            # model
-            input_dim = num_features
-            output_dim = args.output_dim
-            model = locals()[args.model](input_dim=input_dim, feature_dim=args.feature_dim,
-                        hidden_dim=args.hidden_dim, output_dim=output_dim,
-                        feature_pre=args.feature_pre, layer_num=args.layer_num, dropout=args.dropout).to(device)
             # loss
             optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=5e-4)
             if 'link' in args.task:
