@@ -106,5 +106,7 @@ venv.bak/
 # downloaded data
 datasets/
 results/
-runs/
+data/ppi/
 
+# local runs
+runs/

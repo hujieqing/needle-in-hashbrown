@@ -10,7 +10,7 @@ def make_args():
                         help='model class name. E.g., GCN, PGNN, ...')
     parser.add_argument('--dataset', dest='dataset', default='All', type=str,
                         help='All; Cora; grid; communities; ppi')
-    parser.add_argument('--gpu', dest='gpu', action='store_true',
+    parser.add_argument('--gpu', dest='gpu', default=False, type=bool,
                         help='whether use gpu')
     parser.add_argument('--cache_no', dest='cache', action='store_false',
                         help='whether use cache')
@@ -53,7 +53,7 @@ def make_args():
     parser.add_argument('--repeat_num', dest='repeat_num', default=2, type=int) # 10
     parser.add_argument('--epoch_log', dest='epoch_log', default=10, type=int)
 
-    parser.set_defaults(gpu=True, task='link', model='GCN', dataset='All',
+    parser.set_defaults(gpu=False, task='link', model='GCN', dataset='All',
                         cache=False, rm_feature=False,
                         permute=True, feature_pre=True, dropout=True,
                         approximate=-1, normalize_adj=False)
