@@ -1,5 +1,6 @@
 from sklearn.metrics import roc_auc_score, ndcg_score
 from sklearn.metrics.pairwise import cosine_similarity
+from scipy.stats import kendalltau
 from tensorboardX import SummaryWriter
 
 from args import *
@@ -142,6 +143,7 @@ for task in ['link', 'link_pair']:
                     emb_norm_mean = 0
                     # graph distance evals (on the whole dataset)
                     ndcg = 0
+                    ktau = 0
                     for id, data in enumerate(data_list):
                         out = model(data)
                         emb_norm_min += torch.norm(out.data, dim=1).min().cpu().numpy()
@@ -184,11 +186,15 @@ for task in ['link', 'link_pair']:
                         # desiderata: nodes closer to each other have higher cosine_sim
                         # calculate pairwise cosine sim for output embeddings
                         pairwise_sim = cosine_similarity(out.detach().numpy())
-                        # remove diagonals
+                        # remove diagonals (similarity to itself)
                         pairwise_sim = pairwise_sim[~np.eye(pairwise_sim.shape[0],dtype=bool)].reshape(pairwise_sim.shape[0],-1)
                         # low rank (closer) has higher relevance score
                         true_relevance = 1 / data.dists_ranks
+                        # nDCG score
                         ndcg += ndcg_score(true_relevance, pairwise_sim)
+                        # kendall's tau
+                        tau, p_value = kendalltau(true_relevance, pairwise_sim)
+                        ktau += tau
 
 
                     loss_train /= id+1
@@ -201,9 +207,11 @@ for task in ['link', 'link_pair']:
                     auc_val /= id+1
                     auc_test /= id+1
                     ndcg /= id+1
+                    ktau /= id+1
 
                     print(repeat, epoch, 'Loss {:.4f}'.format(loss_train), 'Train AUC: {:.4f}'.format(auc_train),
-                          'Val AUC: {:.4f}'.format(auc_val), 'Test AUC: {:.4f}'.format(auc_test), 'nDCG: {:.4f}'.format(ndcg))
+                          'Val AUC: {:.4f}'.format(auc_val), 'Test AUC: {:.4f}'.format(auc_test),
+                          'nDCG: {:.4f}'.format(ndcg), 'Kendall Tau: {:.4f}'.format(ktau))
                     writer_train.add_scalar('repeat_' + str(repeat) + '/auc_'+dataset_name, auc_train, epoch)
                     writer_train.add_scalar('repeat_' + str(repeat) + '/loss_'+dataset_name, loss_train, epoch)
                     writer_val.add_scalar('repeat_' + str(repeat) + '/auc_'+dataset_name, auc_val, epoch)
