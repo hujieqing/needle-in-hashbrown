@@ -45,14 +45,19 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
     f3_name = 'datasets/cache/' + dataset_name + str(args.approximate)+ '_links_train.dat'
     f4_name = 'datasets/cache/' + dataset_name + str(args.approximate)+ '_links_val.dat'
     f5_name = 'datasets/cache/' + dataset_name + str(args.approximate)+ '_links_test.dat'
+    # cache for dists_all
+    f6_name = 'datasets/cache/' + dataset_name + str(args.approximate)+ '_dists_all.dat'
 
     if use_cache and ((os.path.isfile(f2_name) and args.task=='link') or (os.path.isfile(f1_name) and args.task!='link')):
         with open(f3_name, 'rb') as f3, \
             open(f4_name, 'rb') as f4, \
-            open(f5_name, 'rb') as f5:
+            open(f5_name, 'rb') as f5, \
+            open(f6_name, 'rb') as f6:
             links_train_list = pickle.load(f3)
             links_val_list = pickle.load(f4)
             links_test_list = pickle.load(f5)
+            # load a list of dists_all (each is for one connected components)
+            dists_all_list = pickle.load(f6)
         if args.task=='link':
             with open(f2_name, 'rb') as f2:
                 dists_removed_list = pickle.load(f2)
@@ -77,8 +82,13 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
                 data.dists = torch.from_numpy(dists_list[i]).float()
             if remove_feature:
                 data.x = torch.ones((data.x.shape[0],1))
+
+            # assign dists_all to each data (connected components)
+            data.dists_all = torch.from_numpy(dists_all_list[i]).float()
+
             data_list.append(data)
     else:
+        dists_all_list = []  # dists_all stores dists for all nodes (regardless whether it's in train, val or test)
         data_list = []
         dists_list = []
         dists_removed_list = []
@@ -103,6 +113,12 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
                 dists = precompute_dist_data(data.edge_index.numpy(), data.num_nodes, approximate=args.approximate)
                 dists_list.append(dists)
                 data.dists = torch.from_numpy(dists).float()
+
+            # calculate dists for all nodes in the connected component, no need to worry about if the task is 'link'
+            dists_all = precompute_dist_data(data.edge_index.numpy(), data.num_nodes, approximate=args.approximate)
+            dists_all_list.append(dists_all)
+            data.dists_all = torch.from_numpy(dists_all).float()
+
             if remove_feature:
                 data.x = torch.ones((data.x.shape[0],1))
             data_list.append(data)
@@ -111,7 +127,8 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
             open(f2_name, 'wb') as f2, \
             open(f3_name, 'wb') as f3, \
             open(f4_name, 'wb') as f4, \
-            open(f5_name, 'wb') as f5:
+            open(f5_name, 'wb') as f5, \
+            open(f6_name, 'wb') as f6:
 
             if args.task=='link':
                 pickle.dump(dists_removed_list, f2)
@@ -120,6 +137,7 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
             pickle.dump(links_train_list, f3)
             pickle.dump(links_val_list, f4)
             pickle.dump(links_test_list, f5)
+            pickle.dump(dists_all_list, f6)
         print('Cache saved!')
     return data_list
 
