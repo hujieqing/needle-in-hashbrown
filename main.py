@@ -206,6 +206,12 @@ for task in ['link', 'link_pair']:
                         ndcg += ndcg_score(true_relevance, pairwise_sim)
                         # kendall's tau
                         tau, p_value = kendalltau(true_relevance, pairwise_sim)
+                        # # alternatively, calculates average kendall tau
+                        # tau = 0
+                        # for row in range(true_relevance.shape[0]):
+                        #     t, p = kendalltau(true_relevance[row, :], pairwise_sim[row, :])
+                        #     tau += t
+                        # tau /= true_relevance.shape[0]
                         ktau += tau
 
 
