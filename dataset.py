@@ -26,6 +26,8 @@ from torch_geometric.data import Data, DataLoader
 
 from utils import precompute_dist_data, get_link_mask, duplicate_edges, deduplicate_edges
 
+from scipy.stats import rankdata
+
 
 def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
     # "Cora", "CiteSeer" and "PubMed"
@@ -84,7 +86,10 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
                 data.x = torch.ones((data.x.shape[0],1))
 
             # assign dists_all to each data (connected components)
-            data.dists_all = torch.from_numpy(dists_all_list[i]).float()
+            data.dists_all = dists_all_list[i]
+
+            # generate graph dist ranks
+            data.dists_ranks = gen_graph_dist_rank_data(data.dists_all)
 
             data_list.append(data)
     else:
@@ -117,10 +122,14 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
             # calculate dists for all nodes in the connected component, no need to worry about if the task is 'link'
             dists_all = precompute_dist_data(data.edge_index.numpy(), data.num_nodes, approximate=args.approximate)
             dists_all_list.append(dists_all)
-            data.dists_all = torch.from_numpy(dists_all).float()
+            data.dists_all = dists_all
 
             if remove_feature:
                 data.x = torch.ones((data.x.shape[0],1))
+
+            # generate graph dist ranks
+            data.dists_ranks = gen_graph_dist_rank_data(data.dists_all)
+            
             data_list.append(data)
 
         with open(f1_name, 'wb') as f1, \
@@ -139,7 +148,20 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
             pickle.dump(links_test_list, f5)
             pickle.dump(dists_all_list, f6)
         print('Cache saved!')
+
     return data_list
+
+
+def gen_graph_dist_rank_data(dists_all):
+    '''
+    dists_all is a numpy 2D array that contains pairwise shortest_dists.
+    dist is 1/real_dist, higher actually means closer, 0 means disconnected
+    rankdata([1, 1, 1, 2, 2, 3, 3, 3, 3], method='dense') => array([1, 1, 1, 2, 2, 3, 3, 3, 3])
+    '''
+    # get the ranks for each row (node that is closer to the target node, which is indexed by the row number, ranks first)
+    ranks_all = np.apply_along_axis(rankdata, 1, -dists_all, "dense")
+
+    return ranks_all
 
 
 def nx_to_tg_data(graphs, features, edge_labels=None):
