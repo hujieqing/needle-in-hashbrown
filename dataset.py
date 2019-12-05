@@ -161,6 +161,9 @@ def gen_graph_dist_rank_data(dists_all):
     # get the ranks for each row (node that is closer to the target node, which is indexed by the row number, ranks first)
     ranks_all = np.apply_along_axis(rankdata, 1, -dists_all, "dense")
 
+    # removing diagnals (ranks to itself)
+    ranks_all = ranks_all[~np.eye(ranks_all.shape[0],dtype=bool)].reshape(ranks_all.shape[0],-1)
+
     return ranks_all
 
 
