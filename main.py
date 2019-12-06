@@ -1,6 +1,7 @@
 from sklearn.metrics import roc_auc_score, ndcg_score
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.stats import kendalltau
+from scipy.stats import spearmanr
 from tensorboardX import SummaryWriter
 
 from args import *
@@ -156,6 +157,7 @@ for task in ['link', 'link_pair']:
                     # graph distance evals (on the whole dataset)
                     ndcg = 0
                     ktau = 0
+                    rho = 0
                     for id, data in enumerate(data_list):
                         out = model(data)
                         emb_norm_min += torch.norm(out.data, dim=1).min().cpu().numpy()
@@ -213,7 +215,13 @@ for task in ['link', 'link_pair']:
                         #     tau += t
                         # tau /= true_relevance.shape[0]
                         ktau += tau
-
+                        # spearman rho
+                        r = 0
+                        for row in range(true_relevance.shape[0]):
+                            c, p = spearmanr(true_relevance[row], pairwise_sim[row])
+                            r += c
+                        r /= true_relevance.shape[0]
+                        rho += r
 
                     loss_train /= id+1
                     loss_val /= id+1
@@ -226,10 +234,11 @@ for task in ['link', 'link_pair']:
                     auc_test /= id+1
                     ndcg /= id+1
                     ktau /= id+1
+                    rho /= id+1
 
                     print(repeat, epoch, 'Loss {:.4f}'.format(loss_train), 'Train AUC: {:.4f}'.format(auc_train),
                           'Val AUC: {:.4f}'.format(auc_val), 'Test AUC: {:.4f}'.format(auc_test),
-                          'nDCG: {:.4f}'.format(ndcg), 'Kendall Tau: {:.4f}'.format(ktau))
+                          'nDCG: {:.4f}'.format(ndcg), 'Kendall Tau: {:.4f}'.format(ktau), 'Spearman Rho: {:.4f}'.format(rho))
                     writer_train.add_scalar('repeat_' + str(repeat) + '/auc_'+dataset_name, auc_train, epoch)
                     writer_train.add_scalar('repeat_' + str(repeat) + '/loss_'+dataset_name, loss_train, epoch)
                     writer_val.add_scalar('repeat_' + str(repeat) + '/auc_'+dataset_name, auc_val, epoch)
