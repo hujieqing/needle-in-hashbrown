@@ -45,9 +45,13 @@ for task in ['link', 'link_pair']:
         #     args.epoch_num = 401
         #     args.cache = True
         results = []
+        results_ndcg = []
+        results_ktau = []
         for repeat in range(args.repeat_num):
             result_val = []
             result_test = []
+            ndcg_result = []
+            ktau_result = []
             time1 = time.time()
             data_list = get_tg_dataset(args, dataset_name, use_cache=args.cache, remove_feature=args.rm_feature)
             time2 = time.time()
@@ -238,20 +242,44 @@ for task in ['link', 'link_pair']:
                     writer_test.add_scalar('repeat_' + str(repeat) + '/emb_min_'+dataset_name, emb_norm_min, epoch)
                     writer_test.add_scalar('repeat_' + str(repeat) + '/emb_max_'+dataset_name, emb_norm_max, epoch)
                     writer_test.add_scalar('repeat_' + str(repeat) + '/emb_mean_'+dataset_name, emb_norm_mean, epoch)
+
+                    writer_test.add_scalar('repeat_' + str(repeat) + '/ndcg_'+dataset_name, ndcg, epoch)
+                    writer_test.add_scalar('repeat_' + str(repeat) + '/ktau_'+dataset_name, ktau, epoch)
+
                     result_val.append(auc_val)
                     result_test.append(auc_test)
+
+                    ndcg_result.append(ndcg)
+                    ktau_result.append(ktau)
 
 
             result_val = np.array(result_val)
             result_test = np.array(result_test)
+
+            ndcg_result = np.array(ndcg_result)
+            ktau_result = np.array(ktau_result)
+
             results.append(result_test[np.argmax(result_val)])
+            results_ndcg.append(np.max(ndcg_result))
+            results_ktau.append(np.max(ktau_result))
         results = np.array(results)
         results_mean = np.mean(results).round(6)
         results_std = np.std(results).round(6)
+
+        results_ndcg = np.array(results_ndcg)
+        results_ndcg_mean = np.mean(results_ndcg).round(6)
+        results_ndcg_std = np.std(results_ndcg).round(6)
+
+        results_ktau = np.array(results_ktau)
+        results_ktau_mean = np.mean(results_ktau).round(6)
+        results_ktau_std = np.std(results_ktau).round(6)
+
         print('-----------------Final-------------------')
-        print(results_mean, results_std)
+        print('AUC results:', results_mean, results_std)
+        print('nDCG results:', results_ndcg_mean, results_ndcg_std)
+        print('Kendall\'s Tau:', results_ktau_mean, results_ktau_std)
         with open('results/{}_{}_{}_layer{}_approximate{}.txt'.format(args.task,args.model,dataset_name,args.layer_num,args.approximate), 'w') as f:
-            f.write('{}, {}\n'.format(results_mean, results_std))
+            f.write('{}, {}, {}, {}, {}, {}\n'.format(results_mean, results_std, results_ndcg_mean, results_ndcg_std, results_ktau_mean, results_ktau_std))
 
 # export scalar data to JSON for external processing
 writer_train.export_scalars_to_json("./all_scalars.json")
