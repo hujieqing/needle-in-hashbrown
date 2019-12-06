@@ -203,11 +203,11 @@ for task in ['link', 'link_pair']:
                         # remove diagonals (similarity to itself)
                         pairwise_sim = pairwise_sim[~np.eye(pairwise_sim.shape[0],dtype=bool)].reshape(pairwise_sim.shape[0],-1)
                         # low rank (closer) has higher relevance score
-                        true_relevance = 1 / data.dists_ranks
+                        true_relevance = 1.0 / data.dists_ranks.astype(float)
                         # nDCG score
                         ndcg += ndcg_score(true_relevance, pairwise_sim)
                         # kendall's tau
-                        tau, p_value = kendalltau(true_relevance, pairwise_sim)
+                        tau, p_value = kendalltau(true_relevance, pairwise_sim, nan_policy='omit')
                         # # alternatively, calculates average kendall tau
                         # tau = 0
                         # for row in range(true_relevance.shape[0]):
@@ -218,7 +218,7 @@ for task in ['link', 'link_pair']:
                         # spearman rho
                         r = 0
                         for row in range(true_relevance.shape[0]):
-                            c, p = spearmanr(true_relevance[row], pairwise_sim[row])
+                            c, p = spearmanr(a=true_relevance[row], b=pairwise_sim[row], nan_policy='raise')
                             r += c
                         r /= true_relevance.shape[0]
                         rho += r
