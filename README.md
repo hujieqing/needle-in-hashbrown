@@ -27,7 +27,6 @@ $ echo $LD_LIBRARY_PATH
 $ echo $DYLD_LIBRARY_PATH
 >>> /usr/local/cuda/lib
 ```
-
 2.4 install libraries using commands from 3. You might need to use the following two options
 `--verbose --no-cache-dir`
 
@@ -46,6 +45,8 @@ pip install networkx==2.3 tensorboardX matplotlib scikit-learn
 ```Bash
 pip install mmh3
 ```
+
+5. Install the right version of sklearn `pip install scikit-learn==0.22`
 
 ## References
 [pytorch geometirc tutorial](https://github.com/rusty1s/pytorch_geometric)
