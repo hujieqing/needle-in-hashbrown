@@ -1,11 +1,4 @@
 # NEEDLE + HASH for position aware graph embedding learning
-## References
-1. "Position-aware Graph Neural Networks".
-[Jiaxuan You](https://cs.stanford.edu/~jiaxuan/), [Rex Ying](https://cs.stanford.edu/people/rexy/), [Jure Leskovec](https://cs.stanford.edu/people/jure/index.html), [Position-aware Graph Neural Networks](http://proceedings.mlr.press/v97/you19b/you19b.pdf), ICML 2019 (long oral).
-2. [GraphSage](https://cs.stanford.edu/people/jure/pubs/graphsage-nips17.pdf)
-3. [node2vec](https://cs.stanford.edu/~jure/pubs/node2vec-kdd16.pdf)
-4. [pytorch geometirc tutorial](https://github.com/rusty1s/pytorch_geometric). You can see what models are already implemented there - hopefully easy to port those into the experiments
-
 ## Installation
 1. Install on company workstation with conda
    - install anaconda with this [tutorial](https://docs.anaconda.com/anaconda/install/)
@@ -77,3 +70,9 @@ We recommend using tensorboard to monitor the training process. To do this, you 
 ```bash
 tensorboard --logdir runs
 ```
+## References
+1. "Position-aware Graph Neural Networks".
+[Jiaxuan You](https://cs.stanford.edu/~jiaxuan/), [Rex Ying](https://cs.stanford.edu/people/rexy/), [Jure Leskovec](https://cs.stanford.edu/people/jure/index.html), [Position-aware Graph Neural Networks](http://proceedings.mlr.press/v97/you19b/you19b.pdf), ICML 2019 (long oral).
+2. [GraphSage](https://cs.stanford.edu/people/jure/pubs/graphsage-nips17.pdf)
+3. [node2vec](https://cs.stanford.edu/~jure/pubs/node2vec-kdd16.pdf)
+4. [pytorch geometirc tutorial](https://github.com/rusty1s/pytorch_geometric). You can see what models are already implemented there - hopefully easy to port those into the experiments
