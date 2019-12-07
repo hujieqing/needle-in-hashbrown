@@ -4,6 +4,7 @@
 [Jiaxuan You](https://cs.stanford.edu/~jiaxuan/), [Rex Ying](https://cs.stanford.edu/people/rexy/), [Jure Leskovec](https://cs.stanford.edu/people/jure/index.html), [Position-aware Graph Neural Networks](http://proceedings.mlr.press/v97/you19b/you19b.pdf), ICML 2019 (long oral).
 2. [GraphSage](https://cs.stanford.edu/people/jure/pubs/graphsage-nips17.pdf)
 3. [node2vec](https://cs.stanford.edu/~jure/pubs/node2vec-kdd16.pdf)
+4. [pytorch geometirc tutorial](https://github.com/rusty1s/pytorch_geometric). You can see what models are already implemented there - hopefully easy to port those into the experiments
 
 ## Installation
 1. Install on company workstation with conda
@@ -47,11 +48,6 @@ pip install mmh3
 ```
 
 5. Install the right version of sklearn `pip install scikit-learn==0.22`
-
-## References
-[pytorch geometirc tutorial](https://github.com/rusty1s/pytorch_geometric)
-You can see what models are already implemented there - hopefully easy to port those into the experiments
-
 
 ## Run
 _The following commands might not work_
