@@ -201,7 +201,7 @@ for task in ['link', 'link_pair']:
                         # evaluations for graph distance (on the while dataset)
                         # desiderata: nodes closer to each other have higher cosine_sim
                         # calculate pairwise cosine sim for output embeddings
-                        pairwise_sim = cosine_similarity(out.detach().numpy())
+                        pairwise_sim = cosine_similarity(out.detach().cpu().numpy())
                         # remove diagonals (similarity to itself)
                         pairwise_sim = pairwise_sim[~np.eye(pairwise_sim.shape[0],dtype=bool)].reshape(pairwise_sim.shape[0],-1)
                         # low rank (closer) has higher relevance score
