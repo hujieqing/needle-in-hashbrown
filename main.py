@@ -53,7 +53,7 @@ for task in ['link', 'link_pair']:
             ndcg_result = []
             ktau_result = []
             time1 = time.time()
-            data_list = get_tg_dataset(args, dataset_name, use_cache=args.cache, remove_feature=args.rm_feature)
+            data_list = get_tg_dataset(args, dataset_name, use_cache=args.cache, remove_feature=args.rm_feature, hash_overwrite=args.hash_overwrite)
             time2 = time.time()
             print(dataset_name, 'load time',  time2-time1)
 

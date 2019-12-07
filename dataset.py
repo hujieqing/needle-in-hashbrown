@@ -24,12 +24,12 @@ import time
 
 from torch_geometric.data import Data, DataLoader
 
-from utils import precompute_dist_data, get_link_mask, duplicate_edges, deduplicate_edges
+from utils import precompute_dist_data, get_link_mask, duplicate_edges, deduplicate_edges, int_to_hash_vector
 
 from scipy.stats import rankdata
 
 
-def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
+def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, hash_overwrite=False):
     # "Cora", "CiteSeer" and "PubMed"
     if dataset_name in ['Cora', 'CiteSeer', 'PubMed']:
         dataset = tg.datasets.Planetoid(root='datasets/' + dataset_name, name=dataset_name)
@@ -69,6 +69,7 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
 
         print('Cache loaded!')
         data_list = []
+        start_node = 0
         for i, data in enumerate(dataset):
             if args.task == 'link':
                 data.mask_link_positive = deduplicate_edges(data.edge_index.numpy())
@@ -84,6 +85,12 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False):
                 data.dists = torch.from_numpy(dists_list[i]).float()
             if remove_feature:
                 data.x = torch.ones((data.x.shape[0],1))
+            if hash_overwrite:
+                x = np.zeros(data.x.shape)
+                for m in range(data.x.shape[0]):
+                    x[m] = int_to_hash_vector(start_node + m, data.x.shape[1])
+                data.x = torch.from_numpy(x)
+                start_node += data.x.shape[0]
 
             # assign dists_all to each data (connected components)
             data.dists_all = dists_all_list[i]
