@@ -16,17 +16,17 @@
    - follow same instruction from 1.1 - 1.2 
    - `conda install pytorch torchvision cudatoolkit=10.1 -c pytorch` choose your cuda version accordingly.
    - update environment variables for g++ compilers 
-```Bash
-$ echo $PATH
->>> /usr/local/cuda/bin:...
+      ```Bash
+      $ echo $PATH
+      >>> /usr/local/cuda/bin:...
 
-$ echo $CPATH
->>> /usr/local/cuda/include:...
-$ echo $LD_LIBRARY_PATH
->>> /usr/local/cuda/lib64
-$ echo $DYLD_LIBRARY_PATH
->>> /usr/local/cuda/lib
-```
+      $ echo $CPATH
+      >>> /usr/local/cuda/include:...
+      $ echo $LD_LIBRARY_PATH
+      >>> /usr/local/cuda/lib64
+      $ echo $DYLD_LIBRARY_PATH
+      >>> /usr/local/cuda/lib
+      ```
    - install libraries using commands from 3. You might need to use the following two options
 `--verbose --no-cache-dir`
 
