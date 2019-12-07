@@ -27,6 +27,7 @@ $ echo $LD_LIBRARY_PATH
 $ echo $DYLD_LIBRARY_PATH
 >>> /usr/local/cuda/lib
 ```
+
 2.4 install libraries using commands from 3. You might need to use the following two options
 `--verbose --no-cache-dir`
 
