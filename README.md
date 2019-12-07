@@ -11,7 +11,7 @@
   1.2 create new environment with python 3.7 `conda create -n pytorch37 python=3.7`
   1.3 install pytorch in conda environment w/o GPU `conda install pytorch torchvision cpuonly -c pytorch`
   1.4 install torch-genmetrics and relevant dependencies from 3.
-
+ 
 2. Install on a machine with cuda support
   2.1 follow same instruction from 1.1 - 1.2 
   2.2 `conda install pytorch torchvision cudatoolkit=10.1 -c pytorch` choose your cuda version accordingly.
