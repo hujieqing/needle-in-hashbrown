@@ -7,7 +7,7 @@
 
 ## Installation
 1. Install on company workstation with conda
-   1.1 install anaconda with this [tutorial](https://docs.anaconda.com/anaconda/install/)
+   - 1.1 install anaconda with this [tutorial](https://docs.anaconda.com/anaconda/install/)
    1.2 create new environment with python 3.7 `conda create -n pytorch37 python=3.7`
    1.3 install pytorch in conda environment w/o GPU `conda install pytorch torchvision cpuonly -c pytorch`
    1.4 install torch-genmetrics and relevant dependencies from 3.
