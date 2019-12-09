@@ -110,3 +110,6 @@ data/ppi/
 
 # local runs
 runs/
+
+# exclude everything under idea
+.idea/
