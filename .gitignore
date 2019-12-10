@@ -116,3 +116,8 @@ runs/
 
 # redundant mac file
 .DS_Store
+
+# editor related
+.vscode/
+*~
+\#*\#
