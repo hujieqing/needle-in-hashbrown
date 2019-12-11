@@ -312,7 +312,7 @@ def ndcg_at_k(relevance_scores: Iterable[float], k: int, method=0):
     return dcg_at_k(relevance_scores, k, method) / dcg_max
 
 
-def avg_kendall_tau(dict_to_consider: Dict[List[int]], baseline_dict: Dict[List[int]]):
+def avg_kendall_tau(dict_to_consider: Dict[int, List[int]], baseline_dict: Dict[int, List[int]]):
 
     """Calculates Kendall’s tau, a correlation measure for ordinal data.
     Kendall’s tau is a measure of the correspondence between two rankings.
