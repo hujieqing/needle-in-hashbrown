@@ -2,14 +2,12 @@ import torch
 import torch.nn as nn
 import torch_geometric as tg
 import torch.nn.functional as F
-from torch_geometric.nn import MessagePassing
-from torch_geometric.utils import add_self_loops, degree
 from torch.nn import init
-import pdb
 
 ####################### Basic Ops #############################
+# PGNN layer, only pick closest node for message passing
 
-# # PGNN layer, only pick closest node for message passing
+
 class PGNN_layer(nn.Module):
     def __init__(self, input_dim, output_dim,dist_trainable=True):
         super(PGNN_layer, self).__init__()
@@ -50,7 +48,7 @@ class PGNN_layer(nn.Module):
         return out_position, out_structure
 
 
-### Non linearity
+# Non linearity
 class Nonlinear(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim):
         super(Nonlinear, self).__init__()
@@ -72,10 +70,8 @@ class Nonlinear(nn.Module):
         x = self.linear2(x)
         return x
 
-
-
-
 ####################### NNs #############################
+
 
 class MLP(torch.nn.Module):
     def __init__(self, input_dim, feature_dim, hidden_dim, output_dim,
@@ -91,7 +87,6 @@ class MLP(torch.nn.Module):
             self.linear_first = nn.Linear(input_dim, hidden_dim)
         self.linear_hidden = nn.ModuleList([nn.Linear(hidden_dim, hidden_dim) for i in range(layer_num - 2)])
         self.linear_out = nn.Linear(hidden_dim, output_dim)
-
 
     def forward(self, data):
         x = data.x
@@ -143,6 +138,7 @@ class GCN(torch.nn.Module):
         x = F.normalize(x, p=2, dim=-1)
         return x
 
+
 class SAGE(torch.nn.Module):
     def __init__(self, input_dim, feature_dim, hidden_dim, output_dim,
                  feature_pre=True, layer_num=2, dropout=True, **kwargs):
@@ -175,6 +171,7 @@ class SAGE(torch.nn.Module):
         x = F.normalize(x, p=2, dim=-1)
         return x
 
+
 class GAT(torch.nn.Module):
     def __init__(self, input_dim, feature_dim, hidden_dim, output_dim,
                  feature_pre=True, layer_num=2, dropout=True, **kwargs):
@@ -206,6 +203,7 @@ class GAT(torch.nn.Module):
         x = self.conv_out(x, edge_index)
         x = F.normalize(x, p=2, dim=-1)
         return x
+
 
 class GIN(torch.nn.Module):
     def __init__(self, input_dim, feature_dim, hidden_dim, output_dim,
@@ -245,7 +243,6 @@ class GIN(torch.nn.Module):
         return x
 
 
-
 class PGNN(torch.nn.Module):
     def __init__(self, input_dim, feature_dim, hidden_dim, output_dim,
                  feature_pre=True, layer_num=2, dropout=True, **kwargs):
@@ -282,7 +279,6 @@ class PGNN(torch.nn.Module):
         x_position, x = self.conv_out(x, data.dists_max, data.dists_argmax)
         x_position = F.normalize(x_position, p=2, dim=-1)
         return x_position
-
 
 
 class N2V(torch.nn.Module):

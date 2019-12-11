@@ -1,26 +1,13 @@
 import torch
 import networkx as nx
 import numpy as np
-import pickle as pkl
-import scipy.sparse as sp
 import torch.utils.data
-import itertools
-from collections import Counter
-from random import shuffle
 import json
-#
 from networkx.readwrite import json_graph
-from argparse import ArgumentParser
-import matplotlib.pyplot as plt
-
-import pdb
-import time
 import random
 import pickle
 import os.path
 import torch_geometric as tg
-import torch_geometric.datasets
-import time
 
 from torch_geometric.data import Data, DataLoader
 
@@ -50,11 +37,13 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
     # cache for dists_all
     f6_name = 'datasets/cache/' + dataset_name + str(args.approximate)+ '_dists_all.dat'
 
-    if use_cache and ((os.path.isfile(f2_name) and args.task=='link') or (os.path.isfile(f1_name) and args.task!='link')):
+    if use_cache and ((os.path.isfile(f2_name) and args.task=='link') or (os.path.isfile(f1_name) and
+                                                                          args.task != 'link')):
         with open(f3_name, 'rb') as f3, \
-            open(f4_name, 'rb') as f4, \
-            open(f5_name, 'rb') as f5, \
-            open(f6_name, 'rb') as f6:
+                open(f4_name, 'rb') as f4, \
+                open(f5_name, 'rb') as f5, \
+                open(f6_name, 'rb') as f6:
+
             links_train_list = pickle.load(f3)
             links_val_list = pickle.load(f4)
             links_test_list = pickle.load(f5)
@@ -140,11 +129,11 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
             data_list.append(data)
 
         with open(f1_name, 'wb') as f1, \
-            open(f2_name, 'wb') as f2, \
-            open(f3_name, 'wb') as f3, \
-            open(f4_name, 'wb') as f4, \
-            open(f5_name, 'wb') as f5, \
-            open(f6_name, 'wb') as f6:
+                open(f2_name, 'wb') as f2, \
+                open(f3_name, 'wb') as f3, \
+                open(f4_name, 'wb') as f4, \
+                open(f5_name, 'wb') as f5, \
+                open(f6_name, 'wb') as f6:
 
             if args.task=='link':
                 pickle.dump(dists_removed_list, f2)
@@ -160,12 +149,13 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
 
 
 def gen_graph_dist_rank_data(dists_all):
-    '''
+    """
     dists_all is a numpy 2D array that contains pairwise shortest_dists.
     dist is 1/real_dist, higher actually means closer, 0 means disconnected
     rankdata([1, 1, 1, 2, 2, 3, 3, 3, 3], method='dense') => array([1, 1, 1, 2, 2, 3, 3, 3, 3])
-    '''
-    # get the ranks for each row (node that is closer to the target node, which is indexed by the row number, ranks first)
+    """
+    # get the ranks for each row (node that is closer to the target node, which is indexed by the row number,
+    # ranks first)
     ranks_all = np.apply_along_axis(rankdata, 1, -dists_all, "dense")
 
     # removing diagnals (ranks to itself)
@@ -208,12 +198,12 @@ def nx_to_tg_data(graphs, features, edge_labels=None):
     return data_list
 
 
-
 def parse_index_file(filename):
     index = []
     for line in open(filename):
         index.append(int(line.strip()))
     return index
+
 
 def sample_mask(idx, l):
     """Create mask."""
@@ -221,11 +211,13 @@ def sample_mask(idx, l):
     mask[idx] = 1
     return np.array(mask, dtype=np.bool)
 
-def Graph_load_batch(min_num_nodes = 20, max_num_nodes = 1000, name = 'ENZYMES',node_attributes = True,graph_labels=True):
-    '''
+
+def Graph_load_batch(min_num_nodes=20, max_num_nodes=1000, name='ENZYMES', node_attributes=True, graph_labels=True):
+    """
     load many graphs, e.g. enzymes
     :return: a list of graphs
-    '''
+    """
+
     print('Loading graph dataset: '+str(name))
     G = nx.Graph()
     # load data
@@ -238,7 +230,6 @@ def Graph_load_batch(min_num_nodes = 20, max_num_nodes = 1000, name = 'ENZYMES',
     if graph_labels:
         data_graph_labels = np.loadtxt(path+name+'_graph_labels.txt', delimiter=',').astype(int)
 
-
     data_tuple = list(map(tuple, data_adj))
 
     # add edges
@@ -246,8 +237,8 @@ def Graph_load_batch(min_num_nodes = 20, max_num_nodes = 1000, name = 'ENZYMES',
     # add node attributes
     for i in range(data_node_label.shape[0]):
         if node_attributes:
-            G.add_node(i+1, feature = data_node_att[i])
-        G.add_node(i+1, label = data_node_label[i])
+            G.add_node(i+1, feature=data_node_att[i])
+        G.add_node(i+1, label=data_node_label[i])
     G.remove_nodes_from(list(nx.isolates(G)))
 
     # split into graphs
@@ -257,17 +248,16 @@ def Graph_load_batch(min_num_nodes = 20, max_num_nodes = 1000, name = 'ENZYMES',
     max_nodes = 0
     for i in range(graph_num):
         # find the nodes for each graph
-        nodes = node_list[data_graph_indicator==i+1]
+        nodes = node_list[data_graph_indicator == i+1]
         G_sub = G.subgraph(nodes)
         if graph_labels:
             G_sub.graph['label'] = data_graph_labels[i]
-        if G_sub.number_of_nodes()>=min_num_nodes and G_sub.number_of_nodes()<=max_num_nodes:
+        if min_num_nodes <= G_sub.number_of_nodes() <= max_num_nodes:
             graphs.append(G_sub)
             if G_sub.number_of_nodes() > max_nodes:
                 max_nodes = G_sub.number_of_nodes()
     print('Loaded')
     return graphs, data_node_att, data_node_label
-
 
 
 # main data load function
@@ -351,7 +341,6 @@ def load_graphs(dataset_str):
 
         print('final num', len(graphs))
 
-
     elif dataset_str == 'email':
 
         with open('data/email.txt', 'rb') as f:
@@ -360,7 +349,6 @@ def load_graphs(dataset_str):
         label_all = np.loadtxt('data/email_labels.txt')
         graph_label_all = label_all.copy()
         graph_label_all[:,1] = graph_label_all[:,1]//6
-
 
         for edge in list(graph.edges()):
             if graph_label_all[int(edge[0])][1] != graph_label_all[int(edge[1])][1]:
@@ -385,7 +373,6 @@ def load_graphs(dataset_str):
             label = label
             edge_labels.append(label)
 
-
     elif dataset_str == 'ppi':
         dataset_dir = 'data/ppi'
         print("Loading data...")
@@ -400,7 +387,7 @@ def load_graphs(dataset_str):
 
         print("Using only features..")
         feats = np.load(dataset_dir + "/ppi-feats.npy")
-        ## Logistic gets thrown off by big counts, so log transform num comments and score
+        # Logistic gets thrown off by big counts, so log transform num comments and score
         feats[:, 0] = np.log(feats[:, 0] + 1.0)
         feats[:, 1] = np.log(feats[:, 1] - min(np.min(feats[:, 1]), -1))
         feat_id_map = json.load(open(dataset_dir + "/ppi-id_map.json"))
@@ -431,5 +418,5 @@ def load_graphs(dataset_str):
 
 
 def load_tg_dataset(name='communities'):
-    graphs, features, edge_labels,_,_,_,_ = load_graphs(name)
+    graphs, features, edge_labels, _, _, _, _ = load_graphs(name)
     return nx_to_tg_data(graphs, features, edge_labels)

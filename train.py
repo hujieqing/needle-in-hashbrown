@@ -1,10 +1,14 @@
+from random import shuffle
 from sklearn.metrics import roc_auc_score
+import time
 
 from model import *
 from utils import *
 from dataset import *
 
 # for data augmentation
+
+
 def pretrain(args, data_list, model, optimizer, writer_train, writer_val, writer_test, device,
           epoch_num=500, repeat=0, dataset_name='Cora'):
     loss_func = nn.BCEWithLogitsLoss()
@@ -32,7 +36,6 @@ def pretrain(args, data_list, model, optimizer, writer_train, writer_val, writer
                                                              num_negtive_edges=mask_link_positive.shape[1])
             edge_mask_train = np.concatenate((mask_link_positive, mask_link_negative),
                                              axis=-1)
-
 
             nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[0, :]).long().to(device))
             nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[1, :]).long().to(device))
@@ -136,16 +139,14 @@ def pretrain(args, data_list, model, optimizer, writer_train, writer_val, writer
             writer_train.add_scalar('link_pretrain_repeat_' + str(repeat) + '/loss_' + dataset_name, loss_val, epoch)
             writer_test.add_scalar('link_pretrain_repeat_' + str(repeat) + '/auc_' + dataset_name, auc_test, epoch)
             writer_test.add_scalar('link_pretrain_repeat_' + str(repeat) + '/loss_' + dataset_name, loss_test, epoch)
-            writer_test.add_scalar('link_pretrain_repeat_' + str(repeat) + '/emb_min_' + dataset_name, emb_norm_min, epoch)
-            writer_test.add_scalar('link_pretrain_repeat_' + str(repeat) + '/emb_max_' + dataset_name, emb_norm_max, epoch)
-            writer_test.add_scalar('link_pretrain_repeat_' + str(repeat) + '/emb_mean_' + dataset_name, emb_norm_mean, epoch)
+            writer_test.add_scalar('link_pretrain_repeat_' + str(repeat) + '/emb_min_' + dataset_name, emb_norm_min,
+                                   epoch)
+            writer_test.add_scalar('link_pretrain_repeat_' + str(repeat) + '/emb_max_' + dataset_name, emb_norm_max,
+                                   epoch)
+            writer_test.add_scalar('link_pretrain_repeat_' + str(repeat) + '/emb_mean_' + dataset_name, emb_norm_mean,
+                                   epoch)
 
     return model
-
-
-
-
-
 
 
 def train(args, data_list, model, optimizer, writer_train, writer_val, writer_test, device,
@@ -290,6 +291,7 @@ def train(args, data_list, model, optimizer, writer_train, writer_val, writer_te
             emb_norm_min /= id + 1
             emb_norm_max /= id + 1
             emb_norm_mean /= id + 1
+
             if args.task == 'node':
                 acc_train = correct_train / all_train
                 acc_val = correct_val / all_val
@@ -324,6 +326,7 @@ def train(args, data_list, model, optimizer, writer_train, writer_val, writer_te
                 writer_test.add_scalar('repeat_' + str(repeat) + '/emb_min_' + dataset_name, emb_norm_min, epoch)
                 writer_test.add_scalar('repeat_' + str(repeat) + '/emb_max_' + dataset_name, emb_norm_max, epoch)
                 writer_test.add_scalar('repeat_' + str(repeat) + '/emb_mean_' + dataset_name, emb_norm_mean, epoch)
+
     return model
 
 
