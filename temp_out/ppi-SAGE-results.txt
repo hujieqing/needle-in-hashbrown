@@ -1,0 +1,483 @@
+torch) [yixiao@arch needle-in-hashbrown]$ python main.py --model SAGE --layer_num 3 --dataset ppi --gpu GPU --cuda 0
+Namespace(anchor_num=64, approximate=-1, batch_size=8, cache=False, comment='0', cuda='0', dataset='ppi', dropout=True, epoch_log=10, epoch_num=2001, feature_dim=32, feature_pre=True, gpu=True, hash_overwrite=False, hidden_dim=32, layer_num=3, lr=0.01, model='SAGE', normalize_adj=False, output_dim=32, permute=True, remove_link_ratio=0.2, repeat_num=2, rm_feature=False, task='link')
+Using GPU 0
+Loading data...
+Using only features..
+Cache saved!
+ppi load time 652.9187762737274
+Dataset ppi Graph 24 Feature 50 Node Class None Graph Class None
+Node: max3480, min591, mean2360.75
+Edge: max85402, min6166, mean52907.083333333336
+Anchor num 64, Batch size 8
+0: feature size: torch.Size([1546, 50])
+1: feature size: torch.Size([1377, 50])
+2: feature size: torch.Size([2263, 50])
+3: feature size: torch.Size([2339, 50])
+4: feature size: torch.Size([1578, 50])
+5: feature size: torch.Size([1021, 50])
+6: feature size: torch.Size([1823, 50])
+7: feature size: torch.Size([2488, 50])
+8: feature size: torch.Size([591, 50])
+9: feature size: torch.Size([3312, 50])
+10: feature size: torch.Size([2401, 50])
+11: feature size: torch.Size([1878, 50])
+12: feature size: torch.Size([1819, 50])
+13: feature size: torch.Size([3480, 50])
+14: feature size: torch.Size([2794, 50])
+15: feature size: torch.Size([2326, 50])
+16: feature size: torch.Size([2650, 50])
+17: feature size: torch.Size([2815, 50])
+18: feature size: torch.Size([3163, 50])
+19: feature size: torch.Size([3021, 50])
+20: feature size: torch.Size([3195, 50])
+21: feature size: torch.Size([3284, 50])
+22: feature size: torch.Size([3194, 50])
+23: feature size: torch.Size([2300, 50])
+0 0 Loss 0.8132 Train AUC: 0.8175 Val AUC: 0.7746 Test AUC: 0.7742 nDCG: 0.9771 Kendall Tau: 0.3848
+0 10 Loss 0.8128 Train AUC: 0.7722 Val AUC: 0.7346 Test AUC: 0.7347 nDCG: 0.9747 Kendall Tau: 0.3128
+0 20 Loss 0.8128 Train AUC: 0.7493 Val AUC: 0.7149 Test AUC: 0.7148 nDCG: 0.9734 Kendall Tau: 0.2812
+0 30 Loss 0.8128 Train AUC: 0.7382 Val AUC: 0.7057 Test AUC: 0.7051 nDCG: 0.9723 Kendall Tau: 0.2678
+0 40 Loss 0.8129 Train AUC: 0.7334 Val AUC: 0.7017 Test AUC: 0.7010 nDCG: 0.9715 Kendall Tau: 0.2621
+0 50 Loss 0.8131 Train AUC: 0.7324 Val AUC: 0.7011 Test AUC: 0.7001 nDCG: 0.9711 Kendall Tau: 0.2612
+0 60 Loss 0.8129 Train AUC: 0.7316 Val AUC: 0.7003 Test AUC: 0.6993 nDCG: 0.9708 Kendall Tau: 0.2603
+0 70 Loss 0.8129 Train AUC: 0.7312 Val AUC: 0.7000 Test AUC: 0.6991 nDCG: 0.9707 Kendall Tau: 0.2599
+0 80 Loss 0.8128 Train AUC: 0.7313 Val AUC: 0.7002 Test AUC: 0.6994 nDCG: 0.9706 Kendall Tau: 0.2594
+0 90 Loss 0.8129 Train AUC: 0.7311 Val AUC: 0.6998 Test AUC: 0.6994 nDCG: 0.9706 Kendall Tau: 0.2590
+0 100 Loss 0.8129 Train AUC: 0.7309 Val AUC: 0.6996 Test AUC: 0.6992 nDCG: 0.9706 Kendall Tau: 0.2576
+0 110 Loss 0.8130 Train AUC: 0.7309 Val AUC: 0.6997 Test AUC: 0.6994 nDCG: 0.9706 Kendall Tau: 0.2562
+0 120 Loss 0.8130 Train AUC: 0.7308 Val AUC: 0.6998 Test AUC: 0.6992 nDCG: 0.9705 Kendall Tau: 0.2553
+0 130 Loss 0.8131 Train AUC: 0.7308 Val AUC: 0.6995 Test AUC: 0.6991 nDCG: 0.9706 Kendall Tau: 0.2550
+0 140 Loss 0.8131 Train AUC: 0.7309 Val AUC: 0.6995 Test AUC: 0.6992 nDCG: 0.9706 Kendall Tau: 0.2551
+0 150 Loss 0.8130 Train AUC: 0.7308 Val AUC: 0.6991 Test AUC: 0.6990 nDCG: 0.9705 Kendall Tau: 0.2551
+0 160 Loss 0.8131 Train AUC: 0.7307 Val AUC: 0.6992 Test AUC: 0.6990 nDCG: 0.9705 Kendall Tau: 0.2559
+0 170 Loss 0.8131 Train AUC: 0.7306 Val AUC: 0.6992 Test AUC: 0.6989 nDCG: 0.9705 Kendall Tau: 0.2559
+0 180 Loss 0.8132 Train AUC: 0.7305 Val AUC: 0.6990 Test AUC: 0.6988 nDCG: 0.9705 Kendall Tau: 0.2558
+0 190 Loss 0.8131 Train AUC: 0.7303 Val AUC: 0.6987 Test AUC: 0.6985 nDCG: 0.9705 Kendall Tau: 0.2550
+0 200 Loss 0.8131 Train AUC: 0.7299 Val AUC: 0.6982 Test AUC: 0.6979 nDCG: 0.9705 Kendall Tau: 0.2544
+0 210 Loss 0.8131 Train AUC: 0.7299 Val AUC: 0.6982 Test AUC: 0.6979 nDCG: 0.9705 Kendall Tau: 0.2544
+0 220 Loss 0.8131 Train AUC: 0.7299 Val AUC: 0.6982 Test AUC: 0.6978 nDCG: 0.9705 Kendall Tau: 0.2546
+0 230 Loss 0.8131 Train AUC: 0.7298 Val AUC: 0.6981 Test AUC: 0.6977 nDCG: 0.9705 Kendall Tau: 0.2546
+0 240 Loss 0.8131 Train AUC: 0.7298 Val AUC: 0.6981 Test AUC: 0.6978 nDCG: 0.9705 Kendall Tau: 0.2547
+0 250 Loss 0.8131 Train AUC: 0.7299 Val AUC: 0.6982 Test AUC: 0.6978 nDCG: 0.9705 Kendall Tau: 0.2550
+0 260 Loss 0.8131 Train AUC: 0.7299 Val AUC: 0.6981 Test AUC: 0.6976 nDCG: 0.9705 Kendall Tau: 0.2550
+0 270 Loss 0.8131 Train AUC: 0.7299 Val AUC: 0.6981 Test AUC: 0.6976 nDCG: 0.9705 Kendall Tau: 0.2554
+0 280 Loss 0.8131 Train AUC: 0.7300 Val AUC: 0.6982 Test AUC: 0.6977 nDCG: 0.9705 Kendall Tau: 0.2557
+0 290 Loss 0.8131 Train AUC: 0.7299 Val AUC: 0.6981 Test AUC: 0.6976 nDCG: 0.9705 Kendall Tau: 0.2559
+0 300 Loss 0.8131 Train AUC: 0.7299 Val AUC: 0.6981 Test AUC: 0.6978 nDCG: 0.9705 Kendall Tau: 0.2564
+0 310 Loss 0.8132 Train AUC: 0.7299 Val AUC: 0.6979 Test AUC: 0.6977 nDCG: 0.9705 Kendall Tau: 0.2568
+0 320 Loss 0.8132 Train AUC: 0.7299 Val AUC: 0.6980 Test AUC: 0.6977 nDCG: 0.9705 Kendall Tau: 0.2573
+0 330 Loss 0.8131 Train AUC: 0.7300 Val AUC: 0.6981 Test AUC: 0.6977 nDCG: 0.9705 Kendall Tau: 0.2579
+0 340 Loss 0.8131 Train AUC: 0.7299 Val AUC: 0.6980 Test AUC: 0.6976 nDCG: 0.9705 Kendall Tau: 0.2581
+0 350 Loss 0.8132 Train AUC: 0.7300 Val AUC: 0.6980 Test AUC: 0.6975 nDCG: 0.9705 Kendall Tau: 0.2581
+0 360 Loss 0.8131 Train AUC: 0.7300 Val AUC: 0.6981 Test AUC: 0.6978 nDCG: 0.9705 Kendall Tau: 0.2586
+0 370 Loss 0.8132 Train AUC: 0.7299 Val AUC: 0.6979 Test AUC: 0.6980 nDCG: 0.9705 Kendall Tau: 0.2591
+0 380 Loss 0.8132 Train AUC: 0.7299 Val AUC: 0.6979 Test AUC: 0.6982 nDCG: 0.9705 Kendall Tau: 0.2596
+0 390 Loss 0.8132 Train AUC: 0.7301 Val AUC: 0.6981 Test AUC: 0.6983 nDCG: 0.9705 Kendall Tau: 0.2599
+0 400 Loss 0.8132 Train AUC: 0.7300 Val AUC: 0.6981 Test AUC: 0.6986 nDCG: 0.9705 Kendall Tau: 0.2604
+0 410 Loss 0.8132 Train AUC: 0.7302 Val AUC: 0.6980 Test AUC: 0.6988 nDCG: 0.9705 Kendall Tau: 0.2614
+0 420 Loss 0.8132 Train AUC: 0.7303 Val AUC: 0.6982 Test AUC: 0.6987 nDCG: 0.9705 Kendall Tau: 0.2616
+0 430 Loss 0.8132 Train AUC: 0.7305 Val AUC: 0.6981 Test AUC: 0.6987 nDCG: 0.9705 Kendall Tau: 0.2627
+0 440 Loss 0.8132 Train AUC: 0.7307 Val AUC: 0.6983 Test AUC: 0.6988 nDCG: 0.9705 Kendall Tau: 0.2637
+0 450 Loss 0.8132 Train AUC: 0.7307 Val AUC: 0.6982 Test AUC: 0.6987 nDCG: 0.9705 Kendall Tau: 0.2640
+0 460 Loss 0.8131 Train AUC: 0.7305 Val AUC: 0.6981 Test AUC: 0.6984 nDCG: 0.9705 Kendall Tau: 0.2646
+0 470 Loss 0.8131 Train AUC: 0.7308 Val AUC: 0.6984 Test AUC: 0.6984 nDCG: 0.9705 Kendall Tau: 0.2654
+0 480 Loss 0.8131 Train AUC: 0.7310 Val AUC: 0.6986 Test AUC: 0.6983 nDCG: 0.9706 Kendall Tau: 0.2662
+0 490 Loss 0.8131 Train AUC: 0.7314 Val AUC: 0.6988 Test AUC: 0.6988 nDCG: 0.9706 Kendall Tau: 0.2667
+0 500 Loss 0.8131 Train AUC: 0.7315 Val AUC: 0.6988 Test AUC: 0.6989 nDCG: 0.9706 Kendall Tau: 0.2662
+0 510 Loss 0.8131 Train AUC: 0.7318 Val AUC: 0.6991 Test AUC: 0.6989 nDCG: 0.9706 Kendall Tau: 0.2671
+0 520 Loss 0.8131 Train AUC: 0.7320 Val AUC: 0.6994 Test AUC: 0.6992 nDCG: 0.9706 Kendall Tau: 0.2676
+0 530 Loss 0.8131 Train AUC: 0.7320 Val AUC: 0.6994 Test AUC: 0.6991 nDCG: 0.9706 Kendall Tau: 0.2675
+0 540 Loss 0.8131 Train AUC: 0.7321 Val AUC: 0.6995 Test AUC: 0.6992 nDCG: 0.9707 Kendall Tau: 0.2674
+0 550 Loss 0.8131 Train AUC: 0.7323 Val AUC: 0.6997 Test AUC: 0.6994 nDCG: 0.9707 Kendall Tau: 0.2677
+0 560 Loss 0.8131 Train AUC: 0.7323 Val AUC: 0.6997 Test AUC: 0.6994 nDCG: 0.9707 Kendall Tau: 0.2677
+0 570 Loss 0.8131 Train AUC: 0.7325 Val AUC: 0.6999 Test AUC: 0.6994 nDCG: 0.9707 Kendall Tau: 0.2685
+0 580 Loss 0.8131 Train AUC: 0.7325 Val AUC: 0.6999 Test AUC: 0.6994 nDCG: 0.9707 Kendall Tau: 0.2688
+0 590 Loss 0.8131 Train AUC: 0.7327 Val AUC: 0.7002 Test AUC: 0.6995 nDCG: 0.9707 Kendall Tau: 0.2691
+0 600 Loss 0.8131 Train AUC: 0.7334 Val AUC: 0.7008 Test AUC: 0.6999 nDCG: 0.9708 Kendall Tau: 0.2708
+0 610 Loss 0.8131 Train AUC: 0.7332 Val AUC: 0.7007 Test AUC: 0.6997 nDCG: 0.9707 Kendall Tau: 0.2709
+0 620 Loss 0.8131 Train AUC: 0.7337 Val AUC: 0.7011 Test AUC: 0.7003 nDCG: 0.9708 Kendall Tau: 0.2721
+0 630 Loss 0.8131 Train AUC: 0.7338 Val AUC: 0.7012 Test AUC: 0.7005 nDCG: 0.9708 Kendall Tau: 0.2727
+0 640 Loss 0.8131 Train AUC: 0.7341 Val AUC: 0.7014 Test AUC: 0.7008 nDCG: 0.9708 Kendall Tau: 0.2733
+0 650 Loss 0.8131 Train AUC: 0.7342 Val AUC: 0.7014 Test AUC: 0.7009 nDCG: 0.9708 Kendall Tau: 0.2736
+0 660 Loss 0.8131 Train AUC: 0.7346 Val AUC: 0.7018 Test AUC: 0.7014 nDCG: 0.9709 Kendall Tau: 0.2742
+0 670 Loss 0.8131 Train AUC: 0.7350 Val AUC: 0.7021 Test AUC: 0.7018 nDCG: 0.9709 Kendall Tau: 0.2748
+0 680 Loss 0.8131 Train AUC: 0.7348 Val AUC: 0.7021 Test AUC: 0.7016 nDCG: 0.9709 Kendall Tau: 0.2748
+0 690 Loss 0.8131 Train AUC: 0.7349 Val AUC: 0.7021 Test AUC: 0.7017 nDCG: 0.9708 Kendall Tau: 0.2754
+0 700 Loss 0.8131 Train AUC: 0.7351 Val AUC: 0.7025 Test AUC: 0.7022 nDCG: 0.9708 Kendall Tau: 0.2763
+0 710 Loss 0.8131 Train AUC: 0.7352 Val AUC: 0.7027 Test AUC: 0.7023 nDCG: 0.9708 Kendall Tau: 0.2768
+0 720 Loss 0.8131 Train AUC: 0.7346 Val AUC: 0.7021 Test AUC: 0.7017 nDCG: 0.9707 Kendall Tau: 0.2759
+0 730 Loss 0.8131 Train AUC: 0.7349 Val AUC: 0.7026 Test AUC: 0.7024 nDCG: 0.9706 Kendall Tau: 0.2768
+0 740 Loss 0.8131 Train AUC: 0.7351 Val AUC: 0.7026 Test AUC: 0.7024 nDCG: 0.9706 Kendall Tau: 0.2769
+0 750 Loss 0.8131 Train AUC: 0.7354 Val AUC: 0.7029 Test AUC: 0.7027 nDCG: 0.9707 Kendall Tau: 0.2770
+0 760 Loss 0.8131 Train AUC: 0.7353 Val AUC: 0.7028 Test AUC: 0.7028 nDCG: 0.9706 Kendall Tau: 0.2771
+0 770 Loss 0.8131 Train AUC: 0.7355 Val AUC: 0.7030 Test AUC: 0.7030 nDCG: 0.9707 Kendall Tau: 0.2774
+0 780 Loss 0.8131 Train AUC: 0.7357 Val AUC: 0.7029 Test AUC: 0.7032 nDCG: 0.9706 Kendall Tau: 0.2777
+0 790 Loss 0.8131 Train AUC: 0.7356 Val AUC: 0.7030 Test AUC: 0.7032 nDCG: 0.9706 Kendall Tau: 0.2776
+0 800 Loss 0.8131 Train AUC: 0.7357 Val AUC: 0.7033 Test AUC: 0.7035 nDCG: 0.9705 Kendall Tau: 0.2778
+0 810 Loss 0.8131 Train AUC: 0.7356 Val AUC: 0.7032 Test AUC: 0.7034 nDCG: 0.9705 Kendall Tau: 0.2777
+0 820 Loss 0.8131 Train AUC: 0.7358 Val AUC: 0.7034 Test AUC: 0.7035 nDCG: 0.9706 Kendall Tau: 0.2779
+0 830 Loss 0.8131 Train AUC: 0.7360 Val AUC: 0.7035 Test AUC: 0.7036 nDCG: 0.9706 Kendall Tau: 0.2779
+0 840 Loss 0.8131 Train AUC: 0.7358 Val AUC: 0.7034 Test AUC: 0.7035 nDCG: 0.9706 Kendall Tau: 0.2775
+0 850 Loss 0.8131 Train AUC: 0.7354 Val AUC: 0.7029 Test AUC: 0.7031 nDCG: 0.9705 Kendall Tau: 0.2766
+0 860 Loss 0.8131 Train AUC: 0.7354 Val AUC: 0.7031 Test AUC: 0.7031 nDCG: 0.9705 Kendall Tau: 0.2763
+0 870 Loss 0.8131 Train AUC: 0.7353 Val AUC: 0.7032 Test AUC: 0.7030 nDCG: 0.9705 Kendall Tau: 0.2759
+0 880 Loss 0.8131 Train AUC: 0.7350 Val AUC: 0.7029 Test AUC: 0.7026 nDCG: 0.9705 Kendall Tau: 0.2749
+0 890 Loss 0.8131 Train AUC: 0.7343 Val AUC: 0.7024 Test AUC: 0.7019 nDCG: 0.9705 Kendall Tau: 0.2735
+0 900 Loss 0.8131 Train AUC: 0.7340 Val AUC: 0.7021 Test AUC: 0.7016 nDCG: 0.9705 Kendall Tau: 0.2728
+0 910 Loss 0.8131 Train AUC: 0.7338 Val AUC: 0.7021 Test AUC: 0.7015 nDCG: 0.9705 Kendall Tau: 0.2724
+0 920 Loss 0.8131 Train AUC: 0.7336 Val AUC: 0.7019 Test AUC: 0.7011 nDCG: 0.9705 Kendall Tau: 0.2709
+0 930 Loss 0.8131 Train AUC: 0.7333 Val AUC: 0.7017 Test AUC: 0.7007 nDCG: 0.9704 Kendall Tau: 0.2702
+0 940 Loss 0.8131 Train AUC: 0.7331 Val AUC: 0.7015 Test AUC: 0.7006 nDCG: 0.9704 Kendall Tau: 0.2701
+0 950 Loss 0.8131 Train AUC: 0.7328 Val AUC: 0.7012 Test AUC: 0.7003 nDCG: 0.9704 Kendall Tau: 0.2692
+0 960 Loss 0.8131 Train AUC: 0.7329 Val AUC: 0.7013 Test AUC: 0.7003 nDCG: 0.9704 Kendall Tau: 0.2692
+0 970 Loss 0.8131 Train AUC: 0.7323 Val AUC: 0.7007 Test AUC: 0.6996 nDCG: 0.9704 Kendall Tau: 0.2677
+0 980 Loss 0.8131 Train AUC: 0.7316 Val AUC: 0.7002 Test AUC: 0.6988 nDCG: 0.9703 Kendall Tau: 0.2655
+0 990 Loss 0.8131 Train AUC: 0.7311 Val AUC: 0.6996 Test AUC: 0.6982 nDCG: 0.9704 Kendall Tau: 0.2638
+0 1000 Loss 0.8131 Train AUC: 0.7307 Val AUC: 0.6994 Test AUC: 0.6980 nDCG: 0.9704 Kendall Tau: 0.2627
+0 1010 Loss 0.8131 Train AUC: 0.7305 Val AUC: 0.6992 Test AUC: 0.6977 nDCG: 0.9703 Kendall Tau: 0.2620
+0 1020 Loss 0.8131 Train AUC: 0.7302 Val AUC: 0.6989 Test AUC: 0.6973 nDCG: 0.9703 Kendall Tau: 0.2607
+0 1030 Loss 0.8131 Train AUC: 0.7297 Val AUC: 0.6984 Test AUC: 0.6970 nDCG: 0.9704 Kendall Tau: 0.2594
+0 1040 Loss 0.8131 Train AUC: 0.7295 Val AUC: 0.6983 Test AUC: 0.6967 nDCG: 0.9703 Kendall Tau: 0.2585
+0 1050 Loss 0.8131 Train AUC: 0.7289 Val AUC: 0.6979 Test AUC: 0.6962 nDCG: 0.9704 Kendall Tau: 0.2571
+0 1060 Loss 0.8131 Train AUC: 0.7288 Val AUC: 0.6979 Test AUC: 0.6960 nDCG: 0.9703 Kendall Tau: 0.2569
+0 1070 Loss 0.8130 Train AUC: 0.7286 Val AUC: 0.6979 Test AUC: 0.6958 nDCG: 0.9703 Kendall Tau: 0.2565
+0 1080 Loss 0.8130 Train AUC: 0.7285 Val AUC: 0.6978 Test AUC: 0.6957 nDCG: 0.9703 Kendall Tau: 0.2564
+0 1090 Loss 0.8130 Train AUC: 0.7275 Val AUC: 0.6970 Test AUC: 0.6948 nDCG: 0.9703 Kendall Tau: 0.2549
+0 1100 Loss 0.8130 Train AUC: 0.7273 Val AUC: 0.6968 Test AUC: 0.6947 nDCG: 0.9703 Kendall Tau: 0.2545
+0 1110 Loss 0.8131 Train AUC: 0.7266 Val AUC: 0.6958 Test AUC: 0.6942 nDCG: 0.9702 Kendall Tau: 0.2535
+0 1120 Loss 0.8130 Train AUC: 0.7268 Val AUC: 0.6962 Test AUC: 0.6944 nDCG: 0.9703 Kendall Tau: 0.2537
+0 1130 Loss 0.8130 Train AUC: 0.7260 Val AUC: 0.6952 Test AUC: 0.6937 nDCG: 0.9702 Kendall Tau: 0.2529
+0 1140 Loss 0.8130 Train AUC: 0.7257 Val AUC: 0.6949 Test AUC: 0.6935 nDCG: 0.9702 Kendall Tau: 0.2526
+0 1150 Loss 0.8130 Train AUC: 0.7252 Val AUC: 0.6945 Test AUC: 0.6930 nDCG: 0.9702 Kendall Tau: 0.2522
+0 1160 Loss 0.8130 Train AUC: 0.7244 Val AUC: 0.6939 Test AUC: 0.6921 nDCG: 0.9702 Kendall Tau: 0.2515
+0 1170 Loss 0.8130 Train AUC: 0.7243 Val AUC: 0.6938 Test AUC: 0.6920 nDCG: 0.9702 Kendall Tau: 0.2514
+0 1180 Loss 0.8130 Train AUC: 0.7242 Val AUC: 0.6937 Test AUC: 0.6919 nDCG: 0.9702 Kendall Tau: 0.2513
+0 1190 Loss 0.8130 Train AUC: 0.7243 Val AUC: 0.6938 Test AUC: 0.6919 nDCG: 0.9702 Kendall Tau: 0.2511
+0 1200 Loss 0.8129 Train AUC: 0.7246 Val AUC: 0.6940 Test AUC: 0.6921 nDCG: 0.9702 Kendall Tau: 0.2508
+0 1210 Loss 0.8129 Train AUC: 0.7243 Val AUC: 0.6937 Test AUC: 0.6919 nDCG: 0.9702 Kendall Tau: 0.2509
+0 1220 Loss 0.8130 Train AUC: 0.7253 Val AUC: 0.6943 Test AUC: 0.6927 nDCG: 0.9703 Kendall Tau: 0.2508
+0 1230 Loss 0.8129 Train AUC: 0.7255 Val AUC: 0.6945 Test AUC: 0.6928 nDCG: 0.9703 Kendall Tau: 0.2508
+0 1240 Loss 0.8129 Train AUC: 0.7258 Val AUC: 0.6946 Test AUC: 0.6931 nDCG: 0.9703 Kendall Tau: 0.2507
+0 1250 Loss 0.8129 Train AUC: 0.7260 Val AUC: 0.6945 Test AUC: 0.6932 nDCG: 0.9703 Kendall Tau: 0.2506
+0 1260 Loss 0.8129 Train AUC: 0.7266 Val AUC: 0.6948 Test AUC: 0.6937 nDCG: 0.9704 Kendall Tau: 0.2507
+0 1270 Loss 0.8129 Train AUC: 0.7266 Val AUC: 0.6948 Test AUC: 0.6937 nDCG: 0.9704 Kendall Tau: 0.2507
+0 1280 Loss 0.8129 Train AUC: 0.7273 Val AUC: 0.6954 Test AUC: 0.6943 nDCG: 0.9704 Kendall Tau: 0.2509
+0 1290 Loss 0.8129 Train AUC: 0.7276 Val AUC: 0.6956 Test AUC: 0.6945 nDCG: 0.9704 Kendall Tau: 0.2509
+0 1300 Loss 0.8129 Train AUC: 0.7276 Val AUC: 0.6955 Test AUC: 0.6945 nDCG: 0.9704 Kendall Tau: 0.2507
+0 1310 Loss 0.8129 Train AUC: 0.7278 Val AUC: 0.6956 Test AUC: 0.6946 nDCG: 0.9705 Kendall Tau: 0.2507
+0 1320 Loss 0.8129 Train AUC: 0.7283 Val AUC: 0.6958 Test AUC: 0.6949 nDCG: 0.9705 Kendall Tau: 0.2510
+0 1330 Loss 0.8128 Train AUC: 0.7280 Val AUC: 0.6956 Test AUC: 0.6946 nDCG: 0.9705 Kendall Tau: 0.2505
+0 1340 Loss 0.8129 Train AUC: 0.7283 Val AUC: 0.6958 Test AUC: 0.6949 nDCG: 0.9705 Kendall Tau: 0.2509
+0 1350 Loss 0.8128 Train AUC: 0.7284 Val AUC: 0.6958 Test AUC: 0.6950 nDCG: 0.9705 Kendall Tau: 0.2511
+0 1360 Loss 0.8128 Train AUC: 0.7284 Val AUC: 0.6958 Test AUC: 0.6950 nDCG: 0.9705 Kendall Tau: 0.2509
+0 1370 Loss 0.8128 Train AUC: 0.7285 Val AUC: 0.6959 Test AUC: 0.6951 nDCG: 0.9705 Kendall Tau: 0.2512
+0 1380 Loss 0.8128 Train AUC: 0.7287 Val AUC: 0.6960 Test AUC: 0.6953 nDCG: 0.9705 Kendall Tau: 0.2513
+0 1390 Loss 0.8128 Train AUC: 0.7289 Val AUC: 0.6961 Test AUC: 0.6954 nDCG: 0.9706 Kendall Tau: 0.2517
+0 1400 Loss 0.8127 Train AUC: 0.7289 Val AUC: 0.6961 Test AUC: 0.6955 nDCG: 0.9706 Kendall Tau: 0.2519
+0 1410 Loss 0.8127 Train AUC: 0.7291 Val AUC: 0.6963 Test AUC: 0.6956 nDCG: 0.9706 Kendall Tau: 0.2521
+0 1420 Loss 0.8126 Train AUC: 0.7291 Val AUC: 0.6964 Test AUC: 0.6956 nDCG: 0.9706 Kendall Tau: 0.2520
+0 1430 Loss 0.8126 Train AUC: 0.7291 Val AUC: 0.6963 Test AUC: 0.6956 nDCG: 0.9706 Kendall Tau: 0.2520
+0 1440 Loss 0.8126 Train AUC: 0.7291 Val AUC: 0.6964 Test AUC: 0.6956 nDCG: 0.9706 Kendall Tau: 0.2520
+0 1450 Loss 0.8127 Train AUC: 0.7294 Val AUC: 0.6967 Test AUC: 0.6959 nDCG: 0.9706 Kendall Tau: 0.2527
+0 1460 Loss 0.8127 Train AUC: 0.7293 Val AUC: 0.6966 Test AUC: 0.6958 nDCG: 0.9706 Kendall Tau: 0.2526
+0 1470 Loss 0.8127 Train AUC: 0.7294 Val AUC: 0.6968 Test AUC: 0.6960 nDCG: 0.9706 Kendall Tau: 0.2529
+0 1480 Loss 0.8126 Train AUC: 0.7294 Val AUC: 0.6967 Test AUC: 0.6959 nDCG: 0.9706 Kendall Tau: 0.2526
+0 1490 Loss 0.8126 Train AUC: 0.7295 Val AUC: 0.6969 Test AUC: 0.6962 nDCG: 0.9706 Kendall Tau: 0.2532
+0 1500 Loss 0.8125 Train AUC: 0.7296 Val AUC: 0.6969 Test AUC: 0.6962 nDCG: 0.9706 Kendall Tau: 0.2532
+0 1510 Loss 0.8125 Train AUC: 0.7297 Val AUC: 0.6971 Test AUC: 0.6963 nDCG: 0.9706 Kendall Tau: 0.2536
+0 1520 Loss 0.8125 Train AUC: 0.7298 Val AUC: 0.6973 Test AUC: 0.6964 nDCG: 0.9706 Kendall Tau: 0.2539
+0 1530 Loss 0.8124 Train AUC: 0.7298 Val AUC: 0.6974 Test AUC: 0.6965 nDCG: 0.9706 Kendall Tau: 0.2540
+0 1540 Loss 0.8124 Train AUC: 0.7300 Val AUC: 0.6975 Test AUC: 0.6966 nDCG: 0.9706 Kendall Tau: 0.2543
+0 1550 Loss 0.8124 Train AUC: 0.7300 Val AUC: 0.6976 Test AUC: 0.6967 nDCG: 0.9706 Kendall Tau: 0.2545
+0 1560 Loss 0.8124 Train AUC: 0.7302 Val AUC: 0.6978 Test AUC: 0.6969 nDCG: 0.9706 Kendall Tau: 0.2548
+0 1570 Loss 0.8123 Train AUC: 0.7303 Val AUC: 0.6980 Test AUC: 0.6970 nDCG: 0.9706 Kendall Tau: 0.2551
+0 1580 Loss 0.8122 Train AUC: 0.7302 Val AUC: 0.6980 Test AUC: 0.6970 nDCG: 0.9706 Kendall Tau: 0.2550
+0 1590 Loss 0.8123 Train AUC: 0.7304 Val AUC: 0.6982 Test AUC: 0.6973 nDCG: 0.9707 Kendall Tau: 0.2556
+0 1600 Loss 0.8122 Train AUC: 0.7303 Val AUC: 0.6982 Test AUC: 0.6972 nDCG: 0.9706 Kendall Tau: 0.2556
+0 1610 Loss 0.8121 Train AUC: 0.7304 Val AUC: 0.6983 Test AUC: 0.6973 nDCG: 0.9706 Kendall Tau: 0.2555
+0 1620 Loss 0.8120 Train AUC: 0.7304 Val AUC: 0.6984 Test AUC: 0.6974 nDCG: 0.9706 Kendall Tau: 0.2558
+0 1630 Loss 0.8122 Train AUC: 0.7304 Val AUC: 0.6984 Test AUC: 0.6975 nDCG: 0.9706 Kendall Tau: 0.2557
+0 1640 Loss 0.8121 Train AUC: 0.7304 Val AUC: 0.6984 Test AUC: 0.6975 nDCG: 0.9706 Kendall Tau: 0.2559
+0 1650 Loss 0.8121 Train AUC: 0.7305 Val AUC: 0.6986 Test AUC: 0.6976 nDCG: 0.9706 Kendall Tau: 0.2563
+0 1660 Loss 0.8118 Train AUC: 0.7306 Val AUC: 0.6987 Test AUC: 0.6977 nDCG: 0.9707 Kendall Tau: 0.2562
+0 1670 Loss 0.8116 Train AUC: 0.7307 Val AUC: 0.6987 Test AUC: 0.6977 nDCG: 0.9706 Kendall Tau: 0.2560
+0 1680 Loss 0.8117 Train AUC: 0.7307 Val AUC: 0.6987 Test AUC: 0.6978 nDCG: 0.9706 Kendall Tau: 0.2563
+0 1690 Loss 0.8116 Train AUC: 0.7307 Val AUC: 0.6988 Test AUC: 0.6979 nDCG: 0.9707 Kendall Tau: 0.2567
+0 1700 Loss 0.8114 Train AUC: 0.7308 Val AUC: 0.6989 Test AUC: 0.6979 nDCG: 0.9707 Kendall Tau: 0.2565
+0 1710 Loss 0.8117 Train AUC: 0.7309 Val AUC: 0.6989 Test AUC: 0.6981 nDCG: 0.9707 Kendall Tau: 0.2568
+0 1720 Loss 0.8117 Train AUC: 0.7309 Val AUC: 0.6990 Test AUC: 0.6983 nDCG: 0.9707 Kendall Tau: 0.2572
+0 1730 Loss 0.8113 Train AUC: 0.7309 Val AUC: 0.6990 Test AUC: 0.6983 nDCG: 0.9707 Kendall Tau: 0.2570
+0 1740 Loss 0.8110 Train AUC: 0.7309 Val AUC: 0.6991 Test AUC: 0.6983 nDCG: 0.9707 Kendall Tau: 0.2571
+0 1750 Loss 0.8112 Train AUC: 0.7310 Val AUC: 0.6992 Test AUC: 0.6984 nDCG: 0.9707 Kendall Tau: 0.2573
+0 1760 Loss 0.8110 Train AUC: 0.7310 Val AUC: 0.6992 Test AUC: 0.6985 nDCG: 0.9707 Kendall Tau: 0.2573
+0 1770 Loss 0.8109 Train AUC: 0.7311 Val AUC: 0.6993 Test AUC: 0.6986 nDCG: 0.9707 Kendall Tau: 0.2572
+0 1780 Loss 0.8107 Train AUC: 0.7311 Val AUC: 0.6993 Test AUC: 0.6986 nDCG: 0.9707 Kendall Tau: 0.2576
+0 1790 Loss 0.8104 Train AUC: 0.7312 Val AUC: 0.6994 Test AUC: 0.6987 nDCG: 0.9707 Kendall Tau: 0.2576
+0 1800 Loss 0.8106 Train AUC: 0.7312 Val AUC: 0.6994 Test AUC: 0.6988 nDCG: 0.9707 Kendall Tau: 0.2579
+0 1810 Loss 0.8103 Train AUC: 0.7312 Val AUC: 0.6995 Test AUC: 0.6988 nDCG: 0.9707 Kendall Tau: 0.2579
+0 1820 Loss 0.8102 Train AUC: 0.7312 Val AUC: 0.6995 Test AUC: 0.6988 nDCG: 0.9707 Kendall Tau: 0.2578
+0 1830 Loss 0.8100 Train AUC: 0.7313 Val AUC: 0.6997 Test AUC: 0.6989 nDCG: 0.9707 Kendall Tau: 0.2583
+0 1840 Loss 0.8103 Train AUC: 0.7315 Val AUC: 0.6999 Test AUC: 0.6992 nDCG: 0.9707 Kendall Tau: 0.2584
+0 1850 Loss 0.8097 Train AUC: 0.7315 Val AUC: 0.6998 Test AUC: 0.6991 nDCG: 0.9707 Kendall Tau: 0.2582
+0 1860 Loss 0.8101 Train AUC: 0.7315 Val AUC: 0.6999 Test AUC: 0.6992 nDCG: 0.9707 Kendall Tau: 0.2590
+0 1870 Loss 0.8095 Train AUC: 0.7315 Val AUC: 0.6999 Test AUC: 0.6992 nDCG: 0.9707 Kendall Tau: 0.2588
+0 1880 Loss 0.8085 Train AUC: 0.7315 Val AUC: 0.6999 Test AUC: 0.6992 nDCG: 0.9707 Kendall Tau: 0.2585
+0 1890 Loss 0.8091 Train AUC: 0.7315 Val AUC: 0.7000 Test AUC: 0.6993 nDCG: 0.9707 Kendall Tau: 0.2593
+0 1900 Loss 0.8090 Train AUC: 0.7315 Val AUC: 0.7000 Test AUC: 0.6994 nDCG: 0.9707 Kendall Tau: 0.2595
+0 1910 Loss 0.8086 Train AUC: 0.7318 Val AUC: 0.7003 Test AUC: 0.6996 nDCG: 0.9707 Kendall Tau: 0.2600
+0 1920 Loss 0.8079 Train AUC: 0.7324 Val AUC: 0.7008 Test AUC: 0.7002 nDCG: 0.9708 Kendall Tau: 0.2604
+0 1930 Loss 0.8073 Train AUC: 0.7321 Val AUC: 0.7006 Test AUC: 0.7000 nDCG: 0.9708 Kendall Tau: 0.2605
+0 1940 Loss 0.8074 Train AUC: 0.7337 Val AUC: 0.7022 Test AUC: 0.7015 nDCG: 0.9710 Kendall Tau: 0.2623
+0 1950 Loss 0.8072 Train AUC: 0.7347 Val AUC: 0.7032 Test AUC: 0.7025 nDCG: 0.9710 Kendall Tau: 0.2637
+0 1960 Loss 0.8061 Train AUC: 0.7336 Val AUC: 0.7022 Test AUC: 0.7014 nDCG: 0.9709 Kendall Tau: 0.2623
+0 1970 Loss 0.8061 Train AUC: 0.7350 Val AUC: 0.7034 Test AUC: 0.7029 nDCG: 0.9710 Kendall Tau: 0.2638
+0 1980 Loss 0.8054 Train AUC: 0.7351 Val AUC: 0.7035 Test AUC: 0.7030 nDCG: 0.9710 Kendall Tau: 0.2643
+0 1990 Loss 0.8053 Train AUC: 0.7332 Val AUC: 0.7019 Test AUC: 0.7010 nDCG: 0.9708 Kendall Tau: 0.2616
+0 2000 Loss 0.8046 Train AUC: 0.7326 Val AUC: 0.7013 Test AUC: 0.7005 nDCG: 0.9707 Kendall Tau: 0.2609
+Loading data...
+Using only features..
+Cache saved!
+ppi load time 760.0380744934082
+Dataset ppi Graph 24 Feature 50 Node Class None Graph Class None
+Node: max3480, min591, mean2360.75
+Edge: max85402, min6166, mean52907.083333333336
+Anchor num 64, Batch size 8
+0: feature size: torch.Size([1546, 50])
+1: feature size: torch.Size([1377, 50])
+2: feature size: torch.Size([2263, 50])
+3: feature size: torch.Size([2339, 50])
+4: feature size: torch.Size([1578, 50])
+5: feature size: torch.Size([1021, 50])
+6: feature size: torch.Size([1823, 50])
+7: feature size: torch.Size([2488, 50])
+8: feature size: torch.Size([591, 50])
+9: feature size: torch.Size([3312, 50])
+10: feature size: torch.Size([2401, 50])
+11: feature size: torch.Size([1878, 50])
+12: feature size: torch.Size([1819, 50])
+13: feature size: torch.Size([3480, 50])
+14: feature size: torch.Size([2794, 50])
+15: feature size: torch.Size([2326, 50])
+16: feature size: torch.Size([2650, 50])
+17: feature size: torch.Size([2815, 50])
+18: feature size: torch.Size([3163, 50])
+19: feature size: torch.Size([3021, 50])
+20: feature size: torch.Size([3195, 50])
+21: feature size: torch.Size([3284, 50])
+22: feature size: torch.Size([3194, 50])
+23: feature size: torch.Size([2300, 50])
+1 0 Loss 0.8132 Train AUC: 0.8494 Val AUC: 0.8032 Test AUC: 0.8028 nDCG: 0.9781 Kendall Tau: 0.4302
+1 10 Loss 0.8128 Train AUC: 0.7825 Val AUC: 0.7448 Test AUC: 0.7444 nDCG: 0.9749 Kendall Tau: 0.3298
+1 20 Loss 0.8126 Train AUC: 0.7567 Val AUC: 0.7229 Test AUC: 0.7225 nDCG: 0.9733 Kendall Tau: 0.2917
+1 30 Loss 0.8126 Train AUC: 0.7424 Val AUC: 0.7109 Test AUC: 0.7100 nDCG: 0.9724 Kendall Tau: 0.2724
+1 40 Loss 0.8128 Train AUC: 0.7351 Val AUC: 0.7046 Test AUC: 0.7034 nDCG: 0.9717 Kendall Tau: 0.2636
+1 50 Loss 0.8123 Train AUC: 0.7324 Val AUC: 0.7024 Test AUC: 0.7010 nDCG: 0.9713 Kendall Tau: 0.2607
+1 60 Loss 0.8129 Train AUC: 0.7310 Val AUC: 0.7013 Test AUC: 0.6996 nDCG: 0.9708 Kendall Tau: 0.2584
+1 70 Loss 0.8128 Train AUC: 0.7309 Val AUC: 0.7012 Test AUC: 0.6996 nDCG: 0.9707 Kendall Tau: 0.2580
+1 80 Loss 0.8127 Train AUC: 0.7308 Val AUC: 0.7010 Test AUC: 0.6995 nDCG: 0.9707 Kendall Tau: 0.2563
+1 90 Loss 0.8129 Train AUC: 0.7309 Val AUC: 0.7009 Test AUC: 0.6997 nDCG: 0.9706 Kendall Tau: 0.2548
+1 100 Loss 0.8126 Train AUC: 0.7307 Val AUC: 0.7004 Test AUC: 0.6998 nDCG: 0.9706 Kendall Tau: 0.2534
+1 110 Loss 0.8128 Train AUC: 0.7307 Val AUC: 0.7004 Test AUC: 0.6998 nDCG: 0.9705 Kendall Tau: 0.2539
+1 120 Loss 0.8131 Train AUC: 0.7306 Val AUC: 0.7004 Test AUC: 0.6996 nDCG: 0.9705 Kendall Tau: 0.2535
+1 130 Loss 0.8130 Train AUC: 0.7309 Val AUC: 0.7002 Test AUC: 0.7000 nDCG: 0.9705 Kendall Tau: 0.2547
+1 140 Loss 0.8130 Train AUC: 0.7316 Val AUC: 0.7010 Test AUC: 0.7006 nDCG: 0.9708 Kendall Tau: 0.2553
+1 150 Loss 0.8131 Train AUC: 0.7309 Val AUC: 0.7007 Test AUC: 0.7000 nDCG: 0.9706 Kendall Tau: 0.2542
+1 160 Loss 0.8131 Train AUC: 0.7308 Val AUC: 0.7005 Test AUC: 0.6999 nDCG: 0.9706 Kendall Tau: 0.2550
+1 170 Loss 0.8131 Train AUC: 0.7308 Val AUC: 0.6997 Test AUC: 0.7000 nDCG: 0.9705 Kendall Tau: 0.2552
+1 180 Loss 0.8131 Train AUC: 0.7309 Val AUC: 0.6997 Test AUC: 0.7001 nDCG: 0.9705 Kendall Tau: 0.2555
+1 190 Loss 0.8131 Train AUC: 0.7307 Val AUC: 0.6997 Test AUC: 0.7000 nDCG: 0.9705 Kendall Tau: 0.2555
+1 200 Loss 0.8131 Train AUC: 0.7305 Val AUC: 0.6995 Test AUC: 0.6999 nDCG: 0.9705 Kendall Tau: 0.2556
+1 210 Loss 0.8131 Train AUC: 0.7306 Val AUC: 0.6995 Test AUC: 0.7000 nDCG: 0.9705 Kendall Tau: 0.2558
+1 220 Loss 0.8131 Train AUC: 0.7305 Val AUC: 0.6995 Test AUC: 0.7000 nDCG: 0.9705 Kendall Tau: 0.2560
+1 230 Loss 0.8131 Train AUC: 0.7305 Val AUC: 0.6994 Test AUC: 0.6999 nDCG: 0.9705 Kendall Tau: 0.2561
+1 240 Loss 0.8131 Train AUC: 0.7305 Val AUC: 0.6994 Test AUC: 0.7000 nDCG: 0.9705 Kendall Tau: 0.2562
+1 250 Loss 0.8131 Train AUC: 0.7304 Val AUC: 0.6993 Test AUC: 0.6999 nDCG: 0.9705 Kendall Tau: 0.2562
+1 260 Loss 0.8131 Train AUC: 0.7304 Val AUC: 0.6992 Test AUC: 0.6999 nDCG: 0.9705 Kendall Tau: 0.2564
+1 270 Loss 0.8131 Train AUC: 0.7305 Val AUC: 0.6992 Test AUC: 0.7000 nDCG: 0.9705 Kendall Tau: 0.2566
+1 280 Loss 0.8131 Train AUC: 0.7305 Val AUC: 0.6992 Test AUC: 0.7000 nDCG: 0.9705 Kendall Tau: 0.2569
+1 290 Loss 0.8131 Train AUC: 0.7306 Val AUC: 0.6992 Test AUC: 0.7001 nDCG: 0.9705 Kendall Tau: 0.2571
+1 300 Loss 0.8131 Train AUC: 0.7306 Val AUC: 0.6992 Test AUC: 0.7001 nDCG: 0.9705 Kendall Tau: 0.2574
+1 310 Loss 0.8131 Train AUC: 0.7307 Val AUC: 0.6992 Test AUC: 0.7002 nDCG: 0.9705 Kendall Tau: 0.2577
+1 320 Loss 0.8131 Train AUC: 0.7307 Val AUC: 0.6992 Test AUC: 0.7003 nDCG: 0.9705 Kendall Tau: 0.2577
+1 330 Loss 0.8131 Train AUC: 0.7307 Val AUC: 0.6992 Test AUC: 0.7003 nDCG: 0.9705 Kendall Tau: 0.2579
+1 340 Loss 0.8131 Train AUC: 0.7308 Val AUC: 0.6990 Test AUC: 0.7003 nDCG: 0.9705 Kendall Tau: 0.2580
+1 350 Loss 0.8131 Train AUC: 0.7308 Val AUC: 0.6991 Test AUC: 0.7004 nDCG: 0.9705 Kendall Tau: 0.2581
+1 360 Loss 0.8131 Train AUC: 0.7309 Val AUC: 0.6991 Test AUC: 0.7004 nDCG: 0.9705 Kendall Tau: 0.2584
+1 370 Loss 0.8131 Train AUC: 0.7310 Val AUC: 0.6991 Test AUC: 0.7005 nDCG: 0.9705 Kendall Tau: 0.2587
+1 380 Loss 0.8131 Train AUC: 0.7310 Val AUC: 0.6991 Test AUC: 0.7004 nDCG: 0.9705 Kendall Tau: 0.2587
+1 390 Loss 0.8131 Train AUC: 0.7310 Val AUC: 0.6991 Test AUC: 0.7004 nDCG: 0.9705 Kendall Tau: 0.2591
+1 400 Loss 0.8131 Train AUC: 0.7310 Val AUC: 0.6990 Test AUC: 0.7004 nDCG: 0.9705 Kendall Tau: 0.2592
+1 410 Loss 0.8131 Train AUC: 0.7311 Val AUC: 0.6989 Test AUC: 0.7005 nDCG: 0.9705 Kendall Tau: 0.2596
+1 420 Loss 0.8131 Train AUC: 0.7311 Val AUC: 0.6987 Test AUC: 0.7003 nDCG: 0.9704 Kendall Tau: 0.2600
+1 430 Loss 0.8131 Train AUC: 0.7313 Val AUC: 0.6988 Test AUC: 0.7005 nDCG: 0.9705 Kendall Tau: 0.2602
+1 440 Loss 0.8131 Train AUC: 0.7311 Val AUC: 0.6985 Test AUC: 0.7004 nDCG: 0.9705 Kendall Tau: 0.2599
+1 450 Loss 0.8131 Train AUC: 0.7312 Val AUC: 0.6986 Test AUC: 0.7004 nDCG: 0.9705 Kendall Tau: 0.2600
+1 460 Loss 0.8131 Train AUC: 0.7312 Val AUC: 0.6984 Test AUC: 0.7002 nDCG: 0.9705 Kendall Tau: 0.2602
+1 470 Loss 0.8131 Train AUC: 0.7313 Val AUC: 0.6983 Test AUC: 0.7003 nDCG: 0.9705 Kendall Tau: 0.2605
+1 480 Loss 0.8131 Train AUC: 0.7313 Val AUC: 0.6983 Test AUC: 0.7003 nDCG: 0.9705 Kendall Tau: 0.2603
+1 490 Loss 0.8131 Train AUC: 0.7313 Val AUC: 0.6985 Test AUC: 0.7003 nDCG: 0.9705 Kendall Tau: 0.2603
+1 500 Loss 0.8131 Train AUC: 0.7313 Val AUC: 0.6984 Test AUC: 0.7003 nDCG: 0.9705 Kendall Tau: 0.2606
+1 510 Loss 0.8131 Train AUC: 0.7314 Val AUC: 0.6983 Test AUC: 0.7001 nDCG: 0.9705 Kendall Tau: 0.2608
+1 520 Loss 0.8131 Train AUC: 0.7314 Val AUC: 0.6982 Test AUC: 0.7001 nDCG: 0.9705 Kendall Tau: 0.2609
+1 530 Loss 0.8131 Train AUC: 0.7314 Val AUC: 0.6981 Test AUC: 0.6999 nDCG: 0.9705 Kendall Tau: 0.2611
+1 540 Loss 0.8131 Train AUC: 0.7313 Val AUC: 0.6980 Test AUC: 0.6998 nDCG: 0.9704 Kendall Tau: 0.2612
+1 550 Loss 0.8131 Train AUC: 0.7313 Val AUC: 0.6980 Test AUC: 0.6999 nDCG: 0.9704 Kendall Tau: 0.2612
+1 560 Loss 0.8131 Train AUC: 0.7313 Val AUC: 0.6980 Test AUC: 0.6998 nDCG: 0.9704 Kendall Tau: 0.2615
+1 570 Loss 0.8131 Train AUC: 0.7312 Val AUC: 0.6979 Test AUC: 0.6996 nDCG: 0.9704 Kendall Tau: 0.2616
+1 580 Loss 0.8131 Train AUC: 0.7311 Val AUC: 0.6978 Test AUC: 0.6995 nDCG: 0.9704 Kendall Tau: 0.2618
+1 590 Loss 0.8132 Train AUC: 0.7310 Val AUC: 0.6975 Test AUC: 0.6994 nDCG: 0.9704 Kendall Tau: 0.2623
+1 600 Loss 0.8131 Train AUC: 0.7310 Val AUC: 0.6976 Test AUC: 0.6995 nDCG: 0.9704 Kendall Tau: 0.2622
+1 610 Loss 0.8131 Train AUC: 0.7310 Val AUC: 0.6976 Test AUC: 0.6996 nDCG: 0.9704 Kendall Tau: 0.2623
+1 620 Loss 0.8131 Train AUC: 0.7310 Val AUC: 0.6976 Test AUC: 0.6996 nDCG: 0.9704 Kendall Tau: 0.2624
+1 630 Loss 0.8131 Train AUC: 0.7310 Val AUC: 0.6977 Test AUC: 0.6995 nDCG: 0.9704 Kendall Tau: 0.2624
+1 640 Loss 0.8131 Train AUC: 0.7311 Val AUC: 0.6977 Test AUC: 0.6996 nDCG: 0.9704 Kendall Tau: 0.2625
+1 650 Loss 0.8131 Train AUC: 0.7311 Val AUC: 0.6974 Test AUC: 0.6993 nDCG: 0.9704 Kendall Tau: 0.2627
+1 660 Loss 0.8131 Train AUC: 0.7311 Val AUC: 0.6976 Test AUC: 0.6994 nDCG: 0.9704 Kendall Tau: 0.2630
+1 670 Loss 0.8131 Train AUC: 0.7314 Val AUC: 0.6977 Test AUC: 0.6995 nDCG: 0.9704 Kendall Tau: 0.2635
+1 680 Loss 0.8132 Train AUC: 0.7314 Val AUC: 0.6977 Test AUC: 0.6994 nDCG: 0.9704 Kendall Tau: 0.2638
+1 690 Loss 0.8131 Train AUC: 0.7315 Val AUC: 0.6978 Test AUC: 0.6995 nDCG: 0.9704 Kendall Tau: 0.2640
+1 700 Loss 0.8131 Train AUC: 0.7316 Val AUC: 0.6980 Test AUC: 0.6997 nDCG: 0.9705 Kendall Tau: 0.2641
+1 710 Loss 0.8131 Train AUC: 0.7316 Val AUC: 0.6979 Test AUC: 0.6996 nDCG: 0.9704 Kendall Tau: 0.2642
+1 720 Loss 0.8131 Train AUC: 0.7317 Val AUC: 0.6980 Test AUC: 0.6996 nDCG: 0.9704 Kendall Tau: 0.2644
+1 730 Loss 0.8131 Train AUC: 0.7316 Val AUC: 0.6981 Test AUC: 0.6993 nDCG: 0.9704 Kendall Tau: 0.2647
+1 740 Loss 0.8131 Train AUC: 0.7317 Val AUC: 0.6981 Test AUC: 0.6995 nDCG: 0.9704 Kendall Tau: 0.2650
+1 750 Loss 0.8131 Train AUC: 0.7317 Val AUC: 0.6981 Test AUC: 0.6994 nDCG: 0.9704 Kendall Tau: 0.2652
+1 760 Loss 0.8131 Train AUC: 0.7316 Val AUC: 0.6982 Test AUC: 0.6995 nDCG: 0.9704 Kendall Tau: 0.2654
+1 770 Loss 0.8131 Train AUC: 0.7317 Val AUC: 0.6985 Test AUC: 0.6994 nDCG: 0.9704 Kendall Tau: 0.2659
+1 780 Loss 0.8131 Train AUC: 0.7316 Val AUC: 0.6984 Test AUC: 0.6992 nDCG: 0.9703 Kendall Tau: 0.2664
+1 790 Loss 0.8131 Train AUC: 0.7317 Val AUC: 0.6984 Test AUC: 0.6992 nDCG: 0.9703 Kendall Tau: 0.2669
+1 800 Loss 0.8131 Train AUC: 0.7317 Val AUC: 0.6986 Test AUC: 0.6992 nDCG: 0.9703 Kendall Tau: 0.2673
+1 810 Loss 0.8132 Train AUC: 0.7317 Val AUC: 0.6984 Test AUC: 0.6993 nDCG: 0.9703 Kendall Tau: 0.2681
+1 820 Loss 0.8131 Train AUC: 0.7317 Val AUC: 0.6984 Test AUC: 0.6992 nDCG: 0.9704 Kendall Tau: 0.2683
+1 830 Loss 0.8132 Train AUC: 0.7318 Val AUC: 0.6985 Test AUC: 0.6992 nDCG: 0.9703 Kendall Tau: 0.2688
+1 840 Loss 0.8131 Train AUC: 0.7318 Val AUC: 0.6985 Test AUC: 0.6993 nDCG: 0.9703 Kendall Tau: 0.2688
+1 850 Loss 0.8131 Train AUC: 0.7319 Val AUC: 0.6986 Test AUC: 0.6993 nDCG: 0.9704 Kendall Tau: 0.2689
+1 860 Loss 0.8131 Train AUC: 0.7318 Val AUC: 0.6985 Test AUC: 0.6993 nDCG: 0.9703 Kendall Tau: 0.2694
+1 870 Loss 0.8132 Train AUC: 0.7321 Val AUC: 0.6989 Test AUC: 0.6994 nDCG: 0.9703 Kendall Tau: 0.2705
+1 880 Loss 0.8131 Train AUC: 0.7324 Val AUC: 0.6993 Test AUC: 0.6996 nDCG: 0.9703 Kendall Tau: 0.2714
+1 890 Loss 0.8131 Train AUC: 0.7326 Val AUC: 0.6997 Test AUC: 0.6998 nDCG: 0.9703 Kendall Tau: 0.2724
+1 900 Loss 0.8131 Train AUC: 0.7327 Val AUC: 0.6998 Test AUC: 0.6996 nDCG: 0.9703 Kendall Tau: 0.2729
+1 910 Loss 0.8132 Train AUC: 0.7331 Val AUC: 0.7004 Test AUC: 0.7000 nDCG: 0.9704 Kendall Tau: 0.2738
+1 920 Loss 0.8132 Train AUC: 0.7331 Val AUC: 0.7005 Test AUC: 0.7000 nDCG: 0.9703 Kendall Tau: 0.2738
+1 930 Loss 0.8131 Train AUC: 0.7330 Val AUC: 0.7004 Test AUC: 0.7000 nDCG: 0.9703 Kendall Tau: 0.2739
+1 940 Loss 0.8131 Train AUC: 0.7331 Val AUC: 0.7004 Test AUC: 0.7000 nDCG: 0.9703 Kendall Tau: 0.2739
+1 950 Loss 0.8132 Train AUC: 0.7334 Val AUC: 0.7007 Test AUC: 0.7003 nDCG: 0.9703 Kendall Tau: 0.2745
+1 960 Loss 0.8132 Train AUC: 0.7336 Val AUC: 0.7010 Test AUC: 0.7005 nDCG: 0.9703 Kendall Tau: 0.2751
+1 970 Loss 0.8132 Train AUC: 0.7339 Val AUC: 0.7015 Test AUC: 0.7009 nDCG: 0.9703 Kendall Tau: 0.2760
+1 980 Loss 0.8132 Train AUC: 0.7340 Val AUC: 0.7018 Test AUC: 0.7011 nDCG: 0.9703 Kendall Tau: 0.2764
+1 990 Loss 0.8132 Train AUC: 0.7344 Val AUC: 0.7022 Test AUC: 0.7015 nDCG: 0.9703 Kendall Tau: 0.2768
+1 1000 Loss 0.8132 Train AUC: 0.7344 Val AUC: 0.7022 Test AUC: 0.7017 nDCG: 0.9703 Kendall Tau: 0.2769
+1 1010 Loss 0.8132 Train AUC: 0.7347 Val AUC: 0.7024 Test AUC: 0.7020 nDCG: 0.9703 Kendall Tau: 0.2775
+1 1020 Loss 0.8132 Train AUC: 0.7351 Val AUC: 0.7028 Test AUC: 0.7022 nDCG: 0.9703 Kendall Tau: 0.2780
+1 1030 Loss 0.8132 Train AUC: 0.7354 Val AUC: 0.7030 Test AUC: 0.7029 nDCG: 0.9704 Kendall Tau: 0.2788
+1 1040 Loss 0.8132 Train AUC: 0.7356 Val AUC: 0.7032 Test AUC: 0.7030 nDCG: 0.9703 Kendall Tau: 0.2788
+1 1050 Loss 0.8132 Train AUC: 0.7358 Val AUC: 0.7031 Test AUC: 0.7032 nDCG: 0.9703 Kendall Tau: 0.2788
+1 1060 Loss 0.8132 Train AUC: 0.7359 Val AUC: 0.7033 Test AUC: 0.7036 nDCG: 0.9703 Kendall Tau: 0.2790
+1 1070 Loss 0.8132 Train AUC: 0.7358 Val AUC: 0.7031 Test AUC: 0.7036 nDCG: 0.9703 Kendall Tau: 0.2790
+1 1080 Loss 0.8132 Train AUC: 0.7356 Val AUC: 0.7029 Test AUC: 0.7033 nDCG: 0.9703 Kendall Tau: 0.2789
+1 1090 Loss 0.8131 Train AUC: 0.7357 Val AUC: 0.7030 Test AUC: 0.7036 nDCG: 0.9703 Kendall Tau: 0.2789
+1 1100 Loss 0.8132 Train AUC: 0.7357 Val AUC: 0.7028 Test AUC: 0.7041 nDCG: 0.9703 Kendall Tau: 0.2789
+1 1110 Loss 0.8131 Train AUC: 0.7360 Val AUC: 0.7031 Test AUC: 0.7042 nDCG: 0.9703 Kendall Tau: 0.2789
+1 1120 Loss 0.8131 Train AUC: 0.7359 Val AUC: 0.7031 Test AUC: 0.7042 nDCG: 0.9703 Kendall Tau: 0.2788
+1 1130 Loss 0.8132 Train AUC: 0.7358 Val AUC: 0.7029 Test AUC: 0.7045 nDCG: 0.9703 Kendall Tau: 0.2788
+1 1140 Loss 0.8132 Train AUC: 0.7361 Val AUC: 0.7032 Test AUC: 0.7050 nDCG: 0.9703 Kendall Tau: 0.2786
+1 1150 Loss 0.8132 Train AUC: 0.7360 Val AUC: 0.7031 Test AUC: 0.7049 nDCG: 0.9703 Kendall Tau: 0.2784
+1 1160 Loss 0.8132 Train AUC: 0.7358 Val AUC: 0.7030 Test AUC: 0.7047 nDCG: 0.9703 Kendall Tau: 0.2781
+1 1170 Loss 0.8132 Train AUC: 0.7354 Val AUC: 0.7027 Test AUC: 0.7042 nDCG: 0.9703 Kendall Tau: 0.2771
+1 1180 Loss 0.8132 Train AUC: 0.7357 Val AUC: 0.7029 Test AUC: 0.7046 nDCG: 0.9703 Kendall Tau: 0.2779
+1 1190 Loss 0.8131 Train AUC: 0.7359 Val AUC: 0.7031 Test AUC: 0.7048 nDCG: 0.9703 Kendall Tau: 0.2779
+1 1200 Loss 0.8131 Train AUC: 0.7356 Val AUC: 0.7026 Test AUC: 0.7046 nDCG: 0.9703 Kendall Tau: 0.2776
+1 1210 Loss 0.8132 Train AUC: 0.7356 Val AUC: 0.7027 Test AUC: 0.7042 nDCG: 0.9703 Kendall Tau: 0.2770
+1 1220 Loss 0.8132 Train AUC: 0.7355 Val AUC: 0.7026 Test AUC: 0.7043 nDCG: 0.9703 Kendall Tau: 0.2768
+1 1230 Loss 0.8132 Train AUC: 0.7353 Val AUC: 0.7025 Test AUC: 0.7040 nDCG: 0.9703 Kendall Tau: 0.2763
+1 1240 Loss 0.8132 Train AUC: 0.7352 Val AUC: 0.7024 Test AUC: 0.7038 nDCG: 0.9703 Kendall Tau: 0.2758
+1 1250 Loss 0.8131 Train AUC: 0.7350 Val AUC: 0.7023 Test AUC: 0.7037 nDCG: 0.9703 Kendall Tau: 0.2752
+1 1260 Loss 0.8131 Train AUC: 0.7350 Val AUC: 0.7022 Test AUC: 0.7036 nDCG: 0.9703 Kendall Tau: 0.2753
+1 1270 Loss 0.8132 Train AUC: 0.7343 Val AUC: 0.7018 Test AUC: 0.7031 nDCG: 0.9703 Kendall Tau: 0.2737
+1 1280 Loss 0.8132 Train AUC: 0.7349 Val AUC: 0.7020 Test AUC: 0.7034 nDCG: 0.9703 Kendall Tau: 0.2748
+1 1290 Loss 0.8132 Train AUC: 0.7346 Val AUC: 0.7017 Test AUC: 0.7032 nDCG: 0.9703 Kendall Tau: 0.2745
+1 1300 Loss 0.8132 Train AUC: 0.7344 Val AUC: 0.7017 Test AUC: 0.7032 nDCG: 0.9703 Kendall Tau: 0.2740
+1 1310 Loss 0.8132 Train AUC: 0.7345 Val AUC: 0.7018 Test AUC: 0.7032 nDCG: 0.9703 Kendall Tau: 0.2736
+1 1320 Loss 0.8131 Train AUC: 0.7340 Val AUC: 0.7017 Test AUC: 0.7026 nDCG: 0.9703 Kendall Tau: 0.2723
+1 1330 Loss 0.8132 Train AUC: 0.7336 Val AUC: 0.7015 Test AUC: 0.7023 nDCG: 0.9703 Kendall Tau: 0.2718
+1 1340 Loss 0.8131 Train AUC: 0.7340 Val AUC: 0.7017 Test AUC: 0.7026 nDCG: 0.9703 Kendall Tau: 0.2724
+1 1350 Loss 0.8131 Train AUC: 0.7335 Val AUC: 0.7016 Test AUC: 0.7020 nDCG: 0.9703 Kendall Tau: 0.2703
+1 1360 Loss 0.8131 Train AUC: 0.7334 Val AUC: 0.7016 Test AUC: 0.7018 nDCG: 0.9703 Kendall Tau: 0.2699
+1 1370 Loss 0.8131 Train AUC: 0.7329 Val AUC: 0.7014 Test AUC: 0.7014 nDCG: 0.9703 Kendall Tau: 0.2680
+1 1380 Loss 0.8131 Train AUC: 0.7329 Val AUC: 0.7014 Test AUC: 0.7014 nDCG: 0.9703 Kendall Tau: 0.2681
+1 1390 Loss 0.8132 Train AUC: 0.7322 Val AUC: 0.7010 Test AUC: 0.7008 nDCG: 0.9703 Kendall Tau: 0.2663
+1 1400 Loss 0.8131 Train AUC: 0.7324 Val AUC: 0.7010 Test AUC: 0.7010 nDCG: 0.9703 Kendall Tau: 0.2665
+1 1410 Loss 0.8132 Train AUC: 0.7322 Val AUC: 0.7011 Test AUC: 0.7008 nDCG: 0.9703 Kendall Tau: 0.2650
+1 1420 Loss 0.8132 Train AUC: 0.7320 Val AUC: 0.7009 Test AUC: 0.7008 nDCG: 0.9703 Kendall Tau: 0.2655
+1 1430 Loss 0.8131 Train AUC: 0.7317 Val AUC: 0.7008 Test AUC: 0.7005 nDCG: 0.9703 Kendall Tau: 0.2641
+1 1440 Loss 0.8132 Train AUC: 0.7312 Val AUC: 0.7005 Test AUC: 0.7001 nDCG: 0.9703 Kendall Tau: 0.2625
+1 1450 Loss 0.8131 Train AUC: 0.7312 Val AUC: 0.7005 Test AUC: 0.7001 nDCG: 0.9703 Kendall Tau: 0.2624
+1 1460 Loss 0.8131 Train AUC: 0.7312 Val AUC: 0.7005 Test AUC: 0.7000 nDCG: 0.9703 Kendall Tau: 0.2623
+1 1470 Loss 0.8131 Train AUC: 0.7309 Val AUC: 0.7002 Test AUC: 0.6997 nDCG: 0.9703 Kendall Tau: 0.2613
+1 1480 Loss 0.8131 Train AUC: 0.7307 Val AUC: 0.7000 Test AUC: 0.6993 nDCG: 0.9702 Kendall Tau: 0.2602
+1 1490 Loss 0.8131 Train AUC: 0.7311 Val AUC: 0.7004 Test AUC: 0.6998 nDCG: 0.9703 Kendall Tau: 0.2615
+1 1500 Loss 0.8131 Train AUC: 0.7304 Val AUC: 0.6997 Test AUC: 0.6988 nDCG: 0.9703 Kendall Tau: 0.2589
+1 1510 Loss 0.8131 Train AUC: 0.7302 Val AUC: 0.6995 Test AUC: 0.6983 nDCG: 0.9702 Kendall Tau: 0.2582
+1 1520 Loss 0.8131 Train AUC: 0.7298 Val AUC: 0.6991 Test AUC: 0.6978 nDCG: 0.9702 Kendall Tau: 0.2572
+1 1530 Loss 0.8131 Train AUC: 0.7293 Val AUC: 0.6985 Test AUC: 0.6970 nDCG: 0.9702 Kendall Tau: 0.2559
+1 1540 Loss 0.8131 Train AUC: 0.7290 Val AUC: 0.6984 Test AUC: 0.6965 nDCG: 0.9702 Kendall Tau: 0.2553
+1 1550 Loss 0.8131 Train AUC: 0.7287 Val AUC: 0.6982 Test AUC: 0.6960 nDCG: 0.9701 Kendall Tau: 0.2547
+1 1560 Loss 0.8131 Train AUC: 0.7287 Val AUC: 0.6982 Test AUC: 0.6959 nDCG: 0.9701 Kendall Tau: 0.2547
+1 1570 Loss 0.8131 Train AUC: 0.7281 Val AUC: 0.6978 Test AUC: 0.6954 nDCG: 0.9701 Kendall Tau: 0.2540
+1 1580 Loss 0.8131 Train AUC: 0.7281 Val AUC: 0.6978 Test AUC: 0.6954 nDCG: 0.9701 Kendall Tau: 0.2538
+1 1590 Loss 0.8131 Train AUC: 0.7276 Val AUC: 0.6975 Test AUC: 0.6950 nDCG: 0.9701 Kendall Tau: 0.2535
+1 1600 Loss 0.8131 Train AUC: 0.7273 Val AUC: 0.6973 Test AUC: 0.6948 nDCG: 0.9700 Kendall Tau: 0.2532
+1 1610 Loss 0.8131 Train AUC: 0.7265 Val AUC: 0.6963 Test AUC: 0.6938 nDCG: 0.9700 Kendall Tau: 0.2526
+1 1620 Loss 0.8131 Train AUC: 0.7267 Val AUC: 0.6964 Test AUC: 0.6938 nDCG: 0.9700 Kendall Tau: 0.2524
+1 1630 Loss 0.8131 Train AUC: 0.7265 Val AUC: 0.6962 Test AUC: 0.6937 nDCG: 0.9700 Kendall Tau: 0.2524
+1 1640 Loss 0.8131 Train AUC: 0.7271 Val AUC: 0.6968 Test AUC: 0.6940 nDCG: 0.9700 Kendall Tau: 0.2522
+1 1650 Loss 0.8130 Train AUC: 0.7270 Val AUC: 0.6966 Test AUC: 0.6939 nDCG: 0.9700 Kendall Tau: 0.2521
+1 1660 Loss 0.8130 Train AUC: 0.7274 Val AUC: 0.6970 Test AUC: 0.6942 nDCG: 0.9701 Kendall Tau: 0.2521
+1 1670 Loss 0.8130 Train AUC: 0.7279 Val AUC: 0.6975 Test AUC: 0.6946 nDCG: 0.9701 Kendall Tau: 0.2521
+1 1680 Loss 0.8130 Train AUC: 0.7280 Val AUC: 0.6976 Test AUC: 0.6947 nDCG: 0.9701 Kendall Tau: 0.2521
+1 1690 Loss 0.8131 Train AUC: 0.7280 Val AUC: 0.6976 Test AUC: 0.6947 nDCG: 0.9701 Kendall Tau: 0.2521
+1 1700 Loss 0.8130 Train AUC: 0.7278 Val AUC: 0.6973 Test AUC: 0.6945 nDCG: 0.9701 Kendall Tau: 0.2521
+1 1710 Loss 0.8130 Train AUC: 0.7290 Val AUC: 0.6985 Test AUC: 0.6954 nDCG: 0.9704 Kendall Tau: 0.2527
+1 1720 Loss 0.8130 Train AUC: 0.7290 Val AUC: 0.6986 Test AUC: 0.6952 nDCG: 0.9702 Kendall Tau: 0.2521
+1 1730 Loss 0.8130 Train AUC: 0.7295 Val AUC: 0.6991 Test AUC: 0.6955 nDCG: 0.9702 Kendall Tau: 0.2523
+1 1740 Loss 0.8130 Train AUC: 0.7293 Val AUC: 0.6989 Test AUC: 0.6953 nDCG: 0.9702 Kendall Tau: 0.2521
+1 1750 Loss 0.8130 Train AUC: 0.7299 Val AUC: 0.6996 Test AUC: 0.6957 nDCG: 0.9703 Kendall Tau: 0.2523
+1 1760 Loss 0.8130 Train AUC: 0.7301 Val AUC: 0.6997 Test AUC: 0.6959 nDCG: 0.9704 Kendall Tau: 0.2526
+1 1770 Loss 0.8130 Train AUC: 0.7304 Val AUC: 0.7000 Test AUC: 0.6961 nDCG: 0.9705 Kendall Tau: 0.2528
+1 1780 Loss 0.8130 Train AUC: 0.7301 Val AUC: 0.6997 Test AUC: 0.6957 nDCG: 0.9703 Kendall Tau: 0.2525
+1 1790 Loss 0.8130 Train AUC: 0.7301 Val AUC: 0.6998 Test AUC: 0.6958 nDCG: 0.9703 Kendall Tau: 0.2524
+1 1800 Loss 0.8129 Train AUC: 0.7301 Val AUC: 0.6997 Test AUC: 0.6958 nDCG: 0.9703 Kendall Tau: 0.2524
+1 1810 Loss 0.8129 Train AUC: 0.7302 Val AUC: 0.6998 Test AUC: 0.6959 nDCG: 0.9703 Kendall Tau: 0.2523
+1 1820 Loss 0.8129 Train AUC: 0.7305 Val AUC: 0.7000 Test AUC: 0.6963 nDCG: 0.9704 Kendall Tau: 0.2527
+1 1830 Loss 0.8129 Train AUC: 0.7306 Val AUC: 0.7000 Test AUC: 0.6963 nDCG: 0.9703 Kendall Tau: 0.2529
+1 1840 Loss 0.8128 Train AUC: 0.7306 Val AUC: 0.7000 Test AUC: 0.6964 nDCG: 0.9703 Kendall Tau: 0.2528
+1 1850 Loss 0.8129 Train AUC: 0.7307 Val AUC: 0.7000 Test AUC: 0.6965 nDCG: 0.9703 Kendall Tau: 0.2531
+1 1860 Loss 0.8129 Train AUC: 0.7308 Val AUC: 0.7001 Test AUC: 0.6966 nDCG: 0.9703 Kendall Tau: 0.2532
+1 1870 Loss 0.8128 Train AUC: 0.7308 Val AUC: 0.7000 Test AUC: 0.6966 nDCG: 0.9703 Kendall Tau: 0.2530
+1 1880 Loss 0.8129 Train AUC: 0.7309 Val AUC: 0.7000 Test AUC: 0.6969 nDCG: 0.9704 Kendall Tau: 0.2535
+1 1890 Loss 0.8128 Train AUC: 0.7309 Val AUC: 0.7000 Test AUC: 0.6969 nDCG: 0.9704 Kendall Tau: 0.2533
+1 1900 Loss 0.8128 Train AUC: 0.7310 Val AUC: 0.7000 Test AUC: 0.6970 nDCG: 0.9704 Kendall Tau: 0.2534
+1 1910 Loss 0.8129 Train AUC: 0.7310 Val AUC: 0.6999 Test AUC: 0.6972 nDCG: 0.9704 Kendall Tau: 0.2541
+1 1920 Loss 0.8128 Train AUC: 0.7310 Val AUC: 0.6999 Test AUC: 0.6971 nDCG: 0.9704 Kendall Tau: 0.2538
+1 1930 Loss 0.8128 Train AUC: 0.7310 Val AUC: 0.6999 Test AUC: 0.6972 nDCG: 0.9704 Kendall Tau: 0.2540
+1 1940 Loss 0.8128 Train AUC: 0.7311 Val AUC: 0.6997 Test AUC: 0.6974 nDCG: 0.9704 Kendall Tau: 0.2546
+1 1950 Loss 0.8127 Train AUC: 0.7312 Val AUC: 0.6997 Test AUC: 0.6975 nDCG: 0.9704 Kendall Tau: 0.2545
+1 1960 Loss 0.8128 Train AUC: 0.7312 Val AUC: 0.6997 Test AUC: 0.6977 nDCG: 0.9704 Kendall Tau: 0.2550
+1 1970 Loss 0.8126 Train AUC: 0.7312 Val AUC: 0.6998 Test AUC: 0.6977 nDCG: 0.9704 Kendall Tau: 0.2549
+1 1980 Loss 0.8128 Train AUC: 0.7312 Val AUC: 0.6997 Test AUC: 0.6978 nDCG: 0.9704 Kendall Tau: 0.2553
+1 1990 Loss 0.8128 Train AUC: 0.7312 Val AUC: 0.6997 Test AUC: 0.6978 nDCG: 0.9704 Kendall Tau: 0.2554
+1 2000 Loss 0.8127 Train AUC: 0.7313 Val AUC: 0.6997 Test AUC: 0.6978 nDCG: 0.9704 Kendall Tau: 0.2556
+-----------------Final-------------------
+AUC results: 0.788529 0.014299
+nDCG results: 0.977581 0.000517
+Kendall's Tau: 0.407512 0.022701
+Loading data...
+Using only features..
+Traceback (most recent call last):
+  File "main.py", line 56, in <module>
+    data_list = get_tg_dataset(args, dataset_name, use_cache=args.cache, remove_feature=args.rm_feature, hash_overwrite=args.hash_overwrite)
+  File "/home/yixiao/w/needle-in-hashbrown/dataset.py", line 113, in get_tg_dataset
+    infer_link_positive=True if args.task == 'link' else False)
+  File "/home/yixiao/w/needle-in-hashbrown/utils.py", line 127, in get_link_mask
+    split_edges(data.mask_link_positive, remove_ratio)
+AttributeError: 'Data' object has no attribute 'mask_link_positive'
