@@ -1,6 +1,7 @@
+import time
+from random import shuffle
 from sklearn.metrics import roc_auc_score, ndcg_score
 from sklearn.metrics.pairwise import cosine_similarity
-from scipy.stats import kendalltau, spearmanr
 from tensorboardX import SummaryWriter
 
 from args import *
@@ -31,9 +32,9 @@ device = torch.device('cuda:'+str(args.cuda) if args.gpu else 'cpu')
 
 for task in ['link', 'link_pair']:
     args.task = task
-    if args.dataset=='All':
+    if args.dataset == 'All':
         if task == 'link':
-            datasets_name = ['grid','communities','ppi']
+            datasets_name = ['grid', 'communities', 'ppi']
         else:
             datasets_name = ['communities', 'email', 'protein']
     else:
@@ -53,7 +54,8 @@ for task in ['link', 'link_pair']:
             ndcg_result = []
             ktau_result = []
             time1 = time.time()
-            data_list = get_tg_dataset(args, dataset_name, use_cache=args.cache, remove_feature=args.rm_feature, hash_overwrite=args.hash_overwrite)
+            data_list = get_tg_dataset(args, dataset_name, use_cache=args.cache, remove_feature=args.rm_feature,
+                                       hash_overwrite=args.hash_overwrite)
             time2 = time.time()
             print(dataset_name, 'load time',  time2-time1)
 
@@ -64,7 +66,8 @@ for task in ['link', 'link_pair']:
                 num_node_classes = max([data.y.max().item() for data in data_list])+1
             if 'y_graph' in data_list[0].__dict__ and data_list[0].y_graph is not None:
                 num_graph_classes = max([data.y_graph.numpy()[0] for data in data_list])+1
-            print('Dataset', dataset_name, 'Graph', len(data_list), 'Feature', num_features, 'Node Class', num_node_classes, 'Graph Class', num_graph_classes)
+            print('Dataset', dataset_name, 'Graph', len(data_list), 'Feature', num_features, 'Node Class',
+                  num_node_classes, 'Graph Class', num_graph_classes)
             nodes = [data.num_nodes for data in data_list]
             edges = [data.num_edges for data in data_list]
             print('Node: max{}, min{}, mean{}'.format(max(nodes), min(nodes), sum(nodes)/len(nodes)))
@@ -88,11 +91,12 @@ for task in ['link', 'link_pair']:
                                              walk_length=10, context_size=5, walks_per_node=10)
             else:
                 model = locals()[args.model](input_dim=input_dim, feature_dim=args.feature_dim,
-                            hidden_dim=args.hidden_dim, output_dim=output_dim,
-                            feature_pre=args.feature_pre, layer_num=args.layer_num, dropout=args.dropout).to(device)
+                                             hidden_dim=args.hidden_dim, output_dim=output_dim,
+                                             feature_pre=args.feature_pre, layer_num=args.layer_num,
+                                             dropout=args.dropout).to(device)
 
             # data
-            for i,data in enumerate(data_list):
+            for i, data in enumerate(data_list):
                 print("{0}: feature size: {1}".format(i, data.x.shape))
                 preselect_anchor(data, layer_num=args.layer_num, anchor_num=args.anchor_num, device='cpu')
                 data = data.to(device)
@@ -104,9 +108,8 @@ for task in ['link', 'link_pair']:
                 loss_func = nn.BCEWithLogitsLoss()
                 out_act = nn.Sigmoid()
 
-
             for epoch in range(args.epoch_num):
-                if epoch==200:
+                if epoch == 200:
                     for param_group in optimizer.param_groups:
                         param_group['lr'] /= 10
                 model.train()
@@ -117,27 +120,28 @@ for task in ['link', 'link_pair']:
                     if args.permute:
                         preselect_anchor(data, layer_num=args.layer_num, anchor_num=args.anchor_num, device=device)
                     out = model(data)
-                    # get_link_mask(data,resplit=False)  # resample negative links
-                    edge_mask_train = np.concatenate((data.mask_link_positive_train, data.mask_link_negative_train), axis=-1)
-                    nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[0,:]).long().to(device))
-                    nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[1,:]).long().to(device))
+                    # get_link_mask(data,resplit=False)
+                    # resample negative links
+                    edge_mask_train = np.concatenate((data.mask_link_positive_train, data.mask_link_negative_train),
+                                                     axis=-1)
+                    nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[0, :]).long().to(device))
+                    nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[1, :]).long().to(device))
                     pred = torch.sum(nodes_first * nodes_second, dim=-1)
-                    label_positive = torch.ones([data.mask_link_positive_train.shape[1],], dtype=pred.dtype)
-                    label_negative = torch.zeros([data.mask_link_negative_train.shape[1],], dtype=pred.dtype)
-                    label = torch.cat((label_positive,label_negative)).to(device)
+                    label_positive = torch.ones([data.mask_link_positive_train.shape[1], ], dtype=pred.dtype)
+                    label_negative = torch.zeros([data.mask_link_negative_train.shape[1], ], dtype=pred.dtype)
+                    label = torch.cat((label_positive, label_negative)).to(device)
                     loss = loss_func(pred, label)
 
                     # update
                     loss.backward()
                     if id % args.batch_size == args.batch_size-1:
-                        if args.batch_size>1:
+                        if args.batch_size > 1:
                             # if this is slow, no need to do this normalization
                             for p in model.parameters():
                                 if p.grad is not None:
                                     p.grad /= args.batch_size
                         optimizer.step()
                         optimizer.zero_grad()
-
 
                 if epoch % args.epoch_log == 0:
                     # evaluate
@@ -168,42 +172,55 @@ for task in ['link', 'link_pair']:
 
                         # train
                         # get_link_mask(data, resplit=False)  # resample negative links
-                        edge_mask_train = np.concatenate((data.mask_link_positive_train, data.mask_link_negative_train), axis=-1)
-                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[0, :]).long().to(device))
-                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[1, :]).long().to(device))
+                        edge_mask_train = np.concatenate((data.mask_link_positive_train, data.mask_link_negative_train),
+                                                         axis=-1)
+                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[0, :]).long()
+                                                         .to(device))
+                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[1, :]).long()
+                                                          .to(device))
                         pred = torch.sum(nodes_first * nodes_second, dim=-1)
                         label_positive = torch.ones([data.mask_link_positive_train.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_train.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
                         loss_train += loss_func(pred, label).cpu().data.numpy()
-                        auc_train += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu().numpy())
+                        auc_train += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
+                                                   .numpy())
                         # val
-                        edge_mask_val = np.concatenate((data.mask_link_positive_val, data.mask_link_negative_val), axis=-1)
-                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_val[0, :]).long().to(device))
-                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_val[1, :]).long().to(device))
+                        edge_mask_val = np.concatenate((data.mask_link_positive_val, data.mask_link_negative_val),
+                                                       axis=-1)
+                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_val[0, :]).long()
+                                                         .to(device))
+                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_val[1, :]).long()
+                                                          .to(device))
                         pred = torch.sum(nodes_first * nodes_second, dim=-1)
                         label_positive = torch.ones([data.mask_link_positive_val.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_val.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
                         loss_val += loss_func(pred, label).cpu().data.numpy()
-                        auc_val += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu().numpy())
+                        auc_val += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
+                                                 .numpy())
                         # test
-                        edge_mask_test = np.concatenate((data.mask_link_positive_test, data.mask_link_negative_test), axis=-1)
-                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_test[0, :]).long().to(device))
-                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_test[1, :]).long().to(device))
+                        edge_mask_test = np.concatenate((data.mask_link_positive_test, data.mask_link_negative_test),
+                                                        axis=-1)
+                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_test[0, :]).long()
+                                                         .to(device))
+                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_test[1, :]).long()
+                                                          .to(device))
                         pred = torch.sum(nodes_first * nodes_second, dim=-1)
                         label_positive = torch.ones([data.mask_link_positive_test.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_test.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
                         loss_test += loss_func(pred, label).cpu().data.numpy()
-                        auc_test += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu().numpy())
+                        auc_test += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
+                                                  .numpy())
 
                         # evaluations for graph distance (on the while dataset)
                         # desiderata: nodes closer to each other have higher cosine_sim
                         # calculate pairwise cosine sim for output embeddings
                         pairwise_sim = cosine_similarity(out.detach().cpu().numpy())
                         # remove diagonals (similarity to itself)
-                        pairwise_sim = pairwise_sim[~np.eye(pairwise_sim.shape[0],dtype=bool)].reshape(pairwise_sim.shape[0],-1)
+                        pairwise_sim = pairwise_sim[~np.eye(pairwise_sim.shape[0],dtype=bool)].reshape(pairwise_sim
+                                                                                                       .shape[0], -1)
                         # low rank (closer) has higher relevance score
                         true_relevance = 1.0 / data.dists_ranks.astype(float)
                         # nDCG score
@@ -251,7 +268,6 @@ for task in ['link', 'link_pair']:
 
                     ndcg_result.append(ndcg)
                     ktau_result.append(ktau)
-
 
             result_val = np.array(result_val)
             result_test = np.array(result_test)

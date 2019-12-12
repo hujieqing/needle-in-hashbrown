@@ -1,5 +1,7 @@
+from random import shuffle
 from sklearn.metrics import roc_auc_score
 from tensorboardX import SummaryWriter
+import time
 
 from args import *
 from model import *
@@ -13,9 +15,9 @@ args = make_args()
 print(args)
 np.random.seed(123)
 np.random.seed()
-writer_train = SummaryWriter(comment=args.task+'_'+args.model+'_'+args.comment+'_train')
-writer_val = SummaryWriter(comment=args.task+'_'+args.model+'_'+args.comment+'_val')
-writer_test = SummaryWriter(comment=args.task+'_'+args.model+'_'+args.comment+'_test')
+writer_train = SummaryWriter(comment=args.task + '_' + args.model + '_' + args.comment+'_train')
+writer_val = SummaryWriter(comment=args.task + '_' + args.model + '_' + args.comment+'_val')
+writer_test = SummaryWriter(comment=args.task + '_' + args.model + '_' + args.comment+'_test')
 
 
 # set up gpu
@@ -30,9 +32,9 @@ device = torch.device('cuda:'+str(args.cuda) if args.gpu else 'cpu')
 
 for task in ['link', 'link_pair']:
     args.task = task
-    if args.dataset=='All':
+    if args.dataset == 'All':
         if task == 'link':
-            datasets_name = ['grid','communities','ppi']
+            datasets_name = ['grid', 'communities', 'ppi']
         else:
             datasets_name = ['communities', 'email', 'protein']
     else:
@@ -59,7 +61,8 @@ for task in ['link', 'link_pair']:
                 num_node_classes = max([data.y.max().item() for data in data_list])+1
             if 'y_graph' in data_list[0].__dict__ and data_list[0].y_graph is not None:
                 num_graph_classes = max([data.y_graph.numpy()[0] for data in data_list])+1
-            print('Dataset', dataset_name, 'Graph', len(data_list), 'Feature', num_features, 'Node Class', num_node_classes, 'Graph Class', num_graph_classes)
+            print('Dataset', dataset_name, 'Graph', len(data_list), 'Feature', num_features, 'Node Class',
+                  num_node_classes, 'Graph Class', num_graph_classes)
             nodes = [data.num_nodes for data in data_list]
             edges = [data.num_edges for data in data_list]
             print('Node: max{}, min{}, mean{}'.format(max(nodes), min(nodes), sum(nodes)/len(nodes)))
@@ -78,14 +81,14 @@ for task in ['link', 'link_pair']:
             input_dim = num_features
             output_dim = args.output_dim
             model = locals()[args.model](input_dim=input_dim, feature_dim=args.feature_dim,
-                        hidden_dim=args.hidden_dim, output_dim=output_dim,
-                        feature_pre=args.feature_pre, layer_num=args.layer_num, dropout=args.dropout).to(device)
+                                         hidden_dim=args.hidden_dim, output_dim=output_dim,
+                                         feature_pre=args.feature_pre, layer_num=args.layer_num,
+                                         dropout=args.dropout).to(device)
             # loss
             optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=5e-4)
             if 'link' in args.task:
                 loss_func = nn.BCEWithLogitsLoss()
                 out_act = nn.Sigmoid()
-
 
             for epoch in range(args.epoch_num):
                 if epoch==200:
@@ -100,7 +103,8 @@ for task in ['link', 'link_pair']:
                         preselect_anchor(data, layer_num=args.layer_num, anchor_num=args.anchor_num, device=device)
                     out = model(data)
                     # get_link_mask(data,resplit=False)  # resample negative links
-                    edge_mask_train = np.concatenate((data.mask_link_positive_train, data.mask_link_negative_train), axis=-1)
+                    edge_mask_train = np.concatenate((data.mask_link_positive_train, data.mask_link_negative_train),
+                                                     axis=-1)
                     nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[0,:]).long().to(device))
                     nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[1,:]).long().to(device))
                     pred = torch.sum(nodes_first * nodes_second, dim=-1)
@@ -119,7 +123,6 @@ for task in ['link', 'link_pair']:
                                     p.grad /= args.batch_size
                         optimizer.step()
                         optimizer.zero_grad()
-
 
                 if epoch % args.epoch_log == 0:
                     # evaluate
@@ -147,35 +150,47 @@ for task in ['link', 'link_pair']:
 
                         # train
                         # get_link_mask(data, resplit=False)  # resample negative links
-                        edge_mask_train = np.concatenate((data.mask_link_positive_train, data.mask_link_negative_train), axis=-1)
-                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[0, :]).long().to(device))
-                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[1, :]).long().to(device))
+                        edge_mask_train = np.concatenate((data.mask_link_positive_train, data.mask_link_negative_train)
+                                                         , axis=-1)
+                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[0, :]).long()
+                                                         .to(device))
+                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_train[1, :]).long()
+                                                          .to(device))
                         pred = torch.sum(nodes_first * nodes_second, dim=-1)
                         label_positive = torch.ones([data.mask_link_positive_train.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_train.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
                         loss_train += loss_func(pred, label).cpu().data.numpy()
-                        auc_train += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu().numpy())
+                        auc_train += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
+                                                   .numpy())
                         # val
-                        edge_mask_val = np.concatenate((data.mask_link_positive_val, data.mask_link_negative_val), axis=-1)
-                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_val[0, :]).long().to(device))
-                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_val[1, :]).long().to(device))
+                        edge_mask_val = np.concatenate((data.mask_link_positive_val, data.mask_link_negative_val),
+                                                       axis=-1)
+                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_val[0, :]).long()
+                                                         .to(device))
+                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_val[1, :]).long()
+                                                          .to(device))
                         pred = torch.sum(nodes_first * nodes_second, dim=-1)
                         label_positive = torch.ones([data.mask_link_positive_val.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_val.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
                         loss_val += loss_func(pred, label).cpu().data.numpy()
-                        auc_val += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu().numpy())
+                        auc_val += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
+                                                 .numpy())
                         # test
-                        edge_mask_test = np.concatenate((data.mask_link_positive_test, data.mask_link_negative_test), axis=-1)
-                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_test[0, :]).long().to(device))
-                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_test[1, :]).long().to(device))
+                        edge_mask_test = np.concatenate((data.mask_link_positive_test, data.mask_link_negative_test)
+                                                        , axis=-1)
+                        nodes_first = torch.index_select(out, 0, torch.from_numpy(edge_mask_test[0, :]).long()
+                                                         .to(device))
+                        nodes_second = torch.index_select(out, 0, torch.from_numpy(edge_mask_test[1, :]).long()
+                                                          .to(device))
                         pred = torch.sum(nodes_first * nodes_second, dim=-1)
                         label_positive = torch.ones([data.mask_link_positive_test.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_test.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
                         loss_test += loss_func(pred, label).cpu().data.numpy()
-                        auc_test += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu().numpy())
+                        auc_test += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
+                                                  .numpy())
 
                     loss_train /= id+1
                     loss_val /= id+1
@@ -210,7 +225,8 @@ for task in ['link', 'link_pair']:
         results_std = np.std(results).round(6)
         print('-----------------Final-------------------')
         print(results_mean, results_std)
-        with open('results/{}_{}_{}_layer{}_approximate{}.txt'.format(args.task,args.model,dataset_name,args.layer_num,args.approximate), 'w') as f:
+        with open('results/{}_{}_{}_layer{}_approximate{}.txt'.format(args.task, args.model, dataset_name,
+                                                                      args.layer_num, args.approximate), 'w') as f:
             f.write('{}, {}\n'.format(results_mean, results_std))
 
 # export scalar data to JSON for external processing

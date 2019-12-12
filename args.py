@@ -1,4 +1,6 @@
 from argparse import ArgumentParser
+
+
 def make_args():
     parser = ArgumentParser()
     # general
@@ -41,9 +43,11 @@ def make_args():
     parser.add_argument('--dropout_no', dest='dropout', action='store_false',
                         help='whether dropout, default 0.5')
     parser.add_argument('--approximate', dest='approximate', default=-1, type=int,
-                        help='k-hop shortest path distance. -1 means exact shortest path') # -1, 2
+                        help='k-hop shortest path distance. -1 means exact shortest path')
+    # -1, 2
 
-    parser.add_argument('--batch_size', dest='batch_size', default=8, type=int) # implemented via accumulating gradient
+    parser.add_argument('--batch_size', dest='batch_size', default=8, type=int)
+    # implemented via accumulating gradient
     parser.add_argument('--layer_num', dest='layer_num', default=2, type=int)
     parser.add_argument('--feature_dim', dest='feature_dim', default=32, type=int)
     parser.add_argument('--hidden_dim', dest='hidden_dim', default=32, type=int)
@@ -61,5 +65,6 @@ def make_args():
                         cache=False, rm_feature=False, hash_overwrite=False,
                         permute=True, feature_pre=True, dropout=True,
                         approximate=-1, normalize_adj=False)
+
     args = parser.parse_args()
     return args

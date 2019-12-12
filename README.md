@@ -64,6 +64,18 @@ python main.py --model GCN --layer_num 3 --dataset All
 ```bash
 python main.py --model PGNN --layer_num 2 --dataset All
 ```
+- more models
+```bash
+python main.py --model GCN|SAGE|GAT|GIN|N2V --layer_num 3 --dataset ppi
+```
+```bash
+python main.py --model PGNN --layer_num 1|2 --approximate 2 --dataset ppi
+```
+
+```bash
+python main.py --model PGNN --layer_num 1|2 --dataset ppi
+```
+
 You are highly encouraged to tune all kinds of hyper-parameters to get better performance. We only did very limited hyper-parameter tuning.
 
 We recommend using tensorboard to monitor the training process. To do this, you may run

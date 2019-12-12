@@ -235,7 +235,8 @@ def preselect_anchor(data, layer_num=1, anchor_num=32, anchor_size_num=4, device
 
 def int_to_hash_vector(input, n):
     """
-    This function converts an input integer to a vector of dimension n. Each element in the vector is normalized from -1 to 1.
+    This function converts an input integer to a vector of dimension n.
+    Each element in the vector is normalized from -1 to 1.
     """
     max32 = pow(2, 31)-1
     result = []
