@@ -8,12 +8,10 @@ import random
 import pickle
 import os.path
 import torch_geometric as tg
-
-from torch_geometric.data import Data, DataLoader
+from torch_geometric.data import Data
+from scipy.stats import rankdata
 
 from utils import precompute_dist_data, get_link_mask, duplicate_edges, deduplicate_edges, int_to_hash_vector
-
-from scipy.stats import rankdata
 
 
 def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, hash_overwrite=False):
@@ -67,7 +65,7 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
             data.mask_link_positive_test = links_test_list[i]
             get_link_mask(data, resplit=False)
 
-            if args.task=='link':
+            if args.task == 'link':
                 data.dists = torch.from_numpy(dists_removed_list[i]).float()
                 data.edge_index = torch.from_numpy(duplicate_edges(data.mask_link_positive_train)).long()
             else:
@@ -125,7 +123,6 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
 
             # generate graph dist ranks
             data.dists_ranks = gen_graph_dist_rank_data(data.dists_all)
-            
             data_list.append(data)
 
         with open(f1_name, 'wb') as f1, \
@@ -135,7 +132,7 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
                 open(f5_name, 'wb') as f5, \
                 open(f6_name, 'wb') as f6:
 
-            if args.task=='link':
+            if args.task == 'link':
                 pickle.dump(dists_removed_list, f2)
             else:
                 pickle.dump(dists_list, f1)
@@ -158,7 +155,7 @@ def gen_graph_dist_rank_data(dists_all):
     # ranks first)
     ranks_all = np.apply_along_axis(rankdata, 1, -dists_all, "dense")
 
-    # removing diagnals (ranks to itself)
+    # removing diagonals (ranks to itself)
     ranks_all = ranks_all[~np.eye(ranks_all.shape[0],dtype=bool)].reshape(ranks_all.shape[0],-1)
 
     return ranks_all

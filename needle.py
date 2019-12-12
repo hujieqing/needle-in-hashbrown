@@ -61,7 +61,8 @@ for task in ['link', 'link_pair']:
                 num_node_classes = max([data.y.max().item() for data in data_list])+1
             if 'y_graph' in data_list[0].__dict__ and data_list[0].y_graph is not None:
                 num_graph_classes = max([data.y_graph.numpy()[0] for data in data_list])+1
-            print('Dataset', dataset_name, 'Graph', len(data_list), 'Feature', num_features, 'Node Class', num_node_classes, 'Graph Class', num_graph_classes)
+            print('Dataset', dataset_name, 'Graph', len(data_list), 'Feature', num_features, 'Node Class',
+                  num_node_classes, 'Graph Class', num_graph_classes)
             nodes = [data.num_nodes for data in data_list]
             edges = [data.num_edges for data in data_list]
             print('Node: max{}, min{}, mean{}'.format(max(nodes), min(nodes), sum(nodes)/len(nodes)))
@@ -80,8 +81,9 @@ for task in ['link', 'link_pair']:
             input_dim = num_features
             output_dim = args.output_dim
             model = locals()[args.model](input_dim=input_dim, feature_dim=args.feature_dim,
-                        hidden_dim=args.hidden_dim, output_dim=output_dim,
-                        feature_pre=args.feature_pre, layer_num=args.layer_num, dropout=args.dropout).to(device)
+                                         hidden_dim=args.hidden_dim, output_dim=output_dim,
+                                         feature_pre=args.feature_pre, layer_num=args.layer_num,
+                                         dropout=args.dropout).to(device)
             # loss
             optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=5e-4)
             if 'link' in args.task:

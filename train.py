@@ -9,8 +9,8 @@ from dataset import *
 # for data augmentation
 
 
-def pretrain(args, data_list, model, optimizer, writer_train, writer_val, writer_test, device,
-          epoch_num=500, repeat=0, dataset_name='Cora'):
+def pretrain(args, data_list, model, optimizer, writer_train, writer_val, writer_test, device, epoch_num=500,
+             repeat=0, dataset_name='Cora'):
     loss_func = nn.BCEWithLogitsLoss()
     out_act = nn.Sigmoid()
 
