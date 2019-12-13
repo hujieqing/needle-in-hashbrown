@@ -131,7 +131,7 @@ for task in ['link', 'link_pair']:
                     label_positive = torch.ones([data.mask_link_positive_train.shape[1], ], dtype=pred.dtype)
                     label_negative = torch.zeros([data.mask_link_negative_train.shape[1], ], dtype=pred.dtype)
                     label = torch.cat((label_positive, label_negative)).to(device)
-                    train_dists = torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_train.T, args.alpha)).float()
+                    train_dists = 1.0 - torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_train.T, args.alpha)).float()
                     normalized_pred = (1.0 - pred) / 2.0
                     loss = loss_func(pred, label, normalized_pred, train_dists)
 
@@ -186,7 +186,7 @@ for task in ['link', 'link_pair']:
                         label_positive = torch.ones([data.mask_link_positive_train.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_train.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
-                        train_dists = torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_train.T, args.alpha)).float()
+                        train_dists = 1.0 - torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_train.T, args.alpha)).float()
                         normalized_pred = (1.0 - pred) / 2.0
                         loss_train += loss_func(pred, label, normalized_pred, train_dists).cpu().data.numpy()
                         auc_train += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
@@ -202,7 +202,7 @@ for task in ['link', 'link_pair']:
                         label_positive = torch.ones([data.mask_link_positive_val.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_val.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
-                        val_dists = torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_val.T, args.alpha)).float()
+                        val_dists = 1.0 - torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_val.T, args.alpha)).float()
                         normalized_pred = (1.0 - pred) / 2.0
                         loss_val += loss_func(pred, label, normalized_pred, val_dists).cpu().data.numpy()
                         auc_val += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
@@ -218,7 +218,7 @@ for task in ['link', 'link_pair']:
                         label_positive = torch.ones([data.mask_link_positive_test.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_test.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
-                        test_dists = torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_test.T, args.alpha)).float()
+                        test_dists = 1.0 - torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_test.T, args.alpha)).float()
                         normalized_pred = (1.0 - pred) / 2.0
                         loss_test += loss_func(pred, label, normalized_pred, test_dists).cpu().data.numpy()
                         auc_test += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
