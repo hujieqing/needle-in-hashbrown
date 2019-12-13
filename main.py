@@ -1,4 +1,5 @@
 import time
+import sys
 from random import shuffle
 from sklearn.metrics import roc_auc_score, ndcg_score
 from sklearn.metrics.pairwise import cosine_similarity
@@ -15,6 +16,8 @@ if not os.path.isdir('results'):
 # args
 args = make_args()
 print(args)
+if args.hash_overwrite and args.hash_concat:
+    sys.exit("Do not use both hash_concat and hash_overwrite")
 np.random.seed(123)
 np.random.seed()
 writer_train = SummaryWriter(comment=args.task+'_'+args.model+'_'+args.comment+'_train')
@@ -56,7 +59,7 @@ for task in ['link', 'link_pair']:
             ktau_result = []
             time1 = time.time()
             data_list = get_tg_dataset(args, dataset_name, use_cache=args.cache, remove_feature=args.rm_feature,
-                                       hash_overwrite=args.hash_overwrite)
+                                       hash_overwrite=args.hash_overwrite, hash_concat=args.hash_concat)
             time2 = time.time()
             print(dataset_name, 'load time',  time2-time1)
 

@@ -14,7 +14,7 @@ from scipy.stats import rankdata
 from utils import precompute_dist_data, get_link_mask, duplicate_edges, deduplicate_edges, int_to_hash_vector
 
 
-def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, hash_overwrite=False):
+def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, hash_overwrite=False, hash_concat=False):
     # "Cora", "CiteSeer" and "PubMed"
     if dataset_name in ['Cora', 'CiteSeer', 'PubMed']:
         dataset = tg.datasets.Planetoid(root='datasets/' + dataset_name, name=dataset_name)
@@ -78,6 +78,12 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
                     x[m] = int_to_hash_vector(start_node + m, data.x.shape[1])
                 data.x = torch.from_numpy(x)
                 start_node += data.x.shape[0]
+            if hash_concat:
+                x = np.zeros((data.x.shape[0], data.x.shape[1] * 2))
+                for m in range(data.x.shape[0]):
+                    x[m] = np.concatenate((data.x[m], int_to_hash_vector(start_node + m, data.x.shape[1])))
+                data.x = torch.from_numpy(x)
+                start_node += data.x.shape[0]
 
             # assign dists_all to each data (connected components)
             data.dists_all = dists_all_list[i]
@@ -94,6 +100,7 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
         links_train_list = []
         links_val_list = []
         links_test_list = []
+        start_node = 0
         for i, data in enumerate(dataset):
             if 'link' in args.task:
                 get_link_mask(data, args.remove_link_ratio, resplit=True,
@@ -120,6 +127,18 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
 
             if remove_feature:
                 data.x = torch.ones((data.x.shape[0],1))
+            if hash_overwrite:
+                x = np.zeros(data.x.shape)
+                for m in range(data.x.shape[0]):
+                    x[m] = int_to_hash_vector(start_node + m, data.x.shape[1])
+                data.x = torch.from_numpy(x)
+                start_node += data.x.shape[0]
+            if hash_concat:
+                x = np.zeros((data.x.shape[0], data.x.shape[1] * 2))
+                for m in range(data.x.shape[0]):
+                    x[m] = np.concatenate((data.x[m], int_to_hash_vector(start_node + m, data.x.shape[1])))
+                data.x = torch.from_numpy(x).float()
+                start_node += data.x.shape[0]
 
             # generate graph dist ranks
             data.dists_ranks = gen_graph_dist_rank_data(data.dists_all)

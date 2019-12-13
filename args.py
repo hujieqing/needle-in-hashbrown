@@ -30,6 +30,10 @@ def make_args():
                         help='overwrite features with hash')
     parser.add_argument('--hash_overwrite_no', dest='hash_overwrite', action='store_false',
                         help='do not overwrite features with hash')
+    parser.add_argument('--hash_concat', dest='hash_concat', action='store_true',
+                        help='concatenate features with hash vector')
+    parser.add_argument('--hash_concat_no', dest='hash_concat', action='store_false',
+                        help='do not concatenate features with hash vector')
     parser.add_argument('--permute', dest='permute', action='store_true',
                         help='whether permute subsets')
     parser.add_argument('--permute_no', dest='permute', action='store_false',
@@ -71,7 +75,7 @@ def make_args():
     parser.set_defaults(gpu=False, task='link', model='GCN', dataset='All',
                         cache=False, rm_feature=False, hash_overwrite=False,
                         permute=True, feature_pre=True, dropout=True,
-                        approximate=-1, normalize_adj=False)
+                        approximate=-1, normalize_adj=False, hash_concat=False)
 
     args = parser.parse_args()
     return args
