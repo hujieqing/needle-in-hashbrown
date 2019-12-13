@@ -287,8 +287,9 @@ for task in ['link', 'link_pair']:
         results_ndcg_std = np.std(results_ndcg).round(6)
 
         results_ktau = np.array(results_ktau)
-        results_ktau_mean = np.mean(results_ktau).round(6)
-        results_ktau_std = np.std(results_ktau).round(6)
+        # ignoring nan values
+        results_ktau_mean = np.nanmean(results_ktau).round(6)
+        results_ktau_std = np.nanstd(results_ktau).round(6)
 
         print('-----------------Final-------------------')
         print('AUC results:', results_mean, results_std)
