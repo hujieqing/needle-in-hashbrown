@@ -1,0 +1,53 @@
+(torch) [yixiao@arch needle-in-hashbrown]$ python main.py --model N2V --layer_num 3 --dataset ppi --gpu GPU --cuda 1
+Namespace(anchor_num=64, approximate=-1, batch_size=8, cache=False, comment='0', cuda='1', dataset='ppi', dropout=True, epoch_log=10, epoch_num=2001, feature_dim=32, feature_pre=True, gpu=True, hash_overwrite=False, hidden_dim=32, layer_num=3, lr=0.01, model='N2V', normalize_adj=False, output_dim=32, permute=True, remove_link_ratio=0.2, repeat_num=2, rm_feature=False, task='link')
+Using GPU 1
+Loading data...
+Using only features..
+Cache saved!
+ppi load time 968.6854982376099
+Dataset ppi Graph 24 Feature 50 Node Class None Graph Class None
+Node: max3480, min591, mean2360.75
+Edge: max85402, min6166, mean52907.083333333336
+Anchor num 64, Batch size 8
+0: feature size: torch.Size([1546])
+1: feature size: torch.Size([1377])
+2: feature size: torch.Size([2263])
+3: feature size: torch.Size([2339])
+4: feature size: torch.Size([1578])
+5: feature size: torch.Size([1021])
+6: feature size: torch.Size([1823])
+7: feature size: torch.Size([2488])
+8: feature size: torch.Size([591])
+9: feature size: torch.Size([3312])
+10: feature size: torch.Size([2401])
+11: feature size: torch.Size([1878])
+12: feature size: torch.Size([1819])
+13: feature size: torch.Size([3480])
+14: feature size: torch.Size([2794])
+15: feature size: torch.Size([2326])
+16: feature size: torch.Size([2650])
+17: feature size: torch.Size([2815])
+18: feature size: torch.Size([3163])
+19: feature size: torch.Size([3021])
+20: feature size: torch.Size([3195])
+21: feature size: torch.Size([3284])
+22: feature size: torch.Size([3194])
+23: feature size: torch.Size([2300])
+Traceback (most recent call last):
+  File "main.py", line 122, in <module>
+    out = model(data)
+  File "/home/yixiao/anaconda3/envs/torch/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/yixiao/w/needle-in-hashbrown/model.py", line 294, in forward
+    return self.node2vec(x)
+  File "/home/yixiao/anaconda3/envs/torch/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/yixiao/anaconda3/envs/torch/lib/python3.7/site-packages/torch_geometric/nn/models/node2vec.py", line 55, in forward
+    return self.embedding(subset)
+  File "/home/yixiao/anaconda3/envs/torch/lib/python3.7/site-packages/torch/nn/modules/module.py", line 541, in __call__
+    result = self.forward(*input, **kwargs)
+  File "/home/yixiao/anaconda3/envs/torch/lib/python3.7/site-packages/torch/nn/modules/sparse.py", line 114, in forward
+    self.norm_type, self.scale_grad_by_freq, self.sparse)
+  File "/home/yixiao/anaconda3/envs/torch/lib/python3.7/site-packages/torch/nn/functional.py", line 1484, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+RuntimeError: Expected object of device type cuda but got device type cpu for argument #1 'self' in call to _th_index_select
