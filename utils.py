@@ -385,3 +385,12 @@ def average_path_metrics(sims: Dict[int, List[int]], candidate_graph: graph.Grap
     frac_connected = np.sum(frac_connected * weights)
 
     return mean_distance_for_connected, frac_connected
+
+
+def extract_edge_distances(distances, edges, alpha):
+    edge_distances = []
+    for row in range(edges.shape[0]):
+        src_node = edges[row][0]
+        dest_node = edges[row][1]
+        edge_distances.append(pow(distances[src_node, dest_node], alpha))
+    return np.asarray(edge_distances)

@@ -61,6 +61,13 @@ def make_args():
     parser.add_argument('--repeat_num', dest='repeat_num', default=2, type=int) # 10
     parser.add_argument('--epoch_log', dest='epoch_log', default=10, type=int)
 
+    parser.add_argument('--lambda1', dest='lambda1', default=1.0, type=float,
+                        help='coefficient for BCE component of loss')
+    parser.add_argument('--lambda2', dest='lambda2', default=0.0, type=float,
+                        help='coefficient for MSE component of loss')
+    parser.add_argument('--alpha', dest='alpha', default=1.0, type=float,
+                        help='hyperparameter for distance normalization')
+
     parser.set_defaults(gpu=False, task='link', model='GCN', dataset='All',
                         cache=False, rm_feature=False, hash_overwrite=False,
                         permute=True, feature_pre=True, dropout=True,

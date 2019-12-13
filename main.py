@@ -8,6 +8,7 @@ from args import *
 from model import *
 from utils import *
 from dataset import *
+from losses import *
 
 if not os.path.isdir('results'):
     os.mkdir('results')
@@ -97,7 +98,7 @@ for task in ['link', 'link_pair']:
 
             # data
             for i, data in enumerate(data_list):
-                print("{0}: feature size: {1}".format(i, data.x.shape))
+                print("{0}: feature size: {1}, edge shape: {2}, edge mask train shape: {3}".format(i, data.x.shape, data.edge_index.shape, data.mask_link_positive_train.shape))
                 preselect_anchor(data, layer_num=args.layer_num, anchor_num=args.anchor_num, device='cpu')
                 data = data.to(device)
                 data_list[i] = data
@@ -105,7 +106,7 @@ for task in ['link', 'link_pair']:
             # loss
             optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=5e-4)
             if 'link' in args.task:
-                loss_func = nn.BCEWithLogitsLoss()
+                loss_func = DistanceLoss(lambda1=args.lambda1, lambda2=args.lambda2)
                 out_act = nn.Sigmoid()
 
             for epoch in range(args.epoch_num):
@@ -130,7 +131,10 @@ for task in ['link', 'link_pair']:
                     label_positive = torch.ones([data.mask_link_positive_train.shape[1], ], dtype=pred.dtype)
                     label_negative = torch.zeros([data.mask_link_negative_train.shape[1], ], dtype=pred.dtype)
                     label = torch.cat((label_positive, label_negative)).to(device)
-                    loss = loss_func(pred, label)
+                    train_dists = torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_train.T, args.alpha)).float()
+                    normalized_pred = (1.0 - pred) / 2.0
+                    loss = loss_func(pred, label, normalized_pred, train_dists)
+
 
                     # update
                     loss.backward()
@@ -182,7 +186,9 @@ for task in ['link', 'link_pair']:
                         label_positive = torch.ones([data.mask_link_positive_train.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_train.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
-                        loss_train += loss_func(pred, label).cpu().data.numpy()
+                        train_dists = torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_train.T, args.alpha)).float()
+                        normalized_pred = (1.0 - pred) / 2.0
+                        loss_train += loss_func(pred, label, normalized_pred, train_dists).cpu().data.numpy()
                         auc_train += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
                                                    .numpy())
                         # val
@@ -196,7 +202,9 @@ for task in ['link', 'link_pair']:
                         label_positive = torch.ones([data.mask_link_positive_val.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_val.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
-                        loss_val += loss_func(pred, label).cpu().data.numpy()
+                        val_dists = torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_val.T, args.alpha)).float()
+                        normalized_pred = (1.0 - pred) / 2.0
+                        loss_val += loss_func(pred, label, normalized_pred, val_dists).cpu().data.numpy()
                         auc_val += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
                                                  .numpy())
                         # test
@@ -210,7 +218,9 @@ for task in ['link', 'link_pair']:
                         label_positive = torch.ones([data.mask_link_positive_test.shape[1], ], dtype=pred.dtype)
                         label_negative = torch.zeros([data.mask_link_negative_test.shape[1], ], dtype=pred.dtype)
                         label = torch.cat((label_positive, label_negative)).to(device)
-                        loss_test += loss_func(pred, label).cpu().data.numpy()
+                        test_dists = torch.from_numpy(extract_edge_distances(data.dists_all, edge_mask_test.T, args.alpha)).float()
+                        normalized_pred = (1.0 - pred) / 2.0
+                        loss_test += loss_func(pred, label, normalized_pred, test_dists).cpu().data.numpy()
                         auc_test += roc_auc_score(label.flatten().cpu().numpy(), out_act(pred).flatten().data.cpu()
                                                   .numpy())
 
