@@ -114,7 +114,7 @@ for task in ['link', 'link_pair']:
                 out_act = nn.Sigmoid()
 
             if args.early_stopping:
-                early_stopping = EarlyStopping(patience=40, verbose=True)
+                early_stopping = EarlyStopping(patience=50, verbose=True)
 
             for epoch in range(args.epoch_num):
                 if epoch == 200:
