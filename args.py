@@ -71,11 +71,14 @@ def make_args():
                         help='coefficient for MSE component of loss')
     parser.add_argument('--alpha', dest='alpha', default=1.0, type=float,
                         help='hyperparameter for distance normalization')
+    parser.add_argument('--early_stopping', dest='early_stopping', default=True, type=bool,
+                        help='hyperparameter for distance normalization')
+
 
     parser.set_defaults(gpu=False, task='link', model='GCN', dataset='All',
                         cache=False, rm_feature=False, hash_overwrite=False,
                         permute=True, feature_pre=True, dropout=True,
-                        approximate=-1, normalize_adj=False, hash_concat=False)
+                        approximate=-1, normalize_adj=False, hash_concat=False, early_stopping=False)
 
     args = parser.parse_args()
     return args

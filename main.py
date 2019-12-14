@@ -4,6 +4,7 @@ from random import shuffle
 from sklearn.metrics import roc_auc_score, ndcg_score
 from sklearn.metrics.pairwise import cosine_similarity
 from tensorboardX import SummaryWriter
+from pytorchtools import EarlyStopping
 
 from args import *
 from model import *
@@ -111,6 +112,9 @@ for task in ['link', 'link_pair']:
             if 'link' in args.task:
                 loss_func = DistanceLoss(lambda1=args.lambda1, lambda2=args.lambda2)
                 out_act = nn.Sigmoid()
+
+            if args.early_stopping:
+                early_stopping = EarlyStopping(patience=40, verbose=True)
 
             for epoch in range(args.epoch_num):
                 if epoch == 200:
@@ -259,6 +263,13 @@ for task in ['link', 'link_pair']:
                     auc_test /= id+1
                     ndcg /= id+1
                     ktau /= id+1
+
+                    if args.early_stopping:
+                        early_stopping(loss_val, model)
+
+                        if early_stopping.early_stop:
+                            print("Early stopping")
+                            break
 
                     print(repeat, epoch, 'Loss {:.4f}'.format(loss_train), 'Train AUC: {:.4f}'.format(auc_train),
                           'Val AUC: {:.4f}'.format(auc_val), 'Test AUC: {:.4f}'.format(auc_test),
