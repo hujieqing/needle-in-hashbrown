@@ -75,6 +75,22 @@ python main.py --model PGNN --layer_num 1|2 --approximate 2 --dataset ppi
 ```bash
 python main.py --model PGNN --layer_num 1|2 --dataset ppi
 ```
+- control binary cross entropy weight (0.5) in the loss
+```bash
+--lambda1 0.5
+```
+- control mse weight (2) in the loss
+```bash
+--lambda2 2
+```
+- control the distance normalization (default 1) in mse
+```bash
+--alpha 2
+```
+- apply early stopping (default False)
+```bash
+--early_stopping True
+```
 
 You are highly encouraged to tune all kinds of hyper-parameters to get better performance. We only did very limited hyper-parameter tuning.
 
