@@ -76,13 +76,13 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
                 x = np.zeros(data.x.shape)
                 for m in range(data.x.shape[0]):
                     x[m] = int_to_hash_vector(start_node + m, data.x.shape[1])
-                data.x = torch.from_numpy(x)
+                data.x = torch.from_numpy(x).toFloat()
                 start_node += data.x.shape[0]
             if hash_concat:
                 x = np.zeros((data.x.shape[0], data.x.shape[1] * 2))
                 for m in range(data.x.shape[0]):
                     x[m] = np.concatenate((data.x[m], int_to_hash_vector(start_node + m, data.x.shape[1])))
-                data.x = torch.from_numpy(x)
+                data.x = torch.from_numpy(x).toFloat()
                 start_node += data.x.shape[0]
 
             # assign dists_all to each data (connected components)
@@ -131,7 +131,7 @@ def get_tg_dataset(args, dataset_name, use_cache=True, remove_feature=False, has
                 x = np.zeros(data.x.shape)
                 for m in range(data.x.shape[0]):
                     x[m] = int_to_hash_vector(start_node + m, data.x.shape[1])
-                data.x = torch.from_numpy(x)
+                data.x = torch.from_numpy(x).float()
                 start_node += data.x.shape[0]
             if hash_concat:
                 x = np.zeros((data.x.shape[0], data.x.shape[1] * 2))

@@ -5,6 +5,7 @@ from sklearn.metrics import roc_auc_score, ndcg_score
 from sklearn.metrics.pairwise import cosine_similarity
 from tensorboardX import SummaryWriter
 from pytorchtools import EarlyStopping
+from logger import Logger
 
 from args import *
 from model import *
@@ -50,6 +51,7 @@ for task in ['link', 'link_pair']:
         # else:
         #     args.epoch_num = 401
         #     args.cache = True
+        logger = Logger('./logs-'+dataset_name+'-'+task)
         results = []
         results_ndcg = []
         results_ktau = []
@@ -252,6 +254,7 @@ for task in ['link', 'link_pair']:
                         # tau /= true_relevance.shape[0]
                         ktau += tau
 
+
                     loss_train /= id+1
                     loss_val /= id+1
                     loss_test /= id+1
@@ -274,6 +277,18 @@ for task in ['link', 'link_pair']:
                     print(repeat, epoch, 'Loss {:.4f}'.format(loss_train), 'Train AUC: {:.4f}'.format(auc_train),
                           'Val AUC: {:.4f}'.format(auc_val), 'Test AUC: {:.4f}'.format(auc_test),
                           'nDCG: {:.4f}'.format(ndcg), 'Kendall Tau: {:.4f}'.format(ktau))
+
+                    info = { 'loss_train': loss_train.item(), 'loss_val': loss_val.item(), 'auc_train': auc_train.item(), 'auc_val': auc_val.item(), 
+                            'auc_test': auc_test.item(), 'nDCG': ndcg.item(), 'Kendall_Tau': ktau.item()}
+
+                    for tag, value in info.items():
+                        logger.scalar_summary(tag, value, epoch+1)
+
+                    for tag, value in model.named_parameters():
+                        tag = tag.replace('.', '/')
+                        logger.histo_summary(tag, value.data.cpu().numpy(), epoch+1)
+                        logger.histo_summary(tag+'/grad', value.grad.data.cpu().numpy(), epoch+1)
+                    
                     writer_train.add_scalar('repeat_' + str(repeat) + '/auc_'+dataset_name, auc_train, epoch)
                     writer_train.add_scalar('repeat_' + str(repeat) + '/loss_'+dataset_name, loss_train, epoch)
                     writer_val.add_scalar('repeat_' + str(repeat) + '/auc_'+dataset_name, auc_val, epoch)

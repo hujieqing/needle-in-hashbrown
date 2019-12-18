@@ -1,5 +1,6 @@
 from random import shuffle
 from sklearn.metrics import roc_auc_score
+from sklearn.metrics import precision_score
 import time
 
 from model import *
