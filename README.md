@@ -42,6 +42,8 @@ pip install mmh3
 
 5. Install the right version of sklearn `pip install scikit-learn==0.22`
 
+6. Install tensorflow 1.15 `pip install tensorflow==1.15`
+
 ## Run
 _The following commands might not work_
 - 3-layer GCN, grid
@@ -90,6 +92,11 @@ python main.py --model PGNN --layer_num 1|2 --dataset ppi
 - apply early stopping (default False)
 ```bash
 --early_stopping True
+```
+
+Launch tensorboard
+```
+tensorboard --logdir='./logs-<dataset>-<task>' --port=6006
 ```
 
 You are highly encouraged to tune all kinds of hyper-parameters to get better performance. We only did very limited hyper-parameter tuning.
