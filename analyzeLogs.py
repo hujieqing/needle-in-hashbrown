@@ -70,7 +70,7 @@ def main():
                 lastAUC = (splitLine[2], splitLine[3])
 
         if printResult:
-            print(args.prefix + " " + lastTask + " AUC: {0} {1}, NDCG: {2} {3}, Kendall Tau: {4} {5}, overfit: {6}".format(lastAUC[0], lastAUC[1], lastNDCG[0], lastNDCG[1], lastTau[0], lastTau[1], overfit))
+            print(args.prefix + " " + lastTask + " AUC: {0} {1}, NDCG: {2} {3}, Kendall Tau: {4} {5}, overfit: {6}".format(lastAUC[0], lastAUC[1], lastNDCG[0], lastNDCG[1], lastTau[0], lastTau[1], overFit))
 
 
 
