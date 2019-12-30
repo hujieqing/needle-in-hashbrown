@@ -110,7 +110,7 @@ for task in ['link', 'link_pair']:
                 data_list[i] = data
 
             # loss
-            optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=5e-4)
+            optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
             if 'link' in args.task:
                 loss_func = DistanceLoss(lambda1=args.lambda1, lambda2=args.lambda2)
                 out_act = nn.Sigmoid()
