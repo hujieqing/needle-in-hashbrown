@@ -94,6 +94,11 @@ python main.py --model PGNN --layer_num 1|2 --dataset ppi
 --early_stopping True
 ```
 
+- change L2 regularization weight (default 5e-4)
+```bash
+--weight_decay 5e-3
+```
+
 Launch tensorboard
 ```
 tensorboard --logdir='./logs-<dataset>-<task>' --port=6006
