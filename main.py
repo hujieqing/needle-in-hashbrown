@@ -37,6 +37,7 @@ device = torch.device('cuda:'+str(args.cuda) if args.gpu else 'cpu')
 
 
 for task in ['link', 'link_pair']:
+    print("task: " + task)
     args.task = task
     if args.dataset == 'All':
         if task == 'link':
