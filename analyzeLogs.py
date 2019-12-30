@@ -27,13 +27,11 @@ def main():
                         help='prefix for output line')
     args = parser.parse_args()
 
-    overFit = False
-
     with open(args.filename) as file:
         lines = file.readlines()
-        print(len(lines))
         losses = []
         testAUCs = []
+        overFit = False
         printResult=False
         lastAUC = None
         lastNDCG = None
@@ -42,14 +40,14 @@ def main():
         for line in lines:
             if TASKLINE in line:
                 if printResult:
-                    print(args.prefix + " " + lastTask + " AUC: {0} {1}, NDCG: {2} {3}, Kendall Tau: {4} {5}, overfit: {6}".format(lastAUC[0], lastAUC[1], lastNDCG[0], lastNDCG[1], lastTau[0], lastTau[1], overfit))
+                    print(args.prefix + " " + lastTask + " AUC: {0} {1}, NDCG: {2} {3}, Kendall Tau: {4} {5}, overfit: {6}".format(lastAUC[0], lastAUC[1], lastNDCG[0], lastNDCG[1], lastTau[0], lastTau[1], overFit))
                     printResult = False
                 splitLine = line.split()
                 lastTask = splitLine[1]
             elif STARTRUN in line:
                 if len(losses) > 1:
                     if testAUC[0] < testAUC[-1]:
-                        overfit = True
+                        overFit = True
                 loss = []
                 testAUC = []
                 lastNDCG = None
