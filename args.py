@@ -73,7 +73,8 @@ def make_args():
                         help='hyperparameter for distance normalization')
     parser.add_argument('--early_stopping', dest='early_stopping', default=True, type=bool,
                         help='hyperparameter for distance normalization')
-
+    parser.add_argument('--weight_decay', dest='weight_decay', default=5e-4, type=float,
+                        help='L2 regularization weight')
 
     parser.set_defaults(gpu=False, task='link', model='GCN', dataset='All',
                         cache=False, rm_feature=False, hash_overwrite=False,
