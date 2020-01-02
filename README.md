@@ -101,7 +101,7 @@ python main.py --model PGNN --layer_num 1|2 --dataset ppi
 
 Launch tensorboard
 ```
-tensorboard --logdir='./logs-<dataset>-<task>' --port=6006
+tensorboard --logdir='./logs-<model>-<dataset>-<task>' --port=6006
 ```
 
 You are highly encouraged to tune all kinds of hyper-parameters to get better performance. We only did very limited hyper-parameter tuning.
