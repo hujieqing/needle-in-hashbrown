@@ -51,7 +51,7 @@ for task in ['link', 'link_pair']:
         # else:
         #     args.epoch_num = 401
         #     args.cache = True
-        logger = Logger('./logs-'+dataset_name+'-'+task)
+        logger = Logger('./logs-'+args.model+'-'+dataset_name+'-'+task)
         results = []
         results_ndcg = []
         results_ktau = []
@@ -287,7 +287,7 @@ for task in ['link', 'link_pair']:
                     for tag, value in model.named_parameters():
                         tag = tag.replace('.', '/')
                         logger.histo_summary(tag, value.data.cpu().numpy(), epoch+1)
-                        logger.histo_summary(tag+'/grad', value.grad.data.cpu().numpy(), epoch+1)
+                        #logger.histo_summary(tag+'/grad', value.grad.data.cpu().numpy(), epoch+1)
                     
                     writer_train.add_scalar('repeat_' + str(repeat) + '/auc_'+dataset_name, auc_train, epoch)
                     writer_train.add_scalar('repeat_' + str(repeat) + '/loss_'+dataset_name, loss_train, epoch)
