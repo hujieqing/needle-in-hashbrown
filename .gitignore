@@ -109,8 +109,7 @@ results/
 data/ppi/
 
 # log files
-logs-*-link/
-logs-*-link_pair/
+logs-*/
 checkpoint.pt
 
 # local runs
