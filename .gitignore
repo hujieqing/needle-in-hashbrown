@@ -108,6 +108,11 @@ datasets/
 results/
 data/ppi/
 
+# log files
+logs-*-link/
+logs-*-link_pair/
+checkpoint.pt
+
 # local runs
 runs/
 
