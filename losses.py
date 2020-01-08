@@ -14,7 +14,7 @@ class DistanceLoss(BCEWithLogitsLoss):
 		self.device = device
 
 	def forward(self, input, target, input2, target2):
-		result = self.lambda1 * F.binary_cross_entropy_with_logits(input.to(self.device), target, self.weight, pos_weight=self.pos_weight, reduction=self.reduction)
-		result += self.lambda2 * F.mse_loss(input2.to(self.device), target2, reduction=self.reduction)
+		result = self.lambda1 * F.binary_cross_entropy_with_logits(input.to(self.device), target.to(self.device), self.weight, pos_weight=self.pos_weight, reduction=self.reduction)
+		result += self.lambda2 * F.mse_loss(input2.to(self.device), target2.to(self.device), reduction=self.reduction)
 		return result
 
