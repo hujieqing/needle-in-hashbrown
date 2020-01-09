@@ -9,15 +9,19 @@ from torch.nn import init
 
 
 class PGNN_layer(nn.Module):
-    def __init__(self, input_dim, output_dim,dist_trainable=True):
+    def __init__(self, input_dim, output_dim,dist_trainable=True, dist_concat=False):
         super(PGNN_layer, self).__init__()
         self.input_dim = input_dim
         self.dist_trainable = dist_trainable
+        self.dist_concat = dist_concat
+        self.hidden_dim = input_dim *2
+        if self.dist_concat:
+            self.hidden_dim += 1
 
         if self.dist_trainable:
             self.dist_compute = Nonlinear(1, output_dim, 1)
 
-        self.linear_hidden = nn.Linear(input_dim*2, output_dim)
+        self.linear_hidden = nn.Linear(self.hidden_dim, output_dim)
         self.linear_out_position = nn.Linear(output_dim,1)
         self.act = nn.ReLU()
 
@@ -34,9 +38,13 @@ class PGNN_layer(nn.Module):
         subset_features = feature[dists_argmax.flatten(), :]
         subset_features = subset_features.reshape((dists_argmax.shape[0], dists_argmax.shape[1],
                                                    feature.shape[1]))
-        messages = subset_features * dists_max.unsqueeze(-1)
+        if self.dist_concat:
+            messages = torch.cat((subset_features, dists_max.unsqueeze(-1)), dim=2)
+        else:
+            messages = subset_features * dists_max.unsqueeze(-1)
 
         self_feature = feature.unsqueeze(1).repeat(1, dists_max.shape[1], 1)
+
         messages = torch.cat((messages, self_feature), dim=-1)
 
         messages = self.linear_hidden(messages).squeeze()
@@ -250,16 +258,19 @@ class PGNN(torch.nn.Module):
         self.feature_pre = feature_pre
         self.layer_num = layer_num
         self.dropout = dropout
+        self.dist_concat = False
+        if "dist_concat" in kwargs:
+            self.dist_concat = kwargs["dist_concat"]
         if layer_num == 1:
             hidden_dim = output_dim
         if feature_pre:
             self.linear_pre = nn.Linear(input_dim, feature_dim)
-            self.conv_first = PGNN_layer(feature_dim, hidden_dim)
+            self.conv_first = PGNN_layer(feature_dim, hidden_dim, dist_concat=self.dist_concat)
         else:
-            self.conv_first = PGNN_layer(input_dim, hidden_dim)
+            self.conv_first = PGNN_layer(input_dim, hidden_dim, dist_concat=self.dist_concat)
         if layer_num>1:
-            self.conv_hidden = nn.ModuleList([PGNN_layer(hidden_dim, hidden_dim) for i in range(layer_num - 2)])
-            self.conv_out = PGNN_layer(hidden_dim, output_dim)
+            self.conv_hidden = nn.ModuleList([PGNN_layer(hidden_dim, hidden_dim, dist_concat=self.dist_concat) for i in range(layer_num - 2)])
+            self.conv_out = PGNN_layer(hidden_dim, output_dim, dist_concat=self.dist_concat)
 
     def forward(self, data):
         x = data.x

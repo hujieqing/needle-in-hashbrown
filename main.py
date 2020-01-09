@@ -101,7 +101,7 @@ for task in ['link', 'link_pair']:
                 model = locals()[args.model](input_dim=input_dim, feature_dim=args.feature_dim,
                                              hidden_dim=args.hidden_dim, output_dim=output_dim,
                                              feature_pre=args.feature_pre, layer_num=args.layer_num,
-                                             dropout=args.dropout).to(device)
+                                             dropout=args.dropout, dist_concat=args.dist_concat).to(device)
 
             # data
             for i, data in enumerate(data_list):

@@ -76,10 +76,16 @@ def make_args():
     parser.add_argument('--weight_decay', dest='weight_decay', default=5e-4, type=float,
                         help='L2 regularization weight')
 
+    parser.add_argument('--dist_concat', dest='dist_concat', action='store_true',
+                        help='whether to concatenate the dist in PGNN instead of multiplying')
+    parser.add_argument('--dist_concat_no', dest='dist_concat', action='store_false',
+                        help='whether to concatenate the dist in PGNN instead of multiplying')
+
     parser.set_defaults(gpu=False, task='link', model='GCN', dataset='All',
                         cache=False, rm_feature=False, hash_overwrite=False,
                         permute=True, feature_pre=True, dropout=True,
-                        approximate=-1, normalize_adj=False, hash_concat=False, early_stopping=False)
+                        approximate=-1, normalize_adj=False, hash_concat=False, early_stopping=False,
+                        dist_concat=False)
 
     args = parser.parse_args()
     return args
