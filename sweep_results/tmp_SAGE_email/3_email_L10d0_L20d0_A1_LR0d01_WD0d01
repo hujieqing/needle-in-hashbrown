@@ -1,0 +1,30 @@
+Namespace(alpha=1.0, anchor_num=64, approximate=-1, batch_size=8, cache=False, comment='0', cuda='1', dataset='email', dist_concat=False, dropout=True, early_stopping=True, epoch_log=5, epoch_num=50, feature_dim=32, feature_pre=True, gpu=True, hash_concat=False, hash_overwrite=False, hidden_dim=32, lambda1=0.0, lambda2=0.0, layer_num=3, lr=0.01, model='SAGE', normalize_adj=False, output_dim=32, permute=True, remove_link_ratio=0.2, repeat_num=5, rm_feature=False, task='link', weight_decay=0.01)
+Using GPU 1
+task: link
+Cache saved!
+email load time 2.975497245788574
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max3496, min128, mean1645.142857142857
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 3496]), edge mask train shape: (2, 1748)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 1744]), edge mask train shape: (2, 872)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 128]), edge mask train shape: (2, 64)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3072]), edge mask train shape: (2, 1536)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2178]), edge mask train shape: (2, 1089)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 242]), edge mask train shape: (2, 121)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 656]), edge mask train shape: (2, 328)
+Validation loss decreased (inf --> 0.000000).  Saving model ...
+0 0 Loss 0.0000 Train AUC: 0.4999 Val AUC: 0.4997 Test AUC: 0.5000 nDCG: 0.9219 Kendall Tau: 0.0424
+Validation loss decreased (0.000000 --> 0.000000).  Saving model ...
+0 5 Loss 0.0000 Train AUC: 0.4810 Val AUC: 0.4909 Test AUC: 0.4860 nDCG: 0.9184 Kendall Tau: 0.0105
+Validation loss decreased (0.000000 --> 0.000000).  Saving model ...
+0 10 Loss 0.0000 Train AUC: 0.5110 Val AUC: 0.5125 Test AUC: 0.5079 nDCG: 0.9228 Kendall Tau: 0.0831
+Validation loss decreased (0.000000 --> 0.000000).  Saving model ...
+0 15 Loss 0.0000 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9173 Kendall Tau: nan
+Validation loss decreased (0.000000 --> 0.000000).  Saving model ...
+0 20 Loss 0.0000 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9228 Kendall Tau: nan
+Validation loss decreased (0.000000 --> 0.000000).  Saving model ...
+0 25 Loss 0.0000 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9171 Kendall Tau: -0.0002
+Validation loss decreased (0.000000 --> 0.000000).  Saving model ...
+0 30 Loss 0.0000 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9173 Kendall Tau: nan

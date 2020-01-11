@@ -1,2 +1,0 @@
-3_communities_L11_L20_A1_LR0.01_WD0.01 link AUC: 0.977389 0.006201, NDCG: 0.965395 0.002913, Kendall Tau: 0.154912 0.041683, overfit: True
-3_communities_L11_L20_A1_LR0.01_WD0.01 link_pair AUC: 0.987041 0.004806, NDCG: 0.974709 0.001604, Kendall Tau: 0.16051 0.029596, overfit: True

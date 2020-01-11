@@ -1,0 +1,292 @@
+Namespace(alpha=1.0, anchor_num=64, approximate=-1, batch_size=8, cache=False, comment='0', cuda='1', dataset='communities', dist_concat=False, dropout=True, early_stopping=True, epoch_log=5, epoch_num=50, feature_dim=32, feature_pre=True, gpu=True, hash_concat=False, hash_overwrite=False, hidden_dim=32, lambda1=0.0, lambda2=10.0, layer_num=3, lr=0.01, model='SAGE', normalize_adj=False, output_dim=32, permute=True, remove_link_ratio=0.2, repeat_num=5, rm_feature=False, task='link', weight_decay=0.0001)
+Using GPU 1
+task: link
+rewire: 40
+Cache saved!
+communities load time 1.3137378692626953
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max6080, min6080, mean6080.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 6080]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 5.676318).  Saving model ...
+0 0 Loss 4.6522 Train AUC: 0.9805 Val AUC: 0.9741 Test AUC: 0.9835 nDCG: 0.9668 Kendall Tau: 0.0947
+Validation loss decreased (5.676318 --> 5.169687).  Saving model ...
+0 5 Loss 4.1680 Train AUC: 0.9814 Val AUC: 0.9724 Test AUC: 0.9854 nDCG: 0.9658 Kendall Tau: 0.1335
+Validation loss decreased (5.169687 --> 4.124460).  Saving model ...
+0 10 Loss 3.1826 Train AUC: 0.9815 Val AUC: 0.9729 Test AUC: 0.9864 nDCG: 0.9659 Kendall Tau: 0.1283
+Validation loss decreased (4.124460 --> 3.450700).  Saving model ...
+0 15 Loss 2.5505 Train AUC: 0.9803 Val AUC: 0.9730 Test AUC: 0.9849 nDCG: 0.9653 Kendall Tau: 0.0775
+Validation loss decreased (3.450700 --> 3.342245).  Saving model ...
+0 20 Loss 2.3979 Train AUC: 0.9811 Val AUC: 0.9740 Test AUC: 0.9880 nDCG: 0.9668 Kendall Tau: 0.1868
+Validation loss decreased (3.342245 --> 3.189692).  Saving model ...
+0 25 Loss 2.2767 Train AUC: 0.9808 Val AUC: 0.9763 Test AUC: 0.9855 nDCG: 0.9658 Kendall Tau: 0.0923
+Validation loss decreased (3.189692 --> 3.026651).  Saving model ...
+0 30 Loss 2.0973 Train AUC: 0.9814 Val AUC: 0.9747 Test AUC: 0.9866 nDCG: 0.9665 Kendall Tau: 0.1284
+EarlyStopping counter: 1 out of 50
+0 35 Loss 2.1326 Train AUC: 0.9805 Val AUC: 0.9780 Test AUC: 0.9863 nDCG: 0.9669 Kendall Tau: 0.1567
+Validation loss decreased (3.026651 --> 3.021727).  Saving model ...
+0 40 Loss 2.1020 Train AUC: 0.9814 Val AUC: 0.9748 Test AUC: 0.9862 nDCG: 0.9670 Kendall Tau: 0.1199
+EarlyStopping counter: 1 out of 50
+0 45 Loss 2.2196 Train AUC: 0.9820 Val AUC: 0.9762 Test AUC: 0.9883 nDCG: 0.9690 Kendall Tau: 0.2066
+rewire: 35
+Cache saved!
+communities load time 1.5704646110534668
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max6080, min6080, mean6080.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 6080]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 5.676138).  Saving model ...
+1 0 Loss 4.7060 Train AUC: 0.9796 Val AUC: 0.9826 Test AUC: 0.9693 nDCG: 0.9635 Kendall Tau: 0.1391
+Validation loss decreased (5.676138 --> 4.593837).  Saving model ...
+1 5 Loss 3.6374 Train AUC: 0.9807 Val AUC: 0.9838 Test AUC: 0.9692 nDCG: 0.9653 Kendall Tau: 0.1749
+Validation loss decreased (4.593837 --> 3.633300).  Saving model ...
+1 10 Loss 2.6765 Train AUC: 0.9794 Val AUC: 0.9825 Test AUC: 0.9659 nDCG: 0.9660 Kendall Tau: 0.1649
+Validation loss decreased (3.633300 --> 3.455071).  Saving model ...
+1 15 Loss 2.4325 Train AUC: 0.9800 Val AUC: 0.9816 Test AUC: 0.9704 nDCG: 0.9664 Kendall Tau: 0.2354
+Validation loss decreased (3.455071 --> 3.366266).  Saving model ...
+1 20 Loss 2.3381 Train AUC: 0.9799 Val AUC: 0.9829 Test AUC: 0.9708 nDCG: 0.9683 Kendall Tau: 0.2108
+Validation loss decreased (3.366266 --> 3.289961).  Saving model ...
+1 25 Loss 2.2684 Train AUC: 0.9809 Val AUC: 0.9836 Test AUC: 0.9733 nDCG: 0.9703 Kendall Tau: 0.2750
+EarlyStopping counter: 1 out of 50
+1 30 Loss 2.4826 Train AUC: 0.9809 Val AUC: 0.9842 Test AUC: 0.9724 nDCG: 0.9713 Kendall Tau: 0.2732
+EarlyStopping counter: 2 out of 50
+1 35 Loss 2.7111 Train AUC: 0.9812 Val AUC: 0.9841 Test AUC: 0.9713 nDCG: 0.9691 Kendall Tau: 0.2448
+EarlyStopping counter: 3 out of 50
+1 40 Loss 3.2439 Train AUC: 0.9810 Val AUC: 0.9849 Test AUC: 0.9723 nDCG: 0.9686 Kendall Tau: 0.2042
+EarlyStopping counter: 4 out of 50
+1 45 Loss 3.2995 Train AUC: 0.9811 Val AUC: 0.9851 Test AUC: 0.9710 nDCG: 0.9688 Kendall Tau: 0.2123
+rewire: 33
+Cache saved!
+communities load time 1.5773718357086182
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max6080, min6080, mean6080.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 6080]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 5.663696).  Saving model ...
+2 0 Loss 4.6856 Train AUC: 0.9779 Val AUC: 0.9797 Test AUC: 0.9804 nDCG: 0.9653 Kendall Tau: 0.1171
+Validation loss decreased (5.663696 --> 4.724001).  Saving model ...
+2 5 Loss 3.7538 Train AUC: 0.9759 Val AUC: 0.9738 Test AUC: 0.9786 nDCG: 0.9656 Kendall Tau: 0.1198
+Validation loss decreased (4.724001 --> 3.974632).  Saving model ...
+2 10 Loss 2.9807 Train AUC: 0.9752 Val AUC: 0.9734 Test AUC: 0.9773 nDCG: 0.9677 Kendall Tau: 0.1378
+Validation loss decreased (3.974632 --> 3.607587).  Saving model ...
+2 15 Loss 2.5745 Train AUC: 0.9744 Val AUC: 0.9724 Test AUC: 0.9802 nDCG: 0.9653 Kendall Tau: 0.1085
+Validation loss decreased (3.607587 --> 3.422854).  Saving model ...
+2 20 Loss 2.3949 Train AUC: 0.9759 Val AUC: 0.9733 Test AUC: 0.9806 nDCG: 0.9670 Kendall Tau: 0.1512
+EarlyStopping counter: 1 out of 50
+2 25 Loss 2.5529 Train AUC: 0.9771 Val AUC: 0.9749 Test AUC: 0.9800 nDCG: 0.9669 Kendall Tau: 0.2204
+Validation loss decreased (3.422854 --> 3.392055).  Saving model ...
+2 30 Loss 2.3119 Train AUC: 0.9771 Val AUC: 0.9759 Test AUC: 0.9811 nDCG: 0.9677 Kendall Tau: 0.2061
+Validation loss decreased (3.392055 --> 3.334694).  Saving model ...
+2 35 Loss 2.2525 Train AUC: 0.9775 Val AUC: 0.9750 Test AUC: 0.9823 nDCG: 0.9671 Kendall Tau: 0.2053
+EarlyStopping counter: 1 out of 50
+2 40 Loss 2.4029 Train AUC: 0.9767 Val AUC: 0.9750 Test AUC: 0.9813 nDCG: 0.9683 Kendall Tau: 0.2593
+EarlyStopping counter: 2 out of 50
+2 45 Loss 2.3053 Train AUC: 0.9770 Val AUC: 0.9753 Test AUC: 0.9837 nDCG: 0.9679 Kendall Tau: 0.1991
+rewire: 33
+Cache saved!
+communities load time 1.595449447631836
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max6080, min6080, mean6080.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 6080]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 5.706010).  Saving model ...
+3 0 Loss 4.7358 Train AUC: 0.9815 Val AUC: 0.9842 Test AUC: 0.9886 nDCG: 0.9624 Kendall Tau: 0.0953
+Validation loss decreased (5.706010 --> 5.439711).  Saving model ...
+3 5 Loss 4.4541 Train AUC: 0.9812 Val AUC: 0.9857 Test AUC: 0.9891 nDCG: 0.9622 Kendall Tau: 0.1043
+Validation loss decreased (5.439711 --> 4.295832).  Saving model ...
+3 10 Loss 3.2382 Train AUC: 0.9813 Val AUC: 0.9863 Test AUC: 0.9897 nDCG: 0.9634 Kendall Tau: 0.1101
+Validation loss decreased (4.295832 --> 3.661533).  Saving model ...
+3 15 Loss 2.6029 Train AUC: 0.9803 Val AUC: 0.9846 Test AUC: 0.9876 nDCG: 0.9633 Kendall Tau: 0.1231
+Validation loss decreased (3.661533 --> 3.486073).  Saving model ...
+3 20 Loss 2.4415 Train AUC: 0.9806 Val AUC: 0.9840 Test AUC: 0.9876 nDCG: 0.9631 Kendall Tau: 0.1216
+Validation loss decreased (3.486073 --> 3.421865).  Saving model ...
+3 25 Loss 2.3905 Train AUC: 0.9812 Val AUC: 0.9839 Test AUC: 0.9885 nDCG: 0.9638 Kendall Tau: 0.1274
+EarlyStopping counter: 1 out of 50
+3 30 Loss 2.4409 Train AUC: 0.9815 Val AUC: 0.9858 Test AUC: 0.9892 nDCG: 0.9651 Kendall Tau: 0.1384
+EarlyStopping counter: 2 out of 50
+3 35 Loss 2.7785 Train AUC: 0.9818 Val AUC: 0.9874 Test AUC: 0.9892 nDCG: 0.9667 Kendall Tau: 0.1806
+EarlyStopping counter: 3 out of 50
+3 40 Loss 3.0384 Train AUC: 0.9821 Val AUC: 0.9876 Test AUC: 0.9896 nDCG: 0.9662 Kendall Tau: 0.1850
+EarlyStopping counter: 4 out of 50
+3 45 Loss 2.6368 Train AUC: 0.9825 Val AUC: 0.9871 Test AUC: 0.9892 nDCG: 0.9664 Kendall Tau: 0.1884
+rewire: 46
+Cache saved!
+communities load time 1.314115047454834
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max6080, min6080, mean6080.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 6080]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 5.641284).  Saving model ...
+4 0 Loss 4.6226 Train AUC: 0.9807 Val AUC: 0.9829 Test AUC: 0.9791 nDCG: 0.9692 Kendall Tau: 0.2041
+Validation loss decreased (5.641284 --> 4.714509).  Saving model ...
+4 5 Loss 3.6866 Train AUC: 0.9796 Val AUC: 0.9832 Test AUC: 0.9782 nDCG: 0.9687 Kendall Tau: 0.1841
+Validation loss decreased (4.714509 --> 3.623713).  Saving model ...
+4 10 Loss 2.6399 Train AUC: 0.9778 Val AUC: 0.9837 Test AUC: 0.9767 nDCG: 0.9688 Kendall Tau: 0.1558
+Validation loss decreased (3.623713 --> 3.438224).  Saving model ...
+4 15 Loss 2.4520 Train AUC: 0.9783 Val AUC: 0.9830 Test AUC: 0.9800 nDCG: 0.9695 Kendall Tau: 0.1371
+Validation loss decreased (3.438224 --> 3.117973).  Saving model ...
+4 20 Loss 2.1415 Train AUC: 0.9788 Val AUC: 0.9806 Test AUC: 0.9840 nDCG: 0.9692 Kendall Tau: 0.1731
+Validation loss decreased (3.117973 --> 3.006135).  Saving model ...
+4 25 Loss 2.0290 Train AUC: 0.9797 Val AUC: 0.9806 Test AUC: 0.9857 nDCG: 0.9692 Kendall Tau: 0.1808
+Validation loss decreased (3.006135 --> 2.974850).  Saving model ...
+4 30 Loss 1.9760 Train AUC: 0.9804 Val AUC: 0.9801 Test AUC: 0.9863 nDCG: 0.9705 Kendall Tau: 0.1967
+EarlyStopping counter: 1 out of 50
+4 35 Loss 2.0414 Train AUC: 0.9805 Val AUC: 0.9805 Test AUC: 0.9872 nDCG: 0.9725 Kendall Tau: 0.2334
+EarlyStopping counter: 2 out of 50
+4 40 Loss 2.1455 Train AUC: 0.9807 Val AUC: 0.9808 Test AUC: 0.9853 nDCG: 0.9724 Kendall Tau: 0.2169
+EarlyStopping counter: 3 out of 50
+4 45 Loss 2.2066 Train AUC: 0.9811 Val AUC: 0.9805 Test AUC: 0.9865 nDCG: 0.9727 Kendall Tau: 0.2450
+-----------------Final-------------------
+AUC results: 0.980785 0.006645
+nDCG results: 0.9696 0.00216
+Kendall's Tau: 0.234854 0.03247
+task: link_pair
+rewire: 27
+Cache saved!
+communities load time 1.5842978954315186
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max7600, min7600, mean7600.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 7600]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 4.563773).  Saving model ...
+0 0 Loss 4.5628 Train AUC: 0.9856 Val AUC: 0.9816 Test AUC: 0.9871 nDCG: 0.9708 Kendall Tau: 0.0892
+Validation loss decreased (4.563773 --> 3.834030).  Saving model ...
+0 5 Loss 3.8159 Train AUC: 0.9862 Val AUC: 0.9827 Test AUC: 0.9864 nDCG: 0.9694 Kendall Tau: 0.1323
+Validation loss decreased (3.834030 --> 2.812985).  Saving model ...
+0 10 Loss 2.7608 Train AUC: 0.9864 Val AUC: 0.9802 Test AUC: 0.9854 nDCG: 0.9699 Kendall Tau: 0.0914
+Validation loss decreased (2.812985 --> 2.426228).  Saving model ...
+0 15 Loss 2.3526 Train AUC: 0.9862 Val AUC: 0.9808 Test AUC: 0.9867 nDCG: 0.9708 Kendall Tau: 0.0953
+Validation loss decreased (2.426228 --> 2.320297).  Saving model ...
+0 20 Loss 2.2229 Train AUC: 0.9865 Val AUC: 0.9821 Test AUC: 0.9872 nDCG: 0.9717 Kendall Tau: 0.1042
+Validation loss decreased (2.320297 --> 2.224283).  Saving model ...
+0 25 Loss 2.1454 Train AUC: 0.9862 Val AUC: 0.9803 Test AUC: 0.9875 nDCG: 0.9721 Kendall Tau: 0.1124
+Validation loss decreased (2.224283 --> 2.127926).  Saving model ...
+0 30 Loss 2.0516 Train AUC: 0.9865 Val AUC: 0.9818 Test AUC: 0.9866 nDCG: 0.9716 Kendall Tau: 0.0952
+Validation loss decreased (2.127926 --> 2.126287).  Saving model ...
+0 35 Loss 2.0745 Train AUC: 0.9860 Val AUC: 0.9802 Test AUC: 0.9870 nDCG: 0.9726 Kendall Tau: 0.1514
+Validation loss decreased (2.126287 --> 2.030627).  Saving model ...
+0 40 Loss 1.9808 Train AUC: 0.9858 Val AUC: 0.9799 Test AUC: 0.9864 nDCG: 0.9719 Kendall Tau: 0.1346
+EarlyStopping counter: 1 out of 50
+0 45 Loss 2.0600 Train AUC: 0.9865 Val AUC: 0.9802 Test AUC: 0.9859 nDCG: 0.9737 Kendall Tau: 0.2033
+rewire: 34
+Cache saved!
+communities load time 1.3985884189605713
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max7600, min7600, mean7600.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 7600]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 4.536547).  Saving model ...
+1 0 Loss 4.5112 Train AUC: 0.9835 Val AUC: 0.9892 Test AUC: 0.9899 nDCG: 0.9751 Kendall Tau: 0.1727
+Validation loss decreased (4.536547 --> 4.230147).  Saving model ...
+1 5 Loss 4.1874 Train AUC: 0.9843 Val AUC: 0.9899 Test AUC: 0.9880 nDCG: 0.9721 Kendall Tau: 0.0768
+Validation loss decreased (4.230147 --> 3.579539).  Saving model ...
+1 10 Loss 3.5154 Train AUC: 0.9838 Val AUC: 0.9920 Test AUC: 0.9866 nDCG: 0.9723 Kendall Tau: 0.0667
+Validation loss decreased (3.579539 --> 2.554125).  Saving model ...
+1 15 Loss 2.5356 Train AUC: 0.9845 Val AUC: 0.9914 Test AUC: 0.9878 nDCG: 0.9732 Kendall Tau: 0.1006
+Validation loss decreased (2.554125 --> 2.252250).  Saving model ...
+1 20 Loss 2.2156 Train AUC: 0.9844 Val AUC: 0.9911 Test AUC: 0.9865 nDCG: 0.9717 Kendall Tau: 0.0969
+Validation loss decreased (2.252250 --> 2.088204).  Saving model ...
+1 25 Loss 2.0604 Train AUC: 0.9841 Val AUC: 0.9902 Test AUC: 0.9874 nDCG: 0.9715 Kendall Tau: 0.1068
+EarlyStopping counter: 1 out of 50
+1 30 Loss 2.0773 Train AUC: 0.9840 Val AUC: 0.9896 Test AUC: 0.9872 nDCG: 0.9718 Kendall Tau: 0.1363
+EarlyStopping counter: 2 out of 50
+1 35 Loss 2.0570 Train AUC: 0.9840 Val AUC: 0.9912 Test AUC: 0.9874 nDCG: 0.9736 Kendall Tau: 0.1511
+EarlyStopping counter: 3 out of 50
+1 40 Loss 2.0417 Train AUC: 0.9839 Val AUC: 0.9897 Test AUC: 0.9859 nDCG: 0.9739 Kendall Tau: 0.1668
+Validation loss decreased (2.088204 --> 2.015932).  Saving model ...
+1 45 Loss 1.9686 Train AUC: 0.9835 Val AUC: 0.9902 Test AUC: 0.9859 nDCG: 0.9757 Kendall Tau: 0.1932
+rewire: 36
+Cache saved!
+communities load time 1.744283676147461
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max7600, min7600, mean7600.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 7600]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 4.519122).  Saving model ...
+2 0 Loss 4.5261 Train AUC: 0.9862 Val AUC: 0.9869 Test AUC: 0.9824 nDCG: 0.9769 Kendall Tau: 0.2006
+Validation loss decreased (4.519122 --> 3.831428).  Saving model ...
+2 5 Loss 3.8243 Train AUC: 0.9871 Val AUC: 0.9856 Test AUC: 0.9816 nDCG: 0.9750 Kendall Tau: 0.1849
+Validation loss decreased (3.831428 --> 2.756615).  Saving model ...
+2 10 Loss 2.6749 Train AUC: 0.9868 Val AUC: 0.9848 Test AUC: 0.9824 nDCG: 0.9756 Kendall Tau: 0.2213
+Validation loss decreased (2.756615 --> 2.370715).  Saving model ...
+2 15 Loss 2.3025 Train AUC: 0.9863 Val AUC: 0.9834 Test AUC: 0.9816 nDCG: 0.9766 Kendall Tau: 0.2123
+Validation loss decreased (2.370715 --> 2.228043).  Saving model ...
+2 20 Loss 2.1558 Train AUC: 0.9864 Val AUC: 0.9831 Test AUC: 0.9828 nDCG: 0.9759 Kendall Tau: 0.1903
+Validation loss decreased (2.228043 --> 2.115204).  Saving model ...
+2 25 Loss 2.0590 Train AUC: 0.9867 Val AUC: 0.9845 Test AUC: 0.9821 nDCG: 0.9747 Kendall Tau: 0.1462
+Validation loss decreased (2.115204 --> 2.035184).  Saving model ...
+2 30 Loss 1.9937 Train AUC: 0.9870 Val AUC: 0.9845 Test AUC: 0.9829 nDCG: 0.9750 Kendall Tau: 0.1667
+Validation loss decreased (2.035184 --> 2.019321).  Saving model ...
+2 35 Loss 1.9671 Train AUC: 0.9872 Val AUC: 0.9845 Test AUC: 0.9833 nDCG: 0.9748 Kendall Tau: 0.1588
+Validation loss decreased (2.019321 --> 2.009062).  Saving model ...
+2 40 Loss 1.9383 Train AUC: 0.9873 Val AUC: 0.9850 Test AUC: 0.9836 nDCG: 0.9743 Kendall Tau: 0.1588
+EarlyStopping counter: 1 out of 50
+2 45 Loss 1.9570 Train AUC: 0.9871 Val AUC: 0.9855 Test AUC: 0.9838 nDCG: 0.9739 Kendall Tau: 0.1288
+rewire: 29
+Cache saved!
+communities load time 1.5851671695709229
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max7600, min7600, mean7600.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 7600]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 4.571105).  Saving model ...
+3 0 Loss 4.5579 Train AUC: 0.9859 Val AUC: 0.9902 Test AUC: 0.9890 nDCG: 0.9717 Kendall Tau: 0.1505
+Validation loss decreased (4.571105 --> 3.944590).  Saving model ...
+3 5 Loss 3.9886 Train AUC: 0.9856 Val AUC: 0.9902 Test AUC: 0.9892 nDCG: 0.9727 Kendall Tau: 0.1042
+Validation loss decreased (3.944590 --> 2.776380).  Saving model ...
+3 10 Loss 2.9148 Train AUC: 0.9856 Val AUC: 0.9902 Test AUC: 0.9887 nDCG: 0.9727 Kendall Tau: 0.1053
+Validation loss decreased (2.776380 --> 2.192559).  Saving model ...
+3 15 Loss 2.2905 Train AUC: 0.9850 Val AUC: 0.9901 Test AUC: 0.9893 nDCG: 0.9731 Kendall Tau: 0.1558
+Validation loss decreased (2.192559 --> 2.176386).  Saving model ...
+3 20 Loss 2.2585 Train AUC: 0.9852 Val AUC: 0.9909 Test AUC: 0.9900 nDCG: 0.9737 Kendall Tau: 0.1759
+Validation loss decreased (2.176386 --> 2.069343).  Saving model ...
+3 25 Loss 2.1529 Train AUC: 0.9854 Val AUC: 0.9910 Test AUC: 0.9896 nDCG: 0.9731 Kendall Tau: 0.1698
+Validation loss decreased (2.069343 --> 2.021081).  Saving model ...
+3 30 Loss 2.0789 Train AUC: 0.9851 Val AUC: 0.9907 Test AUC: 0.9897 nDCG: 0.9737 Kendall Tau: 0.1511
+Validation loss decreased (2.021081 --> 1.964983).  Saving model ...
+3 35 Loss 2.0459 Train AUC: 0.9860 Val AUC: 0.9912 Test AUC: 0.9894 nDCG: 0.9728 Kendall Tau: 0.1190
+Validation loss decreased (1.964983 --> 1.921520).  Saving model ...
+3 40 Loss 2.0091 Train AUC: 0.9854 Val AUC: 0.9918 Test AUC: 0.9885 nDCG: 0.9726 Kendall Tau: 0.1416
+EarlyStopping counter: 1 out of 50
+3 45 Loss 2.0246 Train AUC: 0.9853 Val AUC: 0.9923 Test AUC: 0.9888 nDCG: 0.9732 Kendall Tau: 0.0819
+rewire: 33
+Cache saved!
+communities load time 1.483109712600708
+Dataset communities Graph 1 Feature 400 Node Class None Graph Class None
+Node: max400, min400, mean400.0
+Edge: max7598, min7598, mean7598.0
+Anchor num 64, Batch size 1
+0: feature size: torch.Size([400, 400]), edge shape: torch.Size([2, 7598]), edge mask train shape: (2, 3040)
+Validation loss decreased (inf --> 4.593217).  Saving model ...
+4 0 Loss 4.5655 Train AUC: 0.9844 Val AUC: 0.9915 Test AUC: 0.9948 nDCG: 0.9732 Kendall Tau: 0.1742
+Validation loss decreased (4.593217 --> 3.985813).  Saving model ...
+4 5 Loss 3.9532 Train AUC: 0.9841 Val AUC: 0.9914 Test AUC: 0.9946 nDCG: 0.9748 Kendall Tau: 0.1632
+Validation loss decreased (3.985813 --> 2.906852).  Saving model ...
+4 10 Loss 2.8804 Train AUC: 0.9841 Val AUC: 0.9917 Test AUC: 0.9945 nDCG: 0.9774 Kendall Tau: 0.2123
+Validation loss decreased (2.906852 --> 2.578343).  Saving model ...
+4 15 Loss 2.5569 Train AUC: 0.9840 Val AUC: 0.9916 Test AUC: 0.9931 nDCG: 0.9768 Kendall Tau: 0.2135
+Validation loss decreased (2.578343 --> 2.278325).  Saving model ...
+4 20 Loss 2.2886 Train AUC: 0.9845 Val AUC: 0.9915 Test AUC: 0.9936 nDCG: 0.9777 Kendall Tau: 0.2445
+Validation loss decreased (2.278325 --> 2.209840).  Saving model ...
+4 25 Loss 2.2135 Train AUC: 0.9843 Val AUC: 0.9912 Test AUC: 0.9934 nDCG: 0.9771 Kendall Tau: 0.2347
+Validation loss decreased (2.209840 --> 2.123668).  Saving model ...
+4 30 Loss 2.1479 Train AUC: 0.9842 Val AUC: 0.9922 Test AUC: 0.9931 nDCG: 0.9799 Kendall Tau: 0.3128
+Validation loss decreased (2.123668 --> 2.032565).  Saving model ...
+4 35 Loss 2.0219 Train AUC: 0.9841 Val AUC: 0.9913 Test AUC: 0.9934 nDCG: 0.9805 Kendall Tau: 0.3103
+Validation loss decreased (2.032565 --> 2.013694).  Saving model ...
+4 40 Loss 1.9895 Train AUC: 0.9841 Val AUC: 0.9922 Test AUC: 0.9944 nDCG: 0.9801 Kendall Tau: 0.3012
+EarlyStopping counter: 1 out of 50
+4 45 Loss 2.0048 Train AUC: 0.9841 Val AUC: 0.9918 Test AUC: 0.9944 nDCG: 0.9803 Kendall Tau: 0.2832
+-----------------Final-------------------
+AUC results: 0.987733 0.003924
+nDCG results: 0.976102 0.002505
+Kendall's Tau: 0.221293 0.048058
