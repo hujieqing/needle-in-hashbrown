@@ -1,0 +1,342 @@
+Namespace(alpha=1.0, anchor_num=64, approximate=-1, batch_size=8, cache=False, comment='0', cuda='1', dataset='email', dist_concat=False, dropout=True, early_stopping=True, epoch_log=5, epoch_num=50, feature_dim=32, feature_pre=True, gpu=True, hash_concat=False, hash_overwrite=False, hidden_dim=32, lambda1=0.1, lambda2=0.0, layer_num=3, lr=0.0001, model='SAGE', normalize_adj=False, output_dim=32, permute=True, remove_link_ratio=0.2, repeat_num=5, rm_feature=False, task='link', weight_decay=0.01)
+Using GPU 1
+task: link
+Cache saved!
+email load time 3.1344587802886963
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max3496, min128, mean1645.142857142857
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 3496]), edge mask train shape: (2, 1748)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 1744]), edge mask train shape: (2, 872)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 128]), edge mask train shape: (2, 64)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3072]), edge mask train shape: (2, 1536)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2178]), edge mask train shape: (2, 1089)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 242]), edge mask train shape: (2, 121)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 656]), edge mask train shape: (2, 328)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+0 0 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9123 Kendall Tau: -0.0245
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+0 5 Loss 0.0813 Train AUC: 0.4990 Val AUC: 0.4982 Test AUC: 0.4994 nDCG: 0.9154 Kendall Tau: 0.0248
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+0 10 Loss 0.0813 Train AUC: 0.5092 Val AUC: 0.5105 Test AUC: 0.5107 nDCG: 0.9148 Kendall Tau: 0.0056
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+0 15 Loss 0.0813 Train AUC: 0.4994 Val AUC: 0.4997 Test AUC: 0.5000 nDCG: 0.9147 Kendall Tau: -0.0840
+EarlyStopping counter: 1 out of 50
+0 20 Loss 0.0813 Train AUC: 0.4999 Val AUC: 0.4997 Test AUC: 0.5003 nDCG: 0.9085 Kendall Tau: -0.1351
+EarlyStopping counter: 2 out of 50
+0 25 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9118 Kendall Tau: -0.0682
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+0 30 Loss 0.0813 Train AUC: 0.4828 Val AUC: 0.4890 Test AUC: 0.4761 nDCG: 0.9204 Kendall Tau: 0.1021
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+0 35 Loss 0.0813 Train AUC: 0.4479 Val AUC: 0.4408 Test AUC: 0.4461 nDCG: 0.9107 Kendall Tau: -0.1325
+EarlyStopping counter: 1 out of 50
+0 40 Loss 0.0813 Train AUC: 0.4960 Val AUC: 0.5049 Test AUC: 0.4664 nDCG: 0.9189 Kendall Tau: 0.0041
+EarlyStopping counter: 2 out of 50
+0 45 Loss 0.0813 Train AUC: 0.4683 Val AUC: 0.5103 Test AUC: 0.4501 nDCG: 0.9203 Kendall Tau: 0.0457
+Cache saved!
+email load time 3.4264090061187744
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max3496, min128, mean1645.142857142857
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 3496]), edge mask train shape: (2, 1748)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 1744]), edge mask train shape: (2, 872)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 128]), edge mask train shape: (2, 64)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3072]), edge mask train shape: (2, 1536)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2178]), edge mask train shape: (2, 1089)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 242]), edge mask train shape: (2, 121)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 656]), edge mask train shape: (2, 328)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+1 0 Loss 0.0813 Train AUC: 0.5291 Val AUC: 0.4787 Test AUC: 0.5213 nDCG: 0.9210 Kendall Tau: 0.1014
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+1 5 Loss 0.0813 Train AUC: 0.4745 Val AUC: 0.4794 Test AUC: 0.4756 nDCG: 0.9193 Kendall Tau: 0.0437
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+1 10 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9206 Kendall Tau: 0.0492
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+1 15 Loss 0.0813 Train AUC: 0.5144 Val AUC: 0.5065 Test AUC: 0.4989 nDCG: 0.9149 Kendall Tau: -0.0489
+EarlyStopping counter: 1 out of 50
+1 20 Loss 0.0813 Train AUC: 0.4972 Val AUC: 0.4992 Test AUC: 0.4984 nDCG: 0.9192 Kendall Tau: -0.0066
+EarlyStopping counter: 2 out of 50
+1 25 Loss 0.0813 Train AUC: 0.4995 Val AUC: 0.4993 Test AUC: 0.5000 nDCG: 0.9134 Kendall Tau: -0.0297
+EarlyStopping counter: 3 out of 50
+1 30 Loss 0.0813 Train AUC: 0.5002 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9206 Kendall Tau: -0.0107
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+1 35 Loss 0.0813 Train AUC: 0.5118 Val AUC: 0.4778 Test AUC: 0.4947 nDCG: 0.9190 Kendall Tau: -0.0110
+EarlyStopping counter: 1 out of 50
+1 40 Loss 0.0813 Train AUC: 0.5016 Val AUC: 0.4986 Test AUC: 0.5089 nDCG: 0.9166 Kendall Tau: 0.0552
+EarlyStopping counter: 2 out of 50
+1 45 Loss 0.0813 Train AUC: 0.5191 Val AUC: 0.5197 Test AUC: 0.5149 nDCG: 0.9179 Kendall Tau: 0.0207
+Cache saved!
+email load time 3.3809244632720947
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max3496, min128, mean1645.142857142857
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 3496]), edge mask train shape: (2, 1748)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 1744]), edge mask train shape: (2, 872)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 128]), edge mask train shape: (2, 64)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3072]), edge mask train shape: (2, 1536)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2178]), edge mask train shape: (2, 1089)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 242]), edge mask train shape: (2, 121)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 656]), edge mask train shape: (2, 328)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+2 0 Loss 0.0813 Train AUC: 0.4976 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9293 Kendall Tau: 0.1545
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+2 5 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9197 Kendall Tau: 0.0182
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+2 10 Loss 0.0813 Train AUC: 0.4855 Val AUC: 0.4802 Test AUC: 0.4860 nDCG: 0.9224 Kendall Tau: 0.0173
+EarlyStopping counter: 1 out of 50
+2 15 Loss 0.0813 Train AUC: 0.4979 Val AUC: 0.4960 Test AUC: 0.4980 nDCG: 0.9183 Kendall Tau: -0.0223
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+2 20 Loss 0.0813 Train AUC: 0.4990 Val AUC: 0.5000 Test AUC: 0.5006 nDCG: 0.9102 Kendall Tau: -0.1101
+EarlyStopping counter: 1 out of 50
+2 25 Loss 0.0813 Train AUC: 0.5462 Val AUC: 0.5481 Test AUC: 0.5467 nDCG: 0.9184 Kendall Tau: -0.0342
+EarlyStopping counter: 2 out of 50
+2 30 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9173 Kendall Tau: -0.0536
+EarlyStopping counter: 3 out of 50
+2 35 Loss 0.0813 Train AUC: 0.5009 Val AUC: 0.5021 Test AUC: 0.4969 nDCG: 0.9287 Kendall Tau: 0.1109
+EarlyStopping counter: 4 out of 50
+2 40 Loss 0.0813 Train AUC: 0.5168 Val AUC: 0.5496 Test AUC: 0.5330 nDCG: 0.9174 Kendall Tau: -0.0059
+EarlyStopping counter: 5 out of 50
+2 45 Loss 0.0813 Train AUC: 0.4973 Val AUC: 0.4987 Test AUC: 0.5014 nDCG: 0.9216 Kendall Tau: 0.0293
+Cache saved!
+email load time 3.1271703243255615
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max3496, min128, mean1645.142857142857
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 3496]), edge mask train shape: (2, 1748)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 1744]), edge mask train shape: (2, 872)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 128]), edge mask train shape: (2, 64)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3072]), edge mask train shape: (2, 1536)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2178]), edge mask train shape: (2, 1089)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 242]), edge mask train shape: (2, 121)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 656]), edge mask train shape: (2, 328)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+3 0 Loss 0.0813 Train AUC: 0.5004 Val AUC: 0.5018 Test AUC: 0.5000 nDCG: 0.9146 Kendall Tau: -0.0305
+EarlyStopping counter: 1 out of 50
+3 5 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9106 Kendall Tau: -0.1224
+EarlyStopping counter: 2 out of 50
+3 10 Loss 0.0813 Train AUC: 0.4627 Val AUC: 0.4475 Test AUC: 0.4435 nDCG: 0.9129 Kendall Tau: -0.0905
+EarlyStopping counter: 3 out of 50
+3 15 Loss 0.0813 Train AUC: 0.5034 Val AUC: 0.5103 Test AUC: 0.5106 nDCG: 0.9207 Kendall Tau: 0.0307
+EarlyStopping counter: 4 out of 50
+3 20 Loss 0.0813 Train AUC: 0.4975 Val AUC: 0.4949 Test AUC: 0.4970 nDCG: 0.9250 Kendall Tau: 0.1342
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+3 25 Loss 0.0813 Train AUC: 0.4990 Val AUC: 0.4986 Test AUC: 0.4997 nDCG: 0.9208 Kendall Tau: 0.0542
+EarlyStopping counter: 1 out of 50
+3 30 Loss 0.0813 Train AUC: 0.4902 Val AUC: 0.4506 Test AUC: 0.4774 nDCG: 0.9217 Kendall Tau: 0.0378
+EarlyStopping counter: 2 out of 50
+3 35 Loss 0.0813 Train AUC: 0.5024 Val AUC: 0.4939 Test AUC: 0.5105 nDCG: 0.9198 Kendall Tau: -0.0274
+EarlyStopping counter: 3 out of 50
+3 40 Loss 0.0813 Train AUC: 0.4901 Val AUC: 0.4887 Test AUC: 0.4825 nDCG: 0.9135 Kendall Tau: 0.0213
+EarlyStopping counter: 4 out of 50
+3 45 Loss 0.0813 Train AUC: 0.5007 Val AUC: 0.5030 Test AUC: 0.4995 nDCG: 0.9119 Kendall Tau: -0.0758
+Cache saved!
+email load time 3.2404696941375732
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max3496, min128, mean1645.142857142857
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 3496]), edge mask train shape: (2, 1748)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 1744]), edge mask train shape: (2, 872)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 128]), edge mask train shape: (2, 64)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3072]), edge mask train shape: (2, 1536)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2178]), edge mask train shape: (2, 1089)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 242]), edge mask train shape: (2, 121)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 656]), edge mask train shape: (2, 328)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+4 0 Loss 0.0813 Train AUC: 0.4557 Val AUC: 0.4659 Test AUC: 0.4645 nDCG: 0.9181 Kendall Tau: 0.0033
+EarlyStopping counter: 1 out of 50
+4 5 Loss 0.0813 Train AUC: 0.4214 Val AUC: 0.4506 Test AUC: 0.4100 nDCG: 0.9151 Kendall Tau: 0.0179
+EarlyStopping counter: 2 out of 50
+4 10 Loss 0.0813 Train AUC: 0.5087 Val AUC: 0.5185 Test AUC: 0.5043 nDCG: 0.9175 Kendall Tau: 0.0130
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+4 15 Loss 0.0813 Train AUC: 0.4898 Val AUC: 0.4956 Test AUC: 0.4899 nDCG: 0.9183 Kendall Tau: 0.0762
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+4 20 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9183 Kendall Tau: 0.0423
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+4 25 Loss 0.0813 Train AUC: 0.5097 Val AUC: 0.5191 Test AUC: 0.5004 nDCG: 0.9149 Kendall Tau: -0.1161
+EarlyStopping counter: 1 out of 50
+4 30 Loss 0.0813 Train AUC: 0.4809 Val AUC: 0.5055 Test AUC: 0.4861 nDCG: 0.9250 Kendall Tau: 0.0884
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+4 35 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9212 Kendall Tau: -0.0096
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+4 40 Loss 0.0813 Train AUC: 0.4891 Val AUC: 0.4899 Test AUC: 0.4908 nDCG: 0.9171 Kendall Tau: 0.0230
+EarlyStopping counter: 1 out of 50
+4 45 Loss 0.0813 Train AUC: 0.5730 Val AUC: 0.5717 Test AUC: 0.5773 nDCG: 0.9212 Kendall Tau: 0.0466
+-----------------Final-------------------
+AUC results: 0.529315 0.025379
+nDCG results: 0.92413 0.003212
+Kendall's Tau: 0.116104 0.024405
+task: link_pair
+Cache saved!
+email load time 4.234622955322266
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max4370, min160, mean2057.4285714285716
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 4370]), edge mask train shape: (2, 6459)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 2182]), edge mask train shape: (2, 1817)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 160]), edge mask train shape: (2, 67)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3842]), edge mask train shape: (2, 4980)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2724]), edge mask train shape: (2, 2449)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 304]), edge mask train shape: (2, 112)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 820]), edge mask train shape: (2, 338)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+0 0 Loss 0.0813 Train AUC: 0.4999 Val AUC: 0.4998 Test AUC: 0.4997 nDCG: 0.9197 Kendall Tau: -0.0124
+EarlyStopping counter: 1 out of 50
+0 5 Loss 0.0813 Train AUC: 0.5011 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9179 Kendall Tau: -0.0676
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+0 10 Loss 0.0813 Train AUC: 0.4943 Val AUC: 0.4991 Test AUC: 0.5016 nDCG: 0.9258 Kendall Tau: 0.0934
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+0 15 Loss 0.0813 Train AUC: 0.4995 Val AUC: 0.5016 Test AUC: 0.4977 nDCG: 0.9222 Kendall Tau: 0.0395
+EarlyStopping counter: 1 out of 50
+0 20 Loss 0.0813 Train AUC: 0.5167 Val AUC: 0.5029 Test AUC: 0.5248 nDCG: 0.9202 Kendall Tau: -0.0399
+EarlyStopping counter: 2 out of 50
+0 25 Loss 0.0813 Train AUC: 0.4995 Val AUC: 0.4993 Test AUC: 0.4994 nDCG: 0.9187 Kendall Tau: -0.1313
+EarlyStopping counter: 3 out of 50
+0 30 Loss 0.0813 Train AUC: 0.4859 Val AUC: 0.4485 Test AUC: 0.5065 nDCG: 0.9238 Kendall Tau: 0.0269
+EarlyStopping counter: 4 out of 50
+0 35 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.4999 Test AUC: 0.4999 nDCG: 0.9211 Kendall Tau: -0.0037
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+0 40 Loss 0.0813 Train AUC: 0.5076 Val AUC: 0.4911 Test AUC: 0.4676 nDCG: 0.9261 Kendall Tau: 0.0956
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+0 45 Loss 0.0813 Train AUC: 0.4892 Val AUC: 0.5073 Test AUC: 0.4895 nDCG: 0.9262 Kendall Tau: 0.0150
+Cache saved!
+email load time 3.799726724624634
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max4370, min160, mean2057.4285714285716
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 4370]), edge mask train shape: (2, 6459)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 2182]), edge mask train shape: (2, 1817)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 160]), edge mask train shape: (2, 67)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3842]), edge mask train shape: (2, 4980)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2724]), edge mask train shape: (2, 2449)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 304]), edge mask train shape: (2, 112)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 820]), edge mask train shape: (2, 338)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+1 0 Loss 0.0813 Train AUC: 0.4866 Val AUC: 0.4836 Test AUC: 0.4873 nDCG: 0.9226 Kendall Tau: 0.0425
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+1 5 Loss 0.0813 Train AUC: 0.5076 Val AUC: 0.5176 Test AUC: 0.5268 nDCG: 0.9167 Kendall Tau: -0.0662
+EarlyStopping counter: 1 out of 50
+1 10 Loss 0.0813 Train AUC: 0.4982 Val AUC: 0.4994 Test AUC: 0.4946 nDCG: 0.9214 Kendall Tau: 0.0419
+EarlyStopping counter: 2 out of 50
+1 15 Loss 0.0813 Train AUC: 0.5023 Val AUC: 0.5052 Test AUC: 0.5029 nDCG: 0.9242 Kendall Tau: 0.0433
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+1 20 Loss 0.0813 Train AUC: 0.4929 Val AUC: 0.4847 Test AUC: 0.4818 nDCG: 0.9229 Kendall Tau: 0.0346
+EarlyStopping counter: 1 out of 50
+1 25 Loss 0.0813 Train AUC: 0.4999 Val AUC: 0.4998 Test AUC: 0.5000 nDCG: 0.9225 Kendall Tau: 0.0158
+EarlyStopping counter: 2 out of 50
+1 30 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9240 Kendall Tau: 0.0836
+EarlyStopping counter: 3 out of 50
+1 35 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9269 Kendall Tau: 0.0957
+EarlyStopping counter: 4 out of 50
+1 40 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9185 Kendall Tau: -0.0196
+EarlyStopping counter: 5 out of 50
+1 45 Loss 0.0813 Train AUC: 0.4969 Val AUC: 0.5039 Test AUC: 0.4895 nDCG: 0.9203 Kendall Tau: -0.0630
+Cache saved!
+email load time 4.064395904541016
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max4370, min160, mean2057.4285714285716
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 4370]), edge mask train shape: (2, 6459)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 2182]), edge mask train shape: (2, 1817)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 160]), edge mask train shape: (2, 67)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3842]), edge mask train shape: (2, 4980)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2724]), edge mask train shape: (2, 2449)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 304]), edge mask train shape: (2, 112)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 820]), edge mask train shape: (2, 338)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+2 0 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9167 Kendall Tau: -0.1134
+EarlyStopping counter: 1 out of 50
+2 5 Loss 0.0813 Train AUC: 0.4997 Val AUC: 0.4994 Test AUC: 0.4993 nDCG: 0.9240 Kendall Tau: 0.0343
+EarlyStopping counter: 2 out of 50
+2 10 Loss 0.0813 Train AUC: 0.4779 Val AUC: 0.4371 Test AUC: 0.5009 nDCG: 0.9189 Kendall Tau: -0.0768
+EarlyStopping counter: 3 out of 50
+2 15 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9237 Kendall Tau: 0.0094
+EarlyStopping counter: 4 out of 50
+2 20 Loss 0.0813 Train AUC: 0.4993 Val AUC: 0.4988 Test AUC: 0.4976 nDCG: 0.9189 Kendall Tau: -0.0998
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+2 25 Loss 0.0813 Train AUC: 0.5036 Val AUC: 0.5019 Test AUC: 0.5045 nDCG: 0.9252 Kendall Tau: 0.0622
+EarlyStopping counter: 1 out of 50
+2 30 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5023 Test AUC: 0.4999 nDCG: 0.9200 Kendall Tau: -0.0577
+EarlyStopping counter: 2 out of 50
+2 35 Loss 0.0813 Train AUC: 0.5031 Val AUC: 0.5048 Test AUC: 0.5041 nDCG: 0.9253 Kendall Tau: 0.0899
+EarlyStopping counter: 3 out of 50
+2 40 Loss 0.0813 Train AUC: 0.5123 Val AUC: 0.5108 Test AUC: 0.5540 nDCG: 0.9136 Kendall Tau: -0.2023
+EarlyStopping counter: 4 out of 50
+2 45 Loss 0.0813 Train AUC: 0.4957 Val AUC: 0.4915 Test AUC: 0.4841 nDCG: 0.9236 Kendall Tau: 0.0761
+Cache saved!
+email load time 4.012346506118774
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max4370, min160, mean2057.4285714285716
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 4370]), edge mask train shape: (2, 6459)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 2182]), edge mask train shape: (2, 1817)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 160]), edge mask train shape: (2, 67)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3842]), edge mask train shape: (2, 4980)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2724]), edge mask train shape: (2, 2449)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 304]), edge mask train shape: (2, 112)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 820]), edge mask train shape: (2, 338)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+3 0 Loss 0.0813 Train AUC: 0.4996 Val AUC: 0.5000 Test AUC: 0.4997 nDCG: 0.9194 Kendall Tau: -0.0795
+EarlyStopping counter: 1 out of 50
+3 5 Loss 0.0813 Train AUC: 0.4943 Val AUC: 0.4952 Test AUC: 0.4950 nDCG: 0.9199 Kendall Tau: -0.0323
+EarlyStopping counter: 2 out of 50
+3 10 Loss 0.0813 Train AUC: 0.4878 Val AUC: 0.4874 Test AUC: 0.4752 nDCG: 0.9273 Kendall Tau: 0.0572
+EarlyStopping counter: 3 out of 50
+3 15 Loss 0.0813 Train AUC: 0.4969 Val AUC: 0.4968 Test AUC: 0.4982 nDCG: 0.9176 Kendall Tau: -0.0974
+EarlyStopping counter: 4 out of 50
+3 20 Loss 0.0813 Train AUC: 0.5226 Val AUC: 0.5620 Test AUC: 0.5391 nDCG: 0.9162 Kendall Tau: -0.1473
+EarlyStopping counter: 5 out of 50
+3 25 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9230 Kendall Tau: 0.0608
+EarlyStopping counter: 6 out of 50
+3 30 Loss 0.0813 Train AUC: 0.4964 Val AUC: 0.4757 Test AUC: 0.4882 nDCG: 0.9212 Kendall Tau: -0.0497
+EarlyStopping counter: 7 out of 50
+3 35 Loss 0.0813 Train AUC: 0.4999 Val AUC: 0.5003 Test AUC: 0.5004 nDCG: 0.9300 Kendall Tau: 0.1535
+EarlyStopping counter: 8 out of 50
+3 40 Loss 0.0813 Train AUC: 0.5031 Val AUC: 0.5068 Test AUC: 0.4998 nDCG: 0.9226 Kendall Tau: 0.0369
+EarlyStopping counter: 9 out of 50
+3 45 Loss 0.0813 Train AUC: 0.4992 Val AUC: 0.4979 Test AUC: 0.4946 nDCG: 0.9197 Kendall Tau: -0.0916
+Cache saved!
+email load time 3.914660692214966
+Dataset email Graph 7 Feature 1 Node Class None Graph Class None
+Node: max245, min32, mean131.42857142857142
+Edge: max4370, min160, mean2057.4285714285716
+Anchor num 64, Batch size 7
+0: feature size: torch.Size([245, 1]), edge shape: torch.Size([2, 4370]), edge mask train shape: (2, 6459)
+1: feature size: torch.Size([139, 1]), edge shape: torch.Size([2, 2182]), edge mask train shape: (2, 1817)
+2: feature size: torch.Size([32, 1]), edge shape: torch.Size([2, 160]), edge mask train shape: (2, 67)
+3: feature size: torch.Size([223, 1]), edge shape: torch.Size([2, 3842]), edge mask train shape: (2, 4980)
+4: feature size: torch.Size([186, 1]), edge shape: torch.Size([2, 2724]), edge mask train shape: (2, 2449)
+5: feature size: torch.Size([37, 1]), edge shape: torch.Size([2, 304]), edge mask train shape: (2, 112)
+6: feature size: torch.Size([58, 1]), edge shape: torch.Size([2, 820]), edge mask train shape: (2, 338)
+Validation loss decreased (inf --> 0.081326).  Saving model ...
+4 0 Loss 0.0813 Train AUC: 0.4922 Val AUC: 0.5009 Test AUC: 0.4967 nDCG: 0.9178 Kendall Tau: -0.0892
+EarlyStopping counter: 1 out of 50
+4 5 Loss 0.0813 Train AUC: 0.4974 Val AUC: 0.4840 Test AUC: 0.4981 nDCG: 0.9215 Kendall Tau: -0.0104
+EarlyStopping counter: 2 out of 50
+4 10 Loss 0.0813 Train AUC: 0.5009 Val AUC: 0.5016 Test AUC: 0.5015 nDCG: 0.9254 Kendall Tau: 0.1397
+Validation loss decreased (0.081326 --> 0.081326).  Saving model ...
+4 15 Loss 0.0813 Train AUC: 0.4918 Val AUC: 0.5065 Test AUC: 0.4912 nDCG: 0.9157 Kendall Tau: -0.1199
+EarlyStopping counter: 1 out of 50
+4 20 Loss 0.0813 Train AUC: 0.4979 Val AUC: 0.4947 Test AUC: 0.5001 nDCG: 0.9219 Kendall Tau: 0.0262
+EarlyStopping counter: 2 out of 50
+4 25 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.5000 Test AUC: 0.5000 nDCG: 0.9181 Kendall Tau: -0.0351
+EarlyStopping counter: 3 out of 50
+4 30 Loss 0.0813 Train AUC: 0.5000 Val AUC: 0.4996 Test AUC: 0.4996 nDCG: 0.9208 Kendall Tau: -0.0344
+EarlyStopping counter: 4 out of 50
+4 35 Loss 0.0813 Train AUC: 0.4969 Val AUC: 0.4950 Test AUC: 0.5010 nDCG: 0.9201 Kendall Tau: -0.0577
+EarlyStopping counter: 5 out of 50
+4 40 Loss 0.0813 Train AUC: 0.5258 Val AUC: 0.5683 Test AUC: 0.5566 nDCG: 0.9254 Kendall Tau: 0.0514
+EarlyStopping counter: 6 out of 50
+4 45 Loss 0.0813 Train AUC: 0.5115 Val AUC: 0.5002 Test AUC: 0.5124 nDCG: 0.9221 Kendall Tau: -0.0013
+-----------------Final-------------------
+AUC results: 0.533216 0.024368
+nDCG results: 0.926788 0.001731
+Kendall's Tau: 0.114858 0.026354

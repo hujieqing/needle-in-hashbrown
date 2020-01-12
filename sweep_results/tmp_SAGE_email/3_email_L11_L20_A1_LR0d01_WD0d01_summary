@@ -1,2 +1,0 @@
-3_email_L11_L20_A1_LR0.01_WD0.01 link AUC: 0.522907 0.024874, NDCG: 0.922062 0.002966, Kendall Tau: 0.072372 0.026935, overfit: False
-3_email_L11_L20_A1_LR0.01_WD0.01 link_pair AUC: 0.49891 0.022591, NDCG: 0.925258 0.000482, Kendall Tau: 0.065862 0.02369, overfit: False
