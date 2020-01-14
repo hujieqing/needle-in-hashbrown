@@ -37,10 +37,11 @@ def main():
         lastNDCG = None
         lastTau = None
         lastTask = None
+        print("model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit")
         for line in lines:
             if TASKLINE in line:
                 if printResult:
-                    print(args.prefix + " " + lastTask + " AUC: {0} {1}, NDCG: {2} {3}, Kendall Tau: {4} {5}, overfit: {6}".format(lastAUC[0], lastAUC[1], lastNDCG[0], lastNDCG[1], lastTau[0], lastTau[1], overFit))
+                    print(args.prefix + "," + lastTask + ",{0},{1},{2},{3},{4},{5},{6}".format(lastAUC[0], lastAUC[1], lastNDCG[0], lastNDCG[1], lastTau[0], lastTau[1], overFit))
                     printResult = False
                 splitLine = line.split()
                 lastTask = splitLine[1]
@@ -70,9 +71,8 @@ def main():
                 lastAUC = (splitLine[2], splitLine[3])
 
         if printResult:
-            print(args.prefix + " " +
-                  lastTask +
-                  " AUC: {0} {1}, NDCG: {2} {3}, Kendall Tau: {4} {5}, overfit: {6}".format(
+            print(args.prefix + "," + lastTask +
+                  ",{0},{1},{2},{3},{4},{5},{6}".format(
                       lastAUC[0], lastAUC[1], lastNDCG[0], lastNDCG[1], lastTau[0], lastTau[1], overFit
                   )
             )
