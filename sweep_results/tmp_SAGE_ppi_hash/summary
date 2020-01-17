@@ -1,0 +1,9 @@
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+3_ppi_L1_0.0_L2_0.0_A1_LR0.001_WD0.01,link,0.813115,0.004556,0.979091,0.000591,0.459012,0.007105,False
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+3_ppi_L1_0.0_L2_0.0_A1_LR0.001_WD0.001,link,0.814805,0.00258,0.979389,0.000319,0.461818,0.004799,False
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+3_ppi_L1_0.0_L2_0.0_A1_LR0.001_WD0.0001,link,0.817743,0.001207,0.979578,0.000286,0.464091,0.00333,False

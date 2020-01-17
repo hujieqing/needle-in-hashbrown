@@ -1,0 +1,2 @@
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+3_ppi_L1_1.0_L2_0.0_A1_LR0.001_WD0.0001,link,0.797914,0.002916,0.975726,0.000637,0.412608,0.012198,False

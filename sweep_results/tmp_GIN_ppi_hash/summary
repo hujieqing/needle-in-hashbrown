@@ -1,0 +1,6 @@
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+3_ppi_L1_0.0_L2_0.0_A1_LR0.01_WD0.01,link,0.789357,0.002414,0.979475,0.000307,0.440895,0.007755,False
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+3_ppi_L1_0.0_L2_0.0_A1_LR0.01_WD0.001,link,0.783469,0.005573,0.979514,0.000519,0.435245,0.008447,False
+model,task,auc,auc_std,ndcg,ndcg_std,kt,kt_std,overfit
+3_ppi_L1_0.0_L2_0.0_A1_LR0.01_WD0.0001,link,0.787747,0.006104,0.979403,0.000461,0.44951,0.01393,False

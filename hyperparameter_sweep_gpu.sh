@@ -6,14 +6,12 @@ DATASET=$2
 MODEL=$3
 
 LAYER_NUM=3
-#LAMBDA1=1
-#LAMBDA2=0
 WEIGHT_DECAY=0.01
 ALPHA=1
 EPOCH_LOG=5
 EPOCH_NUM=50
 REPEAT_NUM=5
-TMP_DIR_NAME="sweep_results/tmp_${MODEL}_${DATASET}_hash"
+TMP_DIR_NAME="sweep_results/tmp_${MODEL}_${DATASET}_MSE"
 
 rm -rf $TMP_DIR_NAME
 mkdir -p $TMP_DIR_NAME
@@ -30,7 +28,7 @@ for LAMBDA1 in 0.0 0.1 1 10;
 	LOG_FILE_NAME=`echo $PREFIX | sed 's/\./d/g'`
 	LOG_FILE_PATH="${TMP_DIR_NAME}/${LOG_FILE_NAME}"
 	SUMMARY_PATH="${TMP_DIR_NAME}/summary"
-        python main.py --model $MODEL --layer_num $LAYER_NUM --dataset $DATASET --gpu GPU --cuda $CUDA --lambda1 $LAMBDA1 --lambda2 $LAMBDA2 --alpha $ALPHA --lr $LR --epoch_num $EPOCH_NUM --epoch_log $EPOCH_LOG --repeat_num $REPEAT_NUM --weight_decay $WEIGHT_DECAY --early_stopping True --hash_concat |tee -a $LOG_FILE_PATH
+        python main.py --model $MODEL --layer_num $LAYER_NUM --dataset $DATASET --gpu GPU --cuda $CUDA --lambda1 $LAMBDA1 --lambda2 $LAMBDA2 --alpha $ALPHA --lr $LR --epoch_num $EPOCH_NUM --epoch_log $EPOCH_LOG --repeat_num $REPEAT_NUM --weight_decay $WEIGHT_DECAY --early_stopping True |tee -a $LOG_FILE_PATH
         python analyzeLogs.py --filename $LOG_FILE_PATH --prefix $PREFIX | tee -a $SUMMARY_PATH
         done
     done
