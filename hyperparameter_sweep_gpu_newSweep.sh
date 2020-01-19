@@ -17,14 +17,17 @@ TMP_DIR_NAME="sweep_results/tmp_${MODEL}E_${DATASET}_combined"
 rm -rf $TMP_DIR_NAME
 mkdir -p $TMP_DIR_NAME
 
-for LAMBDA1 in 0.0 0.1 1 10;
+for LAMBDA1 in 0 0.1 1 10;
   do
-  for LAMBDA2 in 0.0 0.1 1 10;
+  for LAMBDA2 in 0 0.1 1 10;
     do			      
     for LR in 0.01 0.001 0.0001;
       do
       for WEIGHT_DECAY in 0.1 0.01 0.001 0.0001;
         do
+          if [ $LAMBDA1 -eq 0 -a $LAMBDA2 -eq 0 ]; then
+            break
+          fi
 	PREFIX="${LAYER_NUM}_${DATASET}_L1_${LAMBDA1}_L2_${LAMBDA2}_A${ALPHA}_LR${LR}_WD${WEIGHT_DECAY}"
 	LOG_FILE_NAME=`echo $PREFIX | sed 's/\./d/g'`
 	LOG_FILE_PATH="${TMP_DIR_NAME}/${LOG_FILE_NAME}"
