@@ -17,17 +17,18 @@ ALPHA=1
 EPOCH_LOG=50
 EPOCH_NUM=2000
 REPEAT_NUM=2
-
-python main2.py --model $MODEL --layer_num $LAYER_NUM \
- --dataset $DATASET --gpu GPU --cuda $CUDA  \
-   --alpha $ALPHA  --epoch_num $EPOCH_NUM \
-   --epoch_log $EPOCH_LOG --repeat_num $REPEAT_NUM  \
-    --early_stopping True --comment mse --approximate 2\
-    --alpha $ALPHA \
-    --l1 '0.0 0.1 1 10' \
-    --l2 '0.0 0.1 1 10' \
-    --lr '0.1 0.01 0.001 0.0001' \
-    --weight_decay '0.01 0.001 0.0001'
-
+for task in link_pair link;
+do
+  python main2.py --model $MODEL --task $task --layer_num $LAYER_NUM \
+  --dataset $DATASET --gpu GPU --cuda $CUDA  \
+    --alpha $ALPHA  --epoch_num $EPOCH_NUM \
+    --epoch_log $EPOCH_LOG --repeat_num $REPEAT_NUM  \
+      --early_stopping True --comment mse --approximate 2\
+      --alpha $ALPHA \
+      --l1 '0.0 0.1 1 10' \
+      --l2 '0.0 0.1 1 10' \
+      --lr '0.1 0.01 0.001 0.0001' \
+      --weight_decay '0.01 0.001 0.0001'
+done
      
 
