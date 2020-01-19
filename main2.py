@@ -13,7 +13,7 @@ from sklearn.metrics import roc_auc_score, ndcg_score
 from sklearn.metrics.pairwise import cosine_similarity
 from pytorchtools import EarlyStopping
 from logger import Logger
-
+import math
 from args import *
 from model import *
 from utils import *
@@ -263,8 +263,7 @@ def sweep(training_data, args, parser, device, external_locals):
                                         #     t, p = kendalltau(true_relevance[row, :], pairwise_sim[row, :])
                                         #     tau += t
                                         # tau /= true_relevance.shape[0]
-                                        ktau += tau
-
+                                        ktau += (0.0 if math.isnan(tau) else tau)
 
                                     loss_train /= id+1
                                     loss_val /= id+1
@@ -289,7 +288,7 @@ def sweep(training_data, args, parser, device, external_locals):
                                         'Val AUC: {:.4f}'.format(auc_val), 'Test AUC: {:.4f}'.format(auc_test),
                                         'nDCG: {:.4f}'.format(ndcg), 'Kendall Tau: {:.4f}'.format(ktau))
 
-                            
+
                                     result_val.append(auc_val)
                                     result_test.append(auc_test)
 
@@ -304,7 +303,7 @@ def sweep(training_data, args, parser, device, external_locals):
 
                             results.append(result_test[np.argmax(result_val)])
                             results_ndcg.append(np.max(ndcg_result))
-                            results_ktau.append(np.max(ktau_result))
+                            results_ktau.append(np.nanmax(ktau_result))
                         results = np.array(results)
                         results_mean = np.mean(results).round(6)
                         results_std = np.std(results).round(6)

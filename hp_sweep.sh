@@ -14,7 +14,7 @@ MODEL=$3
 
 LAYER_NUM=3
 ALPHA=1
-EPOCH_LOG=5
+EPOCH_LOG=50
 EPOCH_NUM=2000
 REPEAT_NUM=2
 
@@ -22,7 +22,7 @@ python main2.py --model $MODEL --layer_num $LAYER_NUM \
  --dataset $DATASET --gpu GPU --cuda $CUDA  \
    --alpha $ALPHA  --epoch_num $EPOCH_NUM \
    --epoch_log $EPOCH_LOG --repeat_num $REPEAT_NUM  \
-    --early_stopping True --hash_concat --comment combined \
+    --early_stopping True --comment mse --approximate 2\
     --alpha $ALPHA \
     --l1 '0.0 0.1 1 10' \
     --l2 '0.0 0.1 1 10' \
