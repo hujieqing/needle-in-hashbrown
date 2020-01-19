@@ -3,7 +3,7 @@
 # 1.cuda device index (i.e., 0, 1, ...), 2. dataset name (i.e., email, communities, ppi), 3. model name (GCN, SAGE)
 DATASET=$1
 MODEL=$2
-
+CUDA=$3
 
 LAYER_NUM=2
 #LAMBDA1=1
@@ -11,9 +11,9 @@ LAYER_NUM=2
 WEIGHT_DECAY=0.01
 ALPHA=1
 EPOCH_LOG=5
-EPOCH_NUM=50
-REPEAT_NUM=5
-TMP_DIR_NAME="sweep_results/tmp_${MODEL}_${DATASET}_MSE"
+EPOCH_NUM=2000
+REPEAT_NUM=2
+TMP_DIR_NAME="sweep_results/tmp_${MODEL}_${DATASET}_hash"
 
 
 rm -rf $TMP_DIR_NAME
@@ -31,7 +31,7 @@ for LAMBDA1 in 0.0 0.1 1 10;
 	LOG_FILE_NAME=`echo $PREFIX | sed 's/\./d/g'`
 	LOG_FILE_PATH="${TMP_DIR_NAME}/${LOG_FILE_NAME}"
 	SUMMARY_PATH="${TMP_DIR_NAME}/summary"
-        python main.py --model $MODEL --layer_num $LAYER_NUM --dataset $DATASET --gpu GPU --cuda $CUDA --lambda1 $LAMBDA1 --lambda2 $LAMBDA2 --alpha $ALPHA --lr $LR --epoch_num $EPOCH_NUM --epoch_log $EPOCH_LOG --repeat_num $REPEAT_NUM --weight_decay $WEIGHT_DECAY --early_stopping True |tee -a $LOG_FILE_PATH
+        python main.py --model $MODEL --layer_num $LAYER_NUM --approximate 2 --dataset $DATASET --gpu GPU --cuda $CUDA --lambda1 $LAMBDA1 --lambda2 $LAMBDA2 --alpha $ALPHA --lr $LR --epoch_num $EPOCH_NUM --epoch_log $EPOCH_LOG --repeat_num $REPEAT_NUM --weight_decay $WEIGHT_DECAY --early_stopping True|tee -a $LOG_FILE_PATH
         python analyzeLogs.py --filename $LOG_FILE_PATH --prefix $PREFIX | tee -a $SUMMARY_PATH
         done
     done
