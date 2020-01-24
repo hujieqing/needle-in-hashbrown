@@ -112,6 +112,9 @@ data/ppi/
 logs-*/
 checkpoint.pt
 
+# figures
+figs/
+
 # local runs
 runs/
 
