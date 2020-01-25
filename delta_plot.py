@@ -73,6 +73,8 @@ for l, df in {"LP": dfLP, "NC": dfNC}.items():
 	fig, ax = plt.subplots(1, 2)
 	ax[0].xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
 	ax[1].xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+
+	# plot for communities
 	g1 = sns.scatterplot(y="Kendall's Tau", x="AUC", hue="Base Model", style="Position Encoding", data=df.loc[DF["Dataset"] == "Communities"], s=70, ax=ax[0], legend=False)
 	for base_model in base_models:
 		sns.lineplot(y="Kendall's Tau", x="AUC", data=df.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == base_model)], ax=ax[0], legend=False)
@@ -82,6 +84,7 @@ for l, df in {"LP": dfLP, "NC": dfNC}.items():
 	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "P-GNN-F-2L")], ax=ax[0], legend=False)
 	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "P-GNN-E-2L")], ax=ax[0], legend=False)
 
+	# plot for email
 	g2 = sns.scatterplot(y="Kendall's Tau", x="AUC", hue="Base Model", style="Position Encoding", data=df.loc[DF["Dataset"] == "Email"], s=70, ax=ax[1])
 	# h,l = ax[1].get_legend_handles_labels()
 	lgd = ax[1].legend(bbox_to_anchor=(0.98, 0.5), loc=6, borderaxespad=0., frameon=False)
@@ -106,4 +109,4 @@ for l, df in {"LP": dfLP, "NC": dfNC}.items():
 	plt.grid(False)
 	plt.xlabel("AUC")
 
-	fig.savefig("figs/KTvsAUC" + l +".png", bbox_extra_artists=(lgd,), bbox_inches='tight', format="png")
+	fig.savefig("figs/AUCvsKT" + l +".png", bbox_extra_artists=(lgd,), bbox_inches='tight', format="png")
