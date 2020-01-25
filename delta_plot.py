@@ -1,11 +1,12 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
+from matplotlib.ticker import FormatStrFormatter
 
 communitiesLinkResultData = {
 	"Base Model": ["GCN", "GCN", "GCN", "GCN", "GraphSage", "GraphSage", "GraphSage", "GraphSage", "GAT", "GAT", "GAT", "GAT", "GIN", "GIN", "GIN", "GIN", "P-GNN-F-2L", "P-GNN-F-2L", "P-GNN-F-2L", "P-GNN-F-2L", "P-GNN-E-2L", "P-GNN-E-2L", "P-GNN-E-2L", "P-GNN-E-2L"],
 	"Position Encoding": ["None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined"],
-	"AUC": [0.997, 0.986, 0.986, 0.986, 0.986, 0.979, 0.985, 0.986, 0.981, 0.919, 0.983, 0.987, 0.980, 0.988, 0.987, 0.987, 0.978, 0.978, 0.982, 1.0, 0.965, 0.973, 0.985, 0.982],
+	"AUC": [0.997, 0.986, 0.986, 0.986, 0.986, 0.979, 0.985, 0.9861, 0.981, 0.919, 0.983, 0.987, 0.980, 0.988, 0.987, 0.987, 0.978, 0.978, 0.982, 1.0, 0.965, 0.973, 0.985, 0.982],
 	"Kendall's Tau": [0.182, 0.215, 0.267, 0.301, 0.218, 0.268, 0.248, 0.253, 0.203, 0.263, 0.300, 0.303, 0.241, 0.272, 0.290, 0.432, 0.334, 0.340, 0.338, 1.0, 0.554, 0.600, 0.566, 0.588]
 }
 
@@ -19,7 +20,7 @@ emailLinkResultData = {
 communitiesLinkPairResultData = {
 	"Base Model": ["GCN", "GCN", "GCN", "GCN", "GraphSage", "GraphSage", "GraphSage", "GraphSage", "GAT", "GAT", "GAT", "GAT", "GIN", "GIN", "GIN", "GIN", "P-GNN-F-2L", "P-GNN-F-2L", "P-GNN-F-2L", "P-GNN-F-2L", "P-GNN-E-2L", "P-GNN-E-2L", "P-GNN-E-2L", "P-GNN-E-2L"],
 	"Position Encoding": ["None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined", "None", "Hash", "MSE", "Combined"],
-	"AUC": [0.988, 0.992, 0.992, 0.992, 0.993, 0.982, 0.994, 0.993, 0.989, 0.975, 0.989, 0.993, 0.991, 0.982, 0.992, 0.984, 0.986, 0.988, 0.991, 1.0, 0.981, 0.981, 0.990, 0.994],
+	"AUC": [0.988, 0.992, 0.992, 0.992, 0.993, 0.982, 0.994, 0.9931, 0.989, 0.975, 0.989, 0.993, 0.991, 0.982, 0.992, 0.984, 0.986, 0.988, 0.991, 1.0, 0.981, 0.981, 0.990, 0.994],
 	"Kendall's Tau": [0.146, 0.217, 0.277, 0.335, 0.212, 0.257, 0.270, 0.280, 0.205, 0.334, 0.318, 0.324, 0.213, 0.250, 0.301, 0.365, 0.346, 0.358, 0.357, 1.0, 0.518, 0.576, 0.535, 0.607]
 }
 
@@ -39,6 +40,8 @@ resultDataAll = {
 	"Kendall's Tau": communitiesLinkResultData["Kendall's Tau"] + emailLinkResultData["Kendall's Tau"] + communitiesLinkPairResultData["Kendall's Tau"] + emailLinkPairResultData["Kendall's Tau"]
 }
 
+base_models = ["GCN", "GraphSage", "GAT", "GIN", "P-GNN-F-2L", "P-GNN-E-2L"]
+
 # print(len(emailLinkPairResultData["Base Model"]), len(emailLinkPairResultData["Position Encoding"]), len(emailLinkPairResultData["AUC"]), len(emailLinkPairResultData["Kendall's Tau"]))
 
 # communitiesLinkDF = pd.DataFrame(communitiesLinkResultData)
@@ -51,7 +54,8 @@ sns.set(style="ticks")
 # figure.savefig('figs/KTvsAUC.png')
 
 DF = pd.DataFrame(resultDataAll)
-dfEmail = DF.loc[(DF["Task"] == "Link Prediction") & ((DF["Position Encoding"] == "None") | (DF["Position Encoding"] == "Combined"))]
+dfLP = DF.loc[(DF["Task"] == "Link Prediction") & ((DF["Position Encoding"] == "None") | (DF["Position Encoding"] == "Combined"))]
+dfNC = DF.loc[(DF["Task"] == "Pairwise Node Classification") & ((DF["Position Encoding"] == "None") | (DF["Position Encoding"] == "Combined"))]
 # g = sns.FacetGrid(DF, row="Dataset", col="Task", hue="Base Model", style="Position Encoding", margin_titles=True, height=2.5)
 # g.map(plt.scatter, "Kendall's Tau", "AUC")
 # g.set_axis_labels("Kendall's Tau", "AUC")
@@ -65,36 +69,41 @@ dfEmail = DF.loc[(DF["Task"] == "Link Prediction") & ((DF["Position Encoding"] =
 # # figure.savefig('figs/KTvsAUC.png')
 # g.savefig('figs/KTvsAUCLP.png')
 
-fig, ax = plt.subplots(1, 2)
-g1 = sns.scatterplot(x="Kendall's Tau", y="AUC", hue="Base Model", style="Position Encoding", data=dfEmail.loc[DF["Dataset"] == "Communities"], s=70, ax=ax[0], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "GCN")], ax=ax[0], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "GraphSage")], ax=ax[0], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "GAT")], ax=ax[0], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "GIN")], ax=ax[0], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "P-GNN-F-2L")], ax=ax[0], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "P-GNN-E-2L")], ax=ax[0], legend=False)
+for l, df in {"LP": dfLP, "NC": dfNC}.items():
+	fig, ax = plt.subplots(1, 2)
+	ax[0].xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+	ax[1].xaxis.set_major_formatter(FormatStrFormatter('%.2f'))
+	g1 = sns.scatterplot(y="Kendall's Tau", x="AUC", hue="Base Model", style="Position Encoding", data=df.loc[DF["Dataset"] == "Communities"], s=70, ax=ax[0], legend=False)
+	for base_model in base_models:
+		sns.lineplot(y="Kendall's Tau", x="AUC", data=df.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == base_model)], ax=ax[0], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "GraphSage")], ax=ax[0], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "GAT")], ax=ax[0], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "GIN")], ax=ax[0], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "P-GNN-F-2L")], ax=ax[0], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Communities") &  (DF["Base Model"] == "P-GNN-E-2L")], ax=ax[0], legend=False)
 
-g2 = sns.scatterplot(x="Kendall's Tau", y="AUC", hue="Base Model", style="Position Encoding", data=dfEmail.loc[DF["Dataset"] == "Email"], s=70, ax=ax[1])
-# h,l = ax[1].get_legend_handles_labels()
-lgd = ax[1].legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "GCN")], ax=ax[1], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "GraphSage")], ax=ax[1], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "GAT")], ax=ax[1], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "GIN")], ax=ax[1], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "P-GNN-F-2L")], ax=ax[1], legend=False)
-sns.lineplot(x="Kendall's Tau", y="AUC", data=dfEmail.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "P-GNN-E-2L")], ax=ax[1], legend=False)
+	g2 = sns.scatterplot(y="Kendall's Tau", x="AUC", hue="Base Model", style="Position Encoding", data=df.loc[DF["Dataset"] == "Email"], s=70, ax=ax[1])
+	# h,l = ax[1].get_legend_handles_labels()
+	lgd = ax[1].legend(bbox_to_anchor=(0.98, 0.5), loc=6, borderaxespad=0., frameon=False)
+	for base_model in base_models:
+		sns.lineplot(y="Kendall's Tau", x="AUC", data=df.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == base_model)], ax=ax[1], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "GraphSage")], ax=ax[1], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "GAT")], ax=ax[1], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "GIN")], ax=ax[1], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "P-GNN-F-2L")], ax=ax[1], legend=False)
+	# sns.lineplot(x="Kendall's Tau", y="AUC", data=dfLP.loc[(DF["Dataset"] == "Email") &  (DF["Base Model"] == "P-GNN-E-2L")], ax=ax[1], legend=False)
 
-ax[1].set_ylabel('')
-ax[0].set_xlabel('')
-ax[1].set_xlabel('')
-ax[0].set_title('Communities')
-ax[1].set_title('Email')
+	ax[1].set_ylabel('')
+	ax[0].set_xlabel('')
+	ax[1].set_xlabel('')
+	ax[0].set_title('Communities')
+	ax[1].set_title('Email')
 
-# add a big axes, hide frame
-fig.add_subplot(111, frameon=False)
-# hide tick and tick label of the big axes
-plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
-plt.grid(False)
-plt.xlabel("Kendall's Tau")
+	# add a big axes, hide frame
+	fig.add_subplot(111, frameon=False)
+	# hide tick and tick label of the big axes
+	plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
+	plt.grid(False)
+	plt.xlabel("AUC")
 
-fig.savefig('figs/KTvsAUCLP.png', bbox_extra_artists=(lgd,), bbox_inches='tight')
+	fig.savefig("figs/KTvsAUC" + l +".png", bbox_extra_artists=(lgd,), bbox_inches='tight', format="png")
