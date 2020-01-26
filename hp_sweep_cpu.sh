@@ -13,7 +13,7 @@ MODEL=$2
 
 LAYER_NUM=2
 ALPHA=1
-EPOCH_LOG=50
+EPOCH_LOG=100
 EPOCH_NUM=2000
 REPEAT_NUM=2
 for task in link_pair link;
@@ -22,12 +22,12 @@ do
   --dataset $DATASET --cpu  \
     --alpha $ALPHA  --epoch_num $EPOCH_NUM \
     --epoch_log $EPOCH_LOG --repeat_num $REPEAT_NUM  \
-      --early_stopping True --comment PGNNFCombined --approximate 2\
-      --alpha $ALPHA \
+      --early_stopping True --comment PGNNFCombined \
+      --alpha $ALPHA --approximate 2 \
       --l1 '0.0 0.1 1 10' \
       --l2 '0.0 0.1 1 10' \
       --lr '0.1 0.01 0.001 0.0001' \
-      --weight_decay '0.1 0.01 0.001 0.0001'
+      --weight_decay '0.01 0.001 0.0001'
 done
      
 
