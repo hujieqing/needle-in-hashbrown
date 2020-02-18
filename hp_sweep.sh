@@ -12,12 +12,11 @@ CUDA=$1
 DATASET=$2
 MODEL=$3
 COMMENT=$4
-LEARNING_RATE=$5
 
-LAYER_NUM=3
+LAYER_NUM=2
 ALPHA=1
 EPOCH_LOG=50
-EPOCH_NUM=2000
+EPOCH_NUM=1000
 REPEAT_NUM=2
 for task in link_pair link;
 do
@@ -25,10 +24,10 @@ do
   --dataset $DATASET --gpu GPU --cuda $CUDA  \
     --alpha $ALPHA  --epoch_num $EPOCH_NUM \
     --epoch_log $EPOCH_LOG --repeat_num $REPEAT_NUM  \
-      --early_stopping True --comment $COMMENT\
+      --early_stopping True --comment $COMMENT --approximate 2\
       --alpha $ALPHA \
-      --l1 '1.0'\
-      --l2 '0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 2.0 3.0 4.0 5.0 6.0 7.0 8.0 9.0 10.0' \
-      --lr $LEARNING_RATE \
+      --l1 '0.0 0.1 1.0 10.0'\
+      --l2 '0.1 1.0 10.0' \
+      --lr '0.1 0.01 0.001 0.0001' \
       --weight_decay '0.1 0.01 0.001 0.0001'
 done

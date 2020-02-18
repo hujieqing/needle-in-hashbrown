@@ -117,6 +117,7 @@ figs/
 
 # local runs
 runs/
+summary/
 
 # exclude everything under idea
 .idea/
